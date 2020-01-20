@@ -1,5 +1,5 @@
 //
-//  CSLHomeVC.m
+//  CSLHomeVC.swift
 //  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 15/9/2018.
@@ -112,7 +112,7 @@ import UIKit
             actHomeSpinner.startAnimating()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.0))
             view.isUserInteractionEnabled = false
-            showTabInterfaceActiveView(CSL_VC_RFIDTAB_INVENTORY_VC_IDX)
+            showTabInterfaceActiveView(Int32(CSLTabVC.CSL_VC_RFIDTAB_INVENTORY_VC_IDX))
         }
 
 
@@ -120,7 +120,7 @@ import UIKit
 
     func showTabInterfaceActiveView(_ identifier: Int32) {
         let tabVC = UIStoryboard(name: "CSLRfidDemoApp", bundle: Bundle.main).instantiateViewController(withIdentifier: "ID_TabVC") as? CSLTabVC
-        tabVC?.setActiveView(identifier)
+        tabVC?.setActiveView(Int(identifier))
 
         if tabVC != nil {
             if let tabVC = tabVC {
@@ -245,7 +245,7 @@ import UIKit
             actHomeSpinner.startAnimating()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.0))
             view.isUserInteractionEnabled = false
-            showTabInterfaceActiveView(CSL_VC_RFIDTAB_ACCESS_VC_IDX)
+            showTabInterfaceActiveView(Int32(CSLTabVC.CSL_VC_RFIDTAB_ACCESS_VC_IDX))
         }
 
 
@@ -266,7 +266,7 @@ import UIKit
             actHomeSpinner.startAnimating()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.0))
             view.isUserInteractionEnabled = false
-            showTabInterfaceActiveView(CSL_VC_RFIDTAB_SEARCH_VC_IDX)
+            showTabInterfaceActiveView(Int32(CSLTabVC.CSL_VC_RFIDTAB_SEARCH_VC_IDX))
         }
 
 

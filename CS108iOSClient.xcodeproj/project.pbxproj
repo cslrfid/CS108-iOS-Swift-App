@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		424A493A23D405C10028D200 /* CSLTagAccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493923D405C10028D200 /* CSLTagAccessVC.swift */; };
+		424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493B23D433400028D200 /* CSLTagSearchVC.swift */; };
 		42AFE63E23C8333600D71099 /* CSLHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFE63D23C8333600D71099 /* CSLHomeVC.swift */; };
 		42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */; };
+		42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */; };
 		CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */; };
 		CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */; };
 		CA4661A1223AD3A80028333B /* CSLTemperatureTagSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */; };
@@ -24,7 +27,6 @@
 		CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */; };
 		CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */; };
 		CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */; };
-		CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787366214CC9C8009B7FE6 /* CSLTabVC.m */; };
 		CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */; };
 		CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78736F214CD7C4009B7FE6 /* UIKit.framework */; };
 		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -45,8 +47,6 @@
 		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
-		CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */; };
-		CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD168562175AD6600DC218E /* CSLTagAccessVC.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
 		CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
@@ -75,9 +75,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		424A493823D2E99E0028D200 /* CS108iOSClient-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CS108iOSClient-Swift.h"; sourceTree = "<group>"; };
+		424A493923D405C10028D200 /* CSLTagAccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagAccessVC.swift; sourceTree = "<group>"; };
+		424A493B23D433400028D200 /* CSLTagSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagSearchVC.swift; sourceTree = "<group>"; };
 		42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CS108iOSClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		42AFE63D23C8333600D71099 /* CSLHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLHomeVC.swift; sourceTree = "<group>"; };
 		42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLInventoryVC.swift; sourceTree = "<group>"; };
+		42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTabVC.swift; sourceTree = "<group>"; };
 		84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 		88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,8 +113,6 @@
 		CA72297D222AB13300D8C2CF /* CSLTemperatureTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagListCell.h; sourceTree = "<group>"; };
 		CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagListCell.m; sourceTree = "<group>"; };
 		CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTemperatureTagListCell.xib; sourceTree = "<group>"; };
-		CA787365214CC9C8009B7FE6 /* CSLTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTabVC.h; sourceTree = "<group>"; };
-		CA787366214CC9C8009B7FE6 /* CSLTabVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTabVC.m; sourceTree = "<group>"; };
 		CA787368214CCA47009B7FE6 /* CSLSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLSettingsVC.h; sourceTree = "<group>"; };
 		CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLSettingsVC.m; sourceTree = "<group>"; };
 		CA78736F214CD7C4009B7FE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -146,10 +148,6 @@
 		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
-		CACFBBB921C8E4D0001161F6 /* CSLTagSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagSearchVC.h; sourceTree = "<group>"; };
-		CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagSearchVC.m; sourceTree = "<group>"; };
-		CAD168552175AD6600DC218E /* CSLTagAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagAccessVC.h; sourceTree = "<group>"; };
-		CAD168562175AD6600DC218E /* CSLTagAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagAccessVC.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureDetailsVC.h; sourceTree = "<group>"; };
 		CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureDetailsVC.m; sourceTree = "<group>"; };
@@ -210,8 +208,6 @@
 			children = (
 				CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */,
 				CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */,
-				CA787365214CC9C8009B7FE6 /* CSLTabVC.h */,
-				CA787366214CC9C8009B7FE6 /* CSLTabVC.m */,
 				CA787368214CCA47009B7FE6 /* CSLSettingsVC.h */,
 				CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */,
 				CA7873762150DF7A009B7FE6 /* CSLDeviceTV.h */,
@@ -220,10 +216,6 @@
 				CA5066402157889C00C3C9C8 /* CSLAboutVC.m */,
 				CABA714821325BF500D15BB1 /* AppDelegate.h */,
 				CABA714921325BF500D15BB1 /* AppDelegate.m */,
-				CAD168552175AD6600DC218E /* CSLTagAccessVC.h */,
-				CAD168562175AD6600DC218E /* CSLTagAccessVC.m */,
-				CACFBBB921C8E4D0001161F6 /* CSLTagSearchVC.h */,
-				CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */,
 				CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */,
 				CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */,
 				CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */,
@@ -253,7 +245,11 @@
 				CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */,
 				CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */,
 				42AFE63D23C8333600D71099 /* CSLHomeVC.swift */,
+				42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */,
 				42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */,
+				424A493923D405C10028D200 /* CSLTagAccessVC.swift */,
+				424A493B23D433400028D200 /* CSLTagSearchVC.swift */,
+				424A493823D2E99E0028D200 /* CS108iOSClient-Swift.h */,
 				42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */,
 			);
 			path = ViewControllers;
@@ -490,11 +486,12 @@
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
 				CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */,
 				CA4D5CA32228EF91007A55B3 /* CSLTemperatureReadVC.m in Sources */,
-				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
 				CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */,
+				424A493A23D405C10028D200 /* CSLTagAccessVC.swift in Sources */,
 				42AFE63E23C8333600D71099 /* CSLHomeVC.swift in Sources */,
 				CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */,
+				42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */,
 				CA4661A1223AD3A80028333B /* CSLTemperatureTagSettingsVC.m in Sources */,
 				CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */,
 				CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */,
@@ -504,7 +501,7 @@
 				CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
-				CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */,
+				424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */,
 				CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */,
 				CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */,
 				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
@@ -513,7 +510,6 @@
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */,
 				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,
-				CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,7 +38,7 @@
         <!--Home-->
         <scene sceneID="RDg-Xl-DcA">
             <objects>
-                <viewController storyboardIdentifier="ID_HomeVc" id="fVS-GJ-XIB" userLabel="Home" customClass="CSLHomeVC" customModule="CS108iOSClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_HomeVc" id="fVS-GJ-XIB" userLabel="Home" customClass="CSLHomeVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9GR-iC-bpe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -413,7 +413,7 @@
                                 </constraints>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4T3-Qs-EDw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="141.5" y="243.5" width="37" height="37"/>
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -421,11 +421,7 @@
                         <constraints>
                             <constraint firstItem="4T3-Qs-EDw" firstAttribute="centerX" secondItem="9GR-iC-bpe" secondAttribute="centerX" id="6QV-dv-1r9"/>
                             <constraint firstItem="Uid-YZ-2hb" firstAttribute="leading" secondItem="bQ7-37-eQw" secondAttribute="leading" id="Bdy-lK-hKt"/>
-                            <constraint firstItem="4T3-Qs-EDw" firstAttribute="trailing" secondItem="bQ7-37-eQw" secondAttribute="trailing" id="M5V-in-wYg"/>
-                            <constraint firstItem="4T3-Qs-EDw" firstAttribute="leading" secondItem="bQ7-37-eQw" secondAttribute="leading" id="MTl-JC-ImG"/>
-                            <constraint firstItem="4T3-Qs-EDw" firstAttribute="top" secondItem="bQ7-37-eQw" secondAttribute="top" id="WaP-mP-Vja"/>
                             <constraint firstItem="Uid-YZ-2hb" firstAttribute="bottom" secondItem="bQ7-37-eQw" secondAttribute="bottom" id="YyO-Nk-wJ4"/>
-                            <constraint firstItem="bQ7-37-eQw" firstAttribute="bottom" secondItem="4T3-Qs-EDw" secondAttribute="bottom" id="f0U-KC-jCA"/>
                             <constraint firstItem="Uid-YZ-2hb" firstAttribute="trailing" secondItem="bQ7-37-eQw" secondAttribute="trailing" id="fVU-0j-cWh"/>
                             <constraint firstItem="4T3-Qs-EDw" firstAttribute="centerY" secondItem="9GR-iC-bpe" secondAttribute="centerY" id="k3X-4o-oei"/>
                             <constraint firstItem="Uid-YZ-2hb" firstAttribute="top" secondItem="bQ7-37-eQw" secondAttribute="top" id="uxa-rN-v1o"/>
@@ -455,7 +451,7 @@
         <!--CslRfid findYourItemVC-->
         <scene sceneID="dUs-Nz-pgd">
             <objects>
-                <viewController storyboardIdentifier="ID_TagSearchVC" id="qel-VM-Uw9" userLabel="CslRfid findYourItemVC" customClass="CSLTagSearchVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TagSearchVC" id="qel-VM-Uw9" userLabel="CslRfid findYourItemVC" customClass="CSLTagSearchVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kuj-AL-YiZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1092,7 +1088,7 @@
         <!--CslRfid InventoryVC-->
         <scene sceneID="UL7-5a-8lj">
             <objects>
-                <viewController storyboardIdentifier="ID_InventoryVC" id="oNn-rS-311" userLabel="CslRfid InventoryVC" customClass="CSLInventoryVC" customModule="CS108iOSClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_InventoryVC" id="oNn-rS-311" userLabel="CslRfid InventoryVC" customClass="CSLInventoryVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pRh-tK-EoN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1308,9 +1304,8 @@
                                     <action selector="btnInventoryPressed:" destination="oNn-rS-311" eventType="touchUpInside" id="sUS-lW-NwH"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Eiv-lT-vdL">
-                                <rect key="frame" x="142" y="241" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Eiv-lT-vdL">
+                                <rect key="frame" x="141.5" y="241" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -1320,6 +1315,8 @@
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="top" secondItem="V2E-Qu-ppL" secondAttribute="top" id="1A6-4x-7Ze"/>
                             <constraint firstAttribute="trailing" secondItem="PQo-0I-wbG" secondAttribute="trailing" id="1WC-Zf-V84"/>
                             <constraint firstItem="Kdx-wm-fgK" firstAttribute="bottom" secondItem="V2E-Qu-ppL" secondAttribute="bottom" constant="-5" id="jcS-Ak-t0Y"/>
+                            <constraint firstItem="Eiv-lT-vdL" firstAttribute="centerX" secondItem="pRh-tK-EoN" secondAttribute="centerX" id="lq8-MB-v5Q"/>
+                            <constraint firstItem="Eiv-lT-vdL" firstAttribute="centerY" secondItem="pRh-tK-EoN" secondAttribute="centerY" id="sZi-m1-JXh"/>
                             <constraint firstItem="Kdx-wm-fgK" firstAttribute="top" secondItem="PQo-0I-wbG" secondAttribute="bottom" id="uBc-fB-tU5"/>
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="leading" secondItem="Kdx-wm-fgK" secondAttribute="leading" constant="-5" id="wfL-Ho-qIj"/>
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="trailing" secondItem="Kdx-wm-fgK" secondAttribute="trailing" constant="5" id="xir-pK-Cwa"/>
@@ -1347,7 +1344,7 @@
         <!--CslRfid MainVC-->
         <scene sceneID="BOr-BI-5it">
             <objects>
-                <tabBarController storyboardIdentifier="ID_TabVC" title="Inventory" definesPresentationContext="YES" id="16E-28-ege" userLabel="CslRfid MainVC" customClass="CSLTabVC" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ID_TabVC" title="Inventory" definesPresentationContext="YES" id="16E-28-ege" userLabel="CslRfid MainVC" customClass="CSLTabVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UgN-tw-YL8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -3920,7 +3917,7 @@
         <!--CslRfid TagAccessVC-->
         <scene sceneID="afX-Ce-xLR">
             <objects>
-                <viewController storyboardIdentifier="ID_TagAccessVC" id="E7F-yr-253" userLabel="CslRfid TagAccessVC" customClass="CSLTagAccessVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TagAccessVC" id="E7F-yr-253" userLabel="CslRfid TagAccessVC" customClass="CSLTagAccessVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQb-i9-LEN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4392,13 +4389,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected EPC: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBl-LQ-CtY" userLabel="Selected EPC">
-                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="35"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yyF-ix-1ux" userLabel="Selected EPC Text">
-                                                <rect key="frame" x="101.5" y="0.0" width="208.5" height="35"/>
+                                                <rect key="frame" x="94.5" y="0.0" width="215.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -4411,13 +4408,13 @@
                                         <rect key="frame" x="0.0" y="40" width="310" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access PWD: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5y-4o-dAs">
-                                                <rect key="frame" x="0.0" y="0.0" width="96" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="35"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZeT-YF-bSO">
-                                                <rect key="frame" x="96" y="0.0" width="214" height="35"/>
+                                                <rect key="frame" x="90.5" y="0.0" width="219.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>

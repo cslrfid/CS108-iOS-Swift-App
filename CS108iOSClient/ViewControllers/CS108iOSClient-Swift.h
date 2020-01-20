@@ -170,7 +170,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @import UIKit;
 #endif
 
-#import "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/ViewControllers/CS108iOSClient-Bridging-Header.h"
+#import "CS108iOSClient-Swift.h"
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"

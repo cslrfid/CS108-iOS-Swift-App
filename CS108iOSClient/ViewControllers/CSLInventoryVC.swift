@@ -1,5 +1,5 @@
 //
-//  CSLInventoryVC.m
+//  CSLInventoryVC.swift
 //  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 15/9/2018.
