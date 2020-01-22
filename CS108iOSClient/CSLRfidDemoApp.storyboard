@@ -569,7 +569,7 @@
         <!--CslRfid SettingsVC-->
         <scene sceneID="llq-Io-Hyh">
             <objects>
-                <viewController storyboardIdentifier="ID_SettingsVC" id="D4r-Hh-STj" userLabel="CslRfid SettingsVC" customClass="CSLSettingsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_SettingsVC" id="D4r-Hh-STj" userLabel="CslRfid SettingsVC" customClass="CSLSettingsVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QK7-MR-2Qr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1344,7 +1344,7 @@
         <!--CslRfid MainVC-->
         <scene sceneID="BOr-BI-5it">
             <objects>
-                <tabBarController storyboardIdentifier="ID_TabVC" title="Inventory" definesPresentationContext="YES" id="16E-28-ege" userLabel="CslRfid MainVC" customClass="CSLTabVC" customModule="CS108Swift" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ID_TabVC" title="Inventory" definesPresentationContext="YES" id="16E-28-ege" userLabel="CslRfid MainVC" customClass="CSLTabVC" customModule="CS108Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UgN-tw-YL8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

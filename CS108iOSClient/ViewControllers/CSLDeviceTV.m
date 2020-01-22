@@ -8,7 +8,6 @@
 
 #import "CSLDeviceTV.h"
 #import "CSLRfidAppEngine.h"
-#import "CSLSettingsVC.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation CSLDeviceTV

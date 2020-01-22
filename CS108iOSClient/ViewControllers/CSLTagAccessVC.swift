@@ -156,7 +156,7 @@
 
         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
                 let textField = alert.textFields?.first
-                if (Int(textField?.text ?? "") ?? 0 >= 0 && Int(textField?.text ?? "") ?? 0 <= 8) && !(textField?.text == "") {
+                if (Int(textField?.text ?? "") ?? -1 >= 0 && Int(textField?.text ?? "") ?? -1 <= 8) && !(textField?.text == "") {
                     textField?.text = "\(Int(textField?.text ?? "") ?? 0)"
                     self.btnTidUidOffset.setTitle("Offset=\(textField?.text ?? "")", for: .normal)
                 }
@@ -206,7 +206,7 @@
 
         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
                 let textField = alert.textFields?.first
-                if (Int(textField?.text ?? "") ?? 0 >= 0 && Int(textField?.text ?? "") ?? 0 <= 32) && !(textField?.text == "") {
+                if (Int(textField?.text ?? "") ?? -1 >= 0 && Int(textField?.text ?? "") ?? -1 <= 32) && !(textField?.text == "") {
                     textField?.text = "\(Int(textField?.text ?? "") ?? 0)"
                     self.btnUserOffset.setTitle("Offset=\(textField?.text ?? "")", for: .normal)
                 }
