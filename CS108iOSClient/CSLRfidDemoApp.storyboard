@@ -463,13 +463,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoO-FG-klp" userLabel="EPC">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDx-ql-S6S" userLabel="EPC Text">
-                                                <rect key="frame" x="37" y="0.0" width="273" height="34"/>
+                                                <rect key="frame" x="39" y="0.0" width="271" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -543,7 +543,7 @@
         <!--DeviceTV-->
         <scene sceneID="Prb-yy-xPI">
             <objects>
-                <tableViewController storyboardIdentifier="ID_DeviceTV" id="yuX-ds-zWc" customClass="CSLDeviceTV" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ID_DeviceTV" id="yuX-ds-zWc" customClass="CSLDeviceTV" customModule="CS108Swift" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4wQ-5s-Yjz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1178,7 +1178,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Tags (t/s)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-ol-8OR">
-                                                                <rect key="frame" x="9" y="8" width="91.5" height="32"/>
+                                                                <rect key="frame" x="9" y="8" width="95" height="32"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1371,7 +1371,7 @@
         <!--CslRfid Special Functions-->
         <scene sceneID="xbP-rR-83I">
             <objects>
-                <viewController storyboardIdentifier="ID_FuncVC" id="g9W-MI-doE" userLabel="CslRfid Special Functions" customClass="CSLMoreFunctionsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_FuncVC" id="g9W-MI-doE" userLabel="CslRfid Special Functions" customClass="CSLMoreFunctionsVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Nf-lz-qSk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1545,7 +1545,7 @@
         <!--CslRfid Multibank AccessVC-->
         <scene sceneID="5cr-pU-td1">
             <objects>
-                <viewController storyboardIdentifier="ID_MultibankVC" id="vTg-gF-cDw" userLabel="CslRfid Multibank AccessVC" customClass="CSLMultibankAccessVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_MultibankVC" id="vTg-gF-cDw" userLabel="CslRfid Multibank AccessVC" customClass="CSLMultibankAccessVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iDI-5E-BpG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1739,7 +1739,7 @@
         <!--CslRfid AboutVC-->
         <scene sceneID="Q2y-W5-shm">
             <objects>
-                <viewController storyboardIdentifier="ID_AboutVC" title="About" id="X0q-ZB-cO0" userLabel="CslRfid AboutVC" customClass="CSLAboutVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_AboutVC" title="About" id="X0q-ZB-cO0" userLabel="CslRfid AboutVC" customClass="CSLAboutVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1BB-be-uGa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4377,7 +4377,7 @@
         <!--CslRfid TagLockVC-->
         <scene sceneID="JQM-20-rtl">
             <objects>
-                <viewController storyboardIdentifier="ID_TagLockVC" id="b91-Xa-QNn" userLabel="CslRfid TagLockVC" customClass="CSLTagLockVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TagLockVC" id="b91-Xa-QNn" userLabel="CslRfid TagLockVC" customClass="CSLTagLockVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m6w-hl-6zC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
