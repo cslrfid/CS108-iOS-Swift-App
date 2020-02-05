@@ -6,7 +6,7 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-class CSLTagListCell: UITableViewCell {
+@objcMembers class CSLTagListCell: UITableViewCell {
     
     @IBOutlet weak var lbCellEPC: UILabel!
     @IBOutlet weak var lbCellBank: UILabel!
