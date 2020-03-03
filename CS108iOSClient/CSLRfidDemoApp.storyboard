@@ -575,7 +575,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2ci-gg-415">
-                                <rect key="frame" x="5" y="20" width="310" height="444"/>
+                                <rect key="frame" x="5" y="20" width="310" height="451"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Y6L-Xl-CtA" userLabel="Power">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
@@ -702,16 +702,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6UT-KY-nK9" userLabel="Query Algorithm">
-                                        <rect key="frame" x="0.0" y="207" width="310" height="30"/>
+                                        <rect key="frame" x="0.0" y="207" width="310" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Query Algorithm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I7C-tC-ePG">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="36"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOF-yf-zif">
-                                                <rect key="frame" x="110" y="0.0" width="200" height="30"/>
+                                                <rect key="frame" x="110" y="0.0" width="200" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="aVT-0C-fur"/>
                                                 </constraints>
@@ -726,16 +726,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X25-FJ-VkZ" userLabel="Reader Mode">
-                                        <rect key="frame" x="0.0" y="246" width="310" height="26"/>
+                                        <rect key="frame" x="0.0" y="252" width="310" height="27"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reader Mode  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vmm-Z4-z30">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="26"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="27"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYb-uQ-pYe">
-                                                <rect key="frame" x="110" y="0.0" width="200" height="26"/>
+                                                <rect key="frame" x="110" y="0.0" width="200" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="42d-Dk-y0m" userLabel="width = 300"/>
                                                 </constraints>
@@ -750,7 +750,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2Y-k8-mzO">
-                                        <rect key="frame" x="0.0" y="281" width="310" height="31"/>
+                                        <rect key="frame" x="0.0" y="288" width="310" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Sound  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Qa-crc">
                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
@@ -768,7 +768,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-La-EeK">
-                                        <rect key="frame" x="0.0" y="321" width="310" height="35"/>
+                                        <rect key="frame" x="0.0" y="328" width="310" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZn-Dt-0mq">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
@@ -786,7 +786,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAW-bh-UF6">
-                                        <rect key="frame" x="0.0" y="365" width="310" height="35"/>
+                                        <rect key="frame" x="0.0" y="372" width="310" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm0-tP-Uy9">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
@@ -804,7 +804,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nur-3L-wde">
-                                        <rect key="frame" x="0.0" y="409" width="310" height="35"/>
+                                        <rect key="frame" x="0.0" y="416" width="310" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-gh-Nj9">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
@@ -2191,7 +2191,7 @@
         <!--CslRfid Temperature Tag Settings-->
         <scene sceneID="C4M-py-bST">
             <objects>
-                <viewController id="j72-cb-617" userLabel="CslRfid Temperature Tag Settings" customClass="CSLTemperatureTagSettingsVC" sceneMemberID="viewController">
+                <viewController id="j72-cb-617" userLabel="CslRfid Temperature Tag Settings" customClass="CSLTemperatureTagSettingsVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tmu-NG-s1n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2706,7 +2706,7 @@
         <!--CslRfid TempReadVC-->
         <scene sceneID="YVU-JR-22V">
             <objects>
-                <viewController storyboardIdentifier="ID_TemperatureReadVC" id="KVe-mu-WoI" userLabel="CslRfid TempReadVC" customClass="CSLTemperatureReadVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TemperatureReadVC" id="KVe-mu-WoI" userLabel="CslRfid TempReadVC" customClass="CSLTemperatureReadVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eML-Rv-QeN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2939,7 +2939,7 @@
         <!--CslRfid Temperature TabVC-->
         <scene sceneID="R3h-Ag-G6F">
             <objects>
-                <tabBarController storyboardIdentifier="ID_TempTabVC" title="nuss" id="UvU-mv-A4X" userLabel="CslRfid Temperature TabVC" customClass="CSLTemperatureTabVC" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ID_TempTabVC" title="nuss" id="UvU-mv-A4X" userLabel="CslRfid Temperature TabVC" customClass="CSLTemperatureTabVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iSW-8r-kc8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

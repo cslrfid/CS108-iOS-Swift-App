@@ -3,8 +3,9 @@
 //
 
 #import "CSLRfidAppEngine.h"
-#import "CSLTemperatureReadVC.h"
-#import "CSLTemperatureTabVC.h"
+//#import "CSLTemperatureReadVC.h"
+//#import "CSLTemperatureTabVC.h"
+//#import "CSLTemperatureTagListCell.h"
 #import "LMGaugeView.h"
 #import "CSLPowerLevelVC.h"
 #import "CSLAntennaPortVC.h"

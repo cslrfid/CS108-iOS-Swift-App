@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
-#import "CSLTemperatureTagListCell.h"
-#import "CSLTemperatureTabVC.h"
+//#import "CSLTemperatureTagListCell.h"
+//#import "CSLTemperatureTabVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

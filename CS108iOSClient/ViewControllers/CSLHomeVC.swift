@@ -131,7 +131,7 @@ import UIKit
 
     func showTemperatureTabInterfaceActiveView(_ identifier: Int32) {
         let tabVC = UIStoryboard(name: "CSLRfidDemoApp", bundle: Bundle.main).instantiateViewController(withIdentifier: "ID_TempTabVC") as? CSLTemperatureTabVC
-        tabVC?.setActiveView(identifier)
+        tabVC?.setActiveView(Int(identifier))
 
         if tabVC != nil {
             if let tabVC = tabVC {
@@ -310,7 +310,7 @@ import UIKit
             actHomeSpinner.startAnimating()
             RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.0))
             view.isUserInteractionEnabled = false
-            showTemperatureTabInterfaceActiveView(CSL_VC_TEMPTAB_READTEMP_VC_IDX)
+            showTemperatureTabInterfaceActiveView(Int32(CSLTemperatureTabVC.CSL_VC_TEMPTAB_READTEMP_VC_IDX))
         }
 
 
