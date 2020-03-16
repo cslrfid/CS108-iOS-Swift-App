@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */; };
 		4234D144240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */; };
+		4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D145241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift */; };
 		424A493A23D405C10028D200 /* CSLTagAccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493923D405C10028D200 /* CSLTagAccessVC.swift */; };
 		424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493B23D433400028D200 /* CSLTagSearchVC.swift */; };
 		4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272750A23E2C033008485F6 /* CSLDeviceTV.swift */; };
@@ -49,7 +50,6 @@
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
-		CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
 		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
 		CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */; };
@@ -77,6 +77,7 @@
 /* Begin PBXFileReference section */
 		4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureTagListCell.swift; sourceTree = "<group>"; };
 		4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureUploadVC.swift; sourceTree = "<group>"; };
+		4234D145241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureDetailsVC.swift; sourceTree = "<group>"; };
 		424A493923D405C10028D200 /* CSLTagAccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagAccessVC.swift; sourceTree = "<group>"; };
 		424A493B23D433400028D200 /* CSLTagSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagSearchVC.swift; sourceTree = "<group>"; };
 		4272750A23E2C033008485F6 /* CSLDeviceTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLDeviceTV.swift; sourceTree = "<group>"; };
@@ -137,8 +138,6 @@
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureDetailsVC.h; sourceTree = "<group>"; };
-		CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureDetailsVC.m; sourceTree = "<group>"; };
 		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
 		CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBattery.h; sourceTree = "<group>"; };
 		CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBattery.m; sourceTree = "<group>"; };
@@ -194,8 +193,6 @@
 			children = (
 				CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */,
 				CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */,
-				CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */,
-				CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */,
 				CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */,
 				CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */,
 				CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */,
@@ -220,6 +217,7 @@
 				4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */,
 				CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */,
 				4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */,
+				4234D145241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift */,
 				4296980323E995B20023BC8B /* AppDelegate.swift */,
 				428F452C2404F3E400A25F9D /* CS108iOSClient-Swift.h */,
 				42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */,
@@ -452,7 +450,6 @@
 				4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */,
 				42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */,
 				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
-				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
 				4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
@@ -481,6 +478,7 @@
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
 				4296980623EA5B610023BC8B /* main.swift in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
+				4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */,
 				CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
 			);

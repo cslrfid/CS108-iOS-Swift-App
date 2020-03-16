@@ -1849,7 +1849,7 @@
         <!--CslRfid Temperature Tag Details-->
         <scene sceneID="yYJ-DF-xSv">
             <objects>
-                <viewController storyboardIdentifier="ID_TemperatureDetailsVC" id="0CS-Xr-TvH" userLabel="CslRfid Temperature Tag Details" customClass="CSLTemperatureDetailsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TemperatureDetailsVC" id="0CS-Xr-TvH" userLabel="CslRfid Temperature Tag Details" customClass="CSLTemperatureDetailsVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b9v-TH-DbC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2590,7 +2590,7 @@
         <!--CslRfid Temperature Tag Upload-->
         <scene sceneID="dSQ-7k-1n2">
             <objects>
-                <viewController id="KkZ-82-dg0" userLabel="CslRfid Temperature Tag Upload" customClass="CSLTemperatureUploadVC" sceneMemberID="viewController">
+                <viewController id="KkZ-82-dg0" userLabel="CslRfid Temperature Tag Upload" customClass="CSLTemperatureUploadVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LvH-Ge-MiT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
