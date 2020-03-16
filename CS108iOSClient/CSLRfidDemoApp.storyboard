@@ -2966,7 +2966,7 @@
         <!--Power LevelVC-->
         <scene sceneID="B4N-AJ-bWZ">
             <objects>
-                <viewController storyboardIdentifier="ID_PowerLevelVC" id="R7a-45-c1V" customClass="CSLPowerLevelVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_PowerLevelVC" id="R7a-45-c1V" customClass="CSLPowerLevelVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fad-tZ-qGD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3753,26 +3753,26 @@
                         <outlet property="txtPower7" destination="wg9-Qk-zYG" id="VUp-27-Hrm"/>
                         <outlet property="txtPower8" destination="ylp-Sr-uL4" id="4c8-xs-oM1"/>
                         <outlet property="txtPower9" destination="Cxg-LS-bfC" id="FaU-yG-Zeh"/>
-                        <outletCollection property="svPowerLevel" destination="BcJ-hY-NOJ" id="gCh-cE-Mm1"/>
-                        <outletCollection property="svPowerLevel" destination="mCD-sz-eub" id="p9N-1a-elf"/>
-                        <outletCollection property="svPowerLevel" destination="By0-Bd-gOR" id="idJ-Gu-kUu"/>
-                        <outletCollection property="svPowerLevel" destination="8Xb-YG-xUB" id="Ayd-sy-S5A"/>
-                        <outletCollection property="svPowerLevel" destination="Ksr-IO-GLx" id="1zF-ks-MqL"/>
-                        <outletCollection property="svPowerLevel" destination="jbh-bq-F4S" id="6Pq-h0-3xe"/>
-                        <outletCollection property="svPowerLevel" destination="AV5-mA-5Tr" id="kAa-MR-thB"/>
-                        <outletCollection property="svPowerLevel" destination="V1Y-uM-gI7" id="VgA-WV-Xpb"/>
-                        <outletCollection property="svPowerLevel" destination="OS1-KW-Zn1" id="dxY-ZD-Ave"/>
-                        <outletCollection property="svPowerLevel" destination="ja5-c9-HKX" id="7aG-BO-eYA"/>
-                        <outletCollection property="svPowerLevel" destination="dLB-KA-eRk" id="p0d-gP-1Mj"/>
-                        <outletCollection property="svPowerLevel" destination="Y4C-tk-2F6" id="F9O-7H-gTj"/>
-                        <outletCollection property="svPowerLevel" destination="xF0-EN-5fg" id="bWd-sY-8hD"/>
-                        <outletCollection property="svPowerLevel" destination="5TI-6e-oME" id="Fds-kS-ZSn"/>
-                        <outletCollection property="svPowerLevel" destination="fv3-W8-czj" id="1cl-Cg-CH9"/>
-                        <outletCollection property="svPowerLevel" destination="upt-z6-eka" id="gqn-qP-Byf"/>
-                        <outletCollection property="lbPort1To4" destination="hbj-gl-NtZ" id="Dae-u9-nzS"/>
-                        <outletCollection property="lbPort1To4" destination="XVI-tT-xrZ" id="EXA-3G-2Mg"/>
-                        <outletCollection property="lbPort1To4" destination="Wbs-HB-ynx" id="5U6-rV-wc3"/>
-                        <outletCollection property="lbPort1To4" destination="Q8e-6R-rak" id="en8-cx-BGp"/>
+                        <outletCollection property="svPowerLevel" destination="BcJ-hY-NOJ" collectionClass="NSMutableArray" id="gCh-cE-Mm1"/>
+                        <outletCollection property="svPowerLevel" destination="mCD-sz-eub" collectionClass="NSMutableArray" id="p9N-1a-elf"/>
+                        <outletCollection property="svPowerLevel" destination="By0-Bd-gOR" collectionClass="NSMutableArray" id="idJ-Gu-kUu"/>
+                        <outletCollection property="svPowerLevel" destination="8Xb-YG-xUB" collectionClass="NSMutableArray" id="Ayd-sy-S5A"/>
+                        <outletCollection property="svPowerLevel" destination="Ksr-IO-GLx" collectionClass="NSMutableArray" id="1zF-ks-MqL"/>
+                        <outletCollection property="svPowerLevel" destination="jbh-bq-F4S" collectionClass="NSMutableArray" id="6Pq-h0-3xe"/>
+                        <outletCollection property="svPowerLevel" destination="AV5-mA-5Tr" collectionClass="NSMutableArray" id="kAa-MR-thB"/>
+                        <outletCollection property="svPowerLevel" destination="V1Y-uM-gI7" collectionClass="NSMutableArray" id="VgA-WV-Xpb"/>
+                        <outletCollection property="svPowerLevel" destination="OS1-KW-Zn1" collectionClass="NSMutableArray" id="dxY-ZD-Ave"/>
+                        <outletCollection property="svPowerLevel" destination="ja5-c9-HKX" collectionClass="NSMutableArray" id="7aG-BO-eYA"/>
+                        <outletCollection property="svPowerLevel" destination="dLB-KA-eRk" collectionClass="NSMutableArray" id="p0d-gP-1Mj"/>
+                        <outletCollection property="svPowerLevel" destination="Y4C-tk-2F6" collectionClass="NSMutableArray" id="F9O-7H-gTj"/>
+                        <outletCollection property="svPowerLevel" destination="xF0-EN-5fg" collectionClass="NSMutableArray" id="bWd-sY-8hD"/>
+                        <outletCollection property="svPowerLevel" destination="5TI-6e-oME" collectionClass="NSMutableArray" id="Fds-kS-ZSn"/>
+                        <outletCollection property="svPowerLevel" destination="fv3-W8-czj" collectionClass="NSMutableArray" id="1cl-Cg-CH9"/>
+                        <outletCollection property="svPowerLevel" destination="upt-z6-eka" collectionClass="NSMutableArray" id="gqn-qP-Byf"/>
+                        <outletCollection property="lbPort1To4" destination="hbj-gl-NtZ" collectionClass="NSMutableArray" id="Dae-u9-nzS"/>
+                        <outletCollection property="lbPort1To4" destination="XVI-tT-xrZ" collectionClass="NSMutableArray" id="EXA-3G-2Mg"/>
+                        <outletCollection property="lbPort1To4" destination="Wbs-HB-ynx" collectionClass="NSMutableArray" id="5U6-rV-wc3"/>
+                        <outletCollection property="lbPort1To4" destination="Q8e-6R-rak" collectionClass="NSMutableArray" id="en8-cx-BGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mef-ZZ-dCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3782,7 +3782,7 @@
         <!--Antenna PortVC-->
         <scene sceneID="IuV-KG-KKh">
             <objects>
-                <viewController storyboardIdentifier="ID_AntennaPortVC" id="tjh-fc-XV7" customClass="CSLAntennaPortVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_AntennaPortVC" id="tjh-fc-XV7" customClass="CSLAntennaPortVC" customModule="CS108Swift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4i-IF-xTo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3904,10 +3904,10 @@
                     </view>
                     <connections>
                         <outlet property="btnAntennaPorts" destination="V97-ui-qyU" id="y6q-4k-S27"/>
-                        <outletCollection property="swAntennaPort" destination="2ea-hQ-4bW" id="JTh-ZH-fnm"/>
-                        <outletCollection property="swAntennaPort" destination="qN1-Ua-6eo" id="S0G-sr-3oc"/>
-                        <outletCollection property="swAntennaPort" destination="nzF-Do-m0N" id="2Br-km-Ig8"/>
-                        <outletCollection property="swAntennaPort" destination="UWO-vP-equ" id="TLy-TX-edt"/>
+                        <outletCollection property="swAntennaPort" destination="2ea-hQ-4bW" collectionClass="NSMutableArray" id="JTh-ZH-fnm"/>
+                        <outletCollection property="swAntennaPort" destination="qN1-Ua-6eo" collectionClass="NSMutableArray" id="S0G-sr-3oc"/>
+                        <outletCollection property="swAntennaPort" destination="nzF-Do-m0N" collectionClass="NSMutableArray" id="2Br-km-Ig8"/>
+                        <outletCollection property="swAntennaPort" destination="UWO-vP-equ" collectionClass="NSMutableArray" id="TLy-TX-edt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3DS-wf-fna" userLabel="First Responder" sceneMemberID="firstResponder"/>
