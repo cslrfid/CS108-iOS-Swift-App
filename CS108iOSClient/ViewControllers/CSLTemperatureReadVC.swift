@@ -1,5 +1,5 @@
 //
-//  CSLTemperatureReadVC.m
+//  CSLTemperatureReadVC.swift
 //  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 28/2/2019.
@@ -471,22 +471,30 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
 
 
                 let average = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging(epc!)
-
-                cell?.viTemperatureCell!.layer.opacity = 1.0
-                if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
-                    if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
-                        cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", average.doubleValue )
+                if (average == 0.00000000)
+                {
+                    cell?.viTemperatureCell!.layer.opacity = 1.0
+                    if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
+                        if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
+                            cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", average.doubleValue )
+                        } else {
+                            cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: average.doubleValue ))
+                        }
                     } else {
-                        cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: average.doubleValue ))
-                    }
-                } else {
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                        cell?.lbTemperature!.text = String(format: "%3.1f%%", ((490.00 - average.doubleValue ) / (490.00 - 5.00)) * 100.00)
-                    } else {
-                        cell?.lbTemperature!.text = String(format: "%3.1f%%", ((31 - average.doubleValue ) / (31)) * 100.00)
+                        if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
+                            cell?.lbTemperature!.text = String(format: "%3.1f%%", ((490.00 - average.doubleValue ) / (490.00 - 5.00)) * 100.00)
+                        } else {
+                            cell?.lbTemperature!.text = String(format: "%3.1f%%", ((31 - average.doubleValue ) / (31)) * 100.00)
+                        }
                     }
                 }
+                else
+                {
+                    cell?.viTemperatureCell.layer.opacity = 0.5
+                    cell?.spinTemperatureValueIndicator()
 
+                }
+                
 
                 //tag read timestamp
                 let dateFormatter = DateFormatter()

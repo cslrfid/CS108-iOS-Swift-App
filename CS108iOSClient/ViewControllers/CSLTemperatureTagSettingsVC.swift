@@ -1,5 +1,5 @@
 //
-//  CSLTemperatureTagSettingsVC.m
+//  CSLTemperatureTagSettingsVC.swift
 //  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 14/3/2019.

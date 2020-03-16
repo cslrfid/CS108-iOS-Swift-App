@@ -1,5 +1,5 @@
 //
-//  CSLTagLockVC.m
+//  CSLTagLockVC.swift
 //  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 30/12/2018.

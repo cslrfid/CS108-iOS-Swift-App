@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */; };
+		4234D144240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */; };
 		424A493A23D405C10028D200 /* CSLTagAccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493923D405C10028D200 /* CSLTagAccessVC.swift */; };
 		424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493B23D433400028D200 /* CSLTagSearchVC.swift */; };
 		4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272750A23E2C033008485F6 /* CSLDeviceTV.swift */; };
@@ -40,7 +41,6 @@
 		CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */; };
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
 		CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */; };
-		CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA715121325BF600D15BB1 /* Assets.xcassets */; };
@@ -76,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureTagListCell.swift; sourceTree = "<group>"; };
+		4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureUploadVC.swift; sourceTree = "<group>"; };
 		424A493923D405C10028D200 /* CSLTagAccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagAccessVC.swift; sourceTree = "<group>"; };
 		424A493B23D433400028D200 /* CSLTagSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagSearchVC.swift; sourceTree = "<group>"; };
 		4272750A23E2C033008485F6 /* CSLDeviceTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLDeviceTV.swift; sourceTree = "<group>"; };
@@ -123,8 +124,6 @@
 		CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderInfo.m; sourceTree = "<group>"; };
 		CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLPowerLevelVC.h; sourceTree = "<group>"; };
 		CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLPowerLevelVC.m; sourceTree = "<group>"; };
-		CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureUploadVC.h; sourceTree = "<group>"; };
-		CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureUploadVC.m; sourceTree = "<group>"; };
 		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
 		CAB810832133E16F009D2F8F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CABA714521325BF500D15BB1 /* CS108Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,8 +196,6 @@
 				CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */,
 				CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */,
 				CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */,
-				CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */,
-				CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */,
 				CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */,
 				CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */,
 				CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */,
@@ -222,6 +219,7 @@
 				428F452A2404F20200A25F9D /* CSLTemperatureTagSettingsVC.swift */,
 				4234D141240E16C600FA6396 /* CSLTemperatureTagListCell.swift */,
 				CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */,
+				4234D143240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift */,
 				4296980323E995B20023BC8B /* AppDelegate.swift */,
 				428F452C2404F3E400A25F9D /* CS108iOSClient-Swift.h */,
 				42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */,
@@ -453,7 +451,6 @@
 				4296980423E995B20023BC8B /* AppDelegate.swift in Sources */,
 				4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */,
 				42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */,
-				CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */,
 				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
 				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
 				4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */,
@@ -477,6 +474,7 @@
 				4272751323E9201A008485F6 /* CSLTagLockVC.swift in Sources */,
 				CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */,
 				CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */,
+				4234D144240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift in Sources */,
 				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
 				4272751123E91EDD008485F6 /* CSLAboutVC.swift in Sources */,
 				42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */,
