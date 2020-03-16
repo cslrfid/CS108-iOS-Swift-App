@@ -12,6 +12,7 @@
 		4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D145241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift */; };
 		4234D148241FC2DB00FA6396 /* CSLPowerLevelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D147241FC2DB00FA6396 /* CSLPowerLevelVC.swift */; };
 		4234D14A242006ED00FA6396 /* CSLAntennaPortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D149242006ED00FA6396 /* CSLAntennaPortVC.swift */; };
+		4234D14E24200F2800FA6396 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234D14D24200F2800FA6396 /* GaugeView.swift */; };
 		424A493A23D405C10028D200 /* CSLTagAccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493923D405C10028D200 /* CSLTagAccessVC.swift */; };
 		424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A493B23D433400028D200 /* CSLTagSearchVC.swift */; };
 		4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272750A23E2C033008485F6 /* CSLDeviceTV.swift */; };
@@ -33,7 +34,6 @@
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
-		CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */; };
 		CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */; };
 		CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */; };
 		CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */; };
@@ -80,6 +80,7 @@
 		4234D145241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureDetailsVC.swift; sourceTree = "<group>"; };
 		4234D147241FC2DB00FA6396 /* CSLPowerLevelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLPowerLevelVC.swift; sourceTree = "<group>"; };
 		4234D149242006ED00FA6396 /* CSLAntennaPortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLAntennaPortVC.swift; sourceTree = "<group>"; };
+		4234D14D24200F2800FA6396 /* GaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		424A493923D405C10028D200 /* CSLTagAccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagAccessVC.swift; sourceTree = "<group>"; };
 		424A493B23D433400028D200 /* CSLTagSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagSearchVC.swift; sourceTree = "<group>"; };
 		4272750A23E2C033008485F6 /* CSLDeviceTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLDeviceTV.swift; sourceTree = "<group>"; };
@@ -108,8 +109,6 @@
 		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
 		CA4E78E8213698DD0035F075 /* CSLBleTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleTag.m; sourceTree = "<group>"; };
 		CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
-		CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMGaugeView.m; sourceTree = "<group>"; };
-		CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMGaugeView.h; sourceTree = "<group>"; };
 		CA5C059E21E4736700E68E44 /* CSLMQTTSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTSettings.h; sourceTree = "<group>"; };
 		CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTSettings.m; sourceTree = "<group>"; };
 		CA5C9B9F217FF7400079827C /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
@@ -189,8 +188,7 @@
 		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */,
-				CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */,
+				4234D14D24200F2800FA6396 /* GaugeView.swift */,
 				42AFE63D23C8333600D71099 /* CSLHomeVC.swift */,
 				42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */,
 				42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */,
@@ -458,7 +456,6 @@
 				4272750F23E9139F008485F6 /* CSLMultibankAccessVC.swift in Sources */,
 				428F452923F8D14C00A25F9D /* CSLTemperatureReadVC.swift in Sources */,
 				42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */,
-				CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */,
 				4272750D23E91184008485F6 /* CSLMoreFunctionsVC.swift in Sources */,
 				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
 				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
@@ -474,6 +471,7 @@
 				42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
 				4296980623EA5B610023BC8B /* main.swift in Sources */,
+				4234D14E24200F2800FA6396 /* GaugeView.swift in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,

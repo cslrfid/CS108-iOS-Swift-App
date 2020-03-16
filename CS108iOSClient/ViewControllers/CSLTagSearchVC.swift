@@ -14,7 +14,7 @@
 
     let ROLLING_AVG_COUNT = 10
     
-    @IBOutlet weak var gaugeView: LMGaugeView!
+    @IBOutlet weak var gaugeView: GaugeView!
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var txtEPC: UITextField!
     @IBOutlet weak var actSearchSpinner: UIActivityIndicatorView!
@@ -89,7 +89,7 @@
     //Selector for timer event on updating UI and sound effect
     @objc func refreshGauge() {
         autoreleasepool {
-            if gaugeView.ringColor == UIColor.red {
+            if gaugeView.ringBackgroundColor == UIColor.red {
                 CSLRfidAppEngine.shared().soundAlert(1052)
             } else {
                 CSLRfidAppEngine.shared().soundAlert(1005)
@@ -130,11 +130,11 @@
             }
 
             let val=self.rollingAvgRssi!.calculateRollingAverage()
-            self.gaugeView.value = CGFloat(val)
-            if self.gaugeView.value > CGFloat(self.gaugeView.maxValue * 0.8) {
-                self.gaugeView.ringColor = UIColor.red
+            self.gaugeView.value = Double(CGFloat(val))
+            if self.gaugeView.value > Double(CGFloat(self.gaugeView.maxValue * 0.8)) {
+                self.gaugeView.ringBackgroundColor = UIColor.red
             } else {
-                self.gaugeView.ringColor = UIColor(red: 76.0 / 255, green: 217.0 / 255, blue: 100.0 / 255, alpha: 1)
+                self.gaugeView.ringBackgroundColor = UIColor(red: 76.0 / 255, green: 217.0 / 255, blue: 100.0 / 255, alpha: 1)
             }
 
             print("Tag Search with average RRSI = \(self.gaugeView.value)")

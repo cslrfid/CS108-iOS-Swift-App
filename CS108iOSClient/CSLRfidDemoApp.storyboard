@@ -478,7 +478,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-bw-WQ1" userLabel="Gauge Elements">
                                         <rect key="frame" x="0.0" y="34" width="310" height="431"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-vv-1BP" customClass="LMGaugeView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-vv-1BP" customClass="GaugeView" customModule="CS108Swift">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="431"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
