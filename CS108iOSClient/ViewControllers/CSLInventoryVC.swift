@@ -2,7 +2,7 @@
 //  CSLInventoryVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 15/9/2018.
+//  Created by Carlson Lam on 15/9/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
@@ -54,10 +54,6 @@ import AudioToolbox
 
         tblTagList.estimatedRowHeight = 45.0
         tblTagList.rowHeight = UITableView.automaticDimension
-
-        // Do any additional setup after loading the view.
-        //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-        //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
     }
 
     @objc func handleSwipes(_ gestureRecognizer: UISwipeGestureRecognizer?) {
@@ -235,15 +231,6 @@ import AudioToolbox
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func btnInventoryPressed(_ sender: Any) {
 
         if CSLRfidAppEngine.shared().isBarcodeMode && (btnInventory.currentTitle == "Start") {
@@ -263,9 +250,6 @@ import AudioToolbox
         } else if CSLRfidAppEngine.shared().reader.connectStatus == STATUS.CONNECTED && (btnInventory.currentTitle == "Start") {
             CSLRfidAppEngine.shared().soundAlert(1033)
             btnInventory.isEnabled = false
-
-            // Do any additional setup after loading the view.
-            //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 
             //start inventory
             tagRangingStartTime = Date()
@@ -327,7 +311,6 @@ import AudioToolbox
                             if error != nil {
                                 let epc=(tag as? CSLBleTag)?.epc
                                 print("Failed sending EPC=\(String(describing: epc)) to MQTT broker. Error message: \(error.debugDescription)")
-                                //allTagPublishedSuccess = false
                             }
                         })
                     }

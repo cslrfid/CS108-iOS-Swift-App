@@ -2,7 +2,7 @@
 //  CSLTemperatureTagListCell.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 2/3/2019.
+//  Created by Carlson Lam on 2/3/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 

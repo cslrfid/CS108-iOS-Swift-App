@@ -2,7 +2,7 @@
 //  CSLTemperatureReadVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 28/2/2019.
+//  Created by Carlson Lam on 28/2/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
@@ -13,14 +13,8 @@ func UIColorFromRGB(_ rgbValue: UInt32) -> UIColor {
 }
 
 func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: Int) -> Double {
-    //int FormatCode = (add_15 >> 13) & 0x07;
-    //int Parity1 = (add_15 >> 12) & 0x01;
-    //int Parity2 = (add_15 >> 11) & 0x01;
     let Temperature1 = add_15 & 0x07ff
     let TemperatureCode1 = add_14 & 0xffff
-    //int RFU = (add_13 >> 13) & 0x07;
-    //int Parity3 = (add_13 >> 12) & 0x01;
-    //int Parity4 = (add_13 >> 11) & 0x01;
     let Temperature2 = add_13 & 0x07ff
     let TemperatureCode2 = add_12 & 0xffff
 

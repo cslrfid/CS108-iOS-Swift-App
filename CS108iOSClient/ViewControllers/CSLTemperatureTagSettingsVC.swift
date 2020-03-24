@@ -2,7 +2,7 @@
 //  CSLTemperatureTagSettingsVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 14/3/2019.
+//  Created by Carlson Lam on 14/3/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
@@ -110,15 +110,6 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         scTemperatureUnit.addTarget(self, action: #selector(segmentChangeViewValueChanged(_:)), for: .valueChanged)
     }
 
-    /*
-    #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func btnSavePressed(_ sender: Any) {
         //store the UI input to the settings object on appEng
         CSLRfidAppEngine.shared().temperatureSettings.isTemperatureAlertEnabled = swEnableTemperatureAlert.isOn
@@ -156,9 +147,9 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         CSLRfidAppEngine.shared().saveTemperatureTagSettingsToUserDefaults()
 
         //refresh configurations and clear previous readings on sensor read table view
-        //[((CSLTemperatureTabVC*)self.tabBarController) setConfigurationsForTemperatureTags];
-        //initialize averaging buffer
+        //(tabBarController as? CSLTemperatureTabVC)?.setConfigurationsForTemperatureTags()
 
+        //initialize averaging buffer
         let sensorVC = tabBarController!.viewControllers![CSLTemperatureTabVC.CSL_VC_TEMPTAB_READTEMP_VC_IDX] as? CSLTemperatureReadVC
         sensorVC?.btnSelectAllTag.sendActions(for: .touchUpInside)
         sensorVC?.btnRemoveAllTag.sendActions(for: .touchUpInside)

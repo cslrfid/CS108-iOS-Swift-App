@@ -2,7 +2,7 @@
 //  CSLTemperatureUploadVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 16/3/2019.
+//  Created by Carlson Lam on 16/3/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
@@ -43,21 +43,21 @@
         lbMQTTMessage.text = "Number of Records: \(Int(CSLRfidAppEngine.shared().reader.filteredBuffer.count))"
 
         if CSLRfidAppEngine.shared().mqttSettings.isMQTTEnabled {
-            if CSLRfidAppEngine.shared().mqttSettings.mqttStatus != MQTTSTATUS.MQTTStatusConnected {
-                CSLRfidAppEngine.shared().mqttSettings.mqttStatus = MQTTSTATUS.MQTTStatusNotConnected
+            if CSLRfidAppEngine.shared().mqttSettings.mqttStatus != .connected {
+                CSLRfidAppEngine.shared().mqttSettings.mqttStatus = .notConnected
 
                 actMQTTConnectIndicator.startAnimating()
                 CSLRfidAppEngine.shared().mqttSettings.connect(toMQTTBroker: txtMQTTPublishTopic.text!)
 
                 for _ in 0..<COMMAND_TIMEOUT_5S {
                     //wait for 5s for connection
-                    if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == MQTTSTATUS.MQTTStatusConnected || CSLRfidAppEngine.shared().mqttSettings.mqttStatus == MQTTSTATUS.MQTTStatusError {
+                    if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected || CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .error {
                         break
                     }
                     Thread.sleep(forTimeInterval: 0.1)
                 }
                 actMQTTConnectIndicator.stopAnimating()
-                if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == MQTTSTATUS.MQTTStatusConnected {
+                if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected {
                     imgMQTTStatus.image = UIImage(named: "cloud-connected")
                     btnMQTTStatus.isHidden = false
                     btnMQTTStatus.setTitle("CONNECTED", for: .normal)
@@ -81,7 +81,7 @@
             btnMQTTStatus.backgroundColor = UIColorFromRGB(0xa3a3a3) //grey
         }
 
-        if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == MQTTSTATUS.MQTTStatusConnected && CSLRfidAppEngine.shared().reader.filteredBuffer.count > 0 {
+        if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected && CSLRfidAppEngine.shared().reader.filteredBuffer.count > 0 {
             btnMQTTUpload.isEnabled = true
         }
 
@@ -111,7 +111,7 @@
             btnMQTTStatus.backgroundColor = UIColorFromRGB(0xa3a3a3) //grey
             btnMQTTUpload.isEnabled = false
         } else {
-            if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == MQTTSTATUS.MQTTStatusConnected {
+            if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected {
                 imgMQTTStatus.image = UIImage(named: "cloud-connected")
                 btnMQTTStatus.isHidden = false
                 btnMQTTStatus.setTitle("CONNECTED", for: .normal)
@@ -130,15 +130,6 @@
         }
     }
 
-    /*
-    #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     func didReceiveBatteryLevelIndicator(_ sender: CSLBleReader?, batteryPercentage battPct: Int) {
         CSLRfidAppEngine.shared().readerInfo.batteryPercentage = Int32(battPct)
     }

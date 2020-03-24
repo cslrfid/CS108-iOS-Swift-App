@@ -2,7 +2,7 @@
 //  CSLMQTTClientSettings.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 7/1/2019.
+//  Created by Carlson Lam on 7/1/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
@@ -53,16 +53,7 @@
         txtBrokerPort.delegate = self
         txtBrokerAddress.delegate = self
     }
-
-    /*
-    #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     @IBAction func btnSavePressed(_ sender: Any) {
         //store the UI input to the settings object on appEng
         CSLRfidAppEngine.shared().mqttSettings.isMQTTEnabled = swMQTTEnabled.isOn

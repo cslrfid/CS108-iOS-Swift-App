@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enumeration of MQTT status
  */
-typedef NS_ENUM(NSInteger, MQTTSTATUS) {
+typedef NS_ENUM(NSInteger, MQTTStatus) {
     MQTTStatusConnected,
     MQTTStatusNotConnected,
     MQTTStatusError
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, MQTTSTATUS) {
 ///LWT setting - retaind messages
 @property (assign) BOOL retained;
 ///MQTT connection status
-@property (assign) MQTTSTATUS mqttStatus;
+@property (assign) MQTTStatus mqttStatus;
 ///MQTT submission counter
 @property (assign) int publishTopicCounter;
 

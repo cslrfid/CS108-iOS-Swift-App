@@ -2,7 +2,7 @@
 //  CSLTemperatureTabVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 28/2/2019.
+//  Created by Carlson Lam on 28/2/2019.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
@@ -29,15 +29,6 @@
 
     }
 
-    /*
-     #pragma mark - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
     func setActiveView(_ identifier: Int) {
         self.selectedViewController = viewControllers?[identifier]
         m_SelectedTabView = identifier

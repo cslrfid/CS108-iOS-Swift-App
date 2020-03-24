@@ -2,7 +2,7 @@
 //  CSLDeviceTV.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 18/9/2018.
+//  Created by Carlson Lam on 18/9/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ import QuartzCore
         // self.clearsSelectionOnViewWillAppear = NO;
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        // navigationItem?.rightBarButtonItem = editButtonItem
         CSLRfidAppEngine.shared().reader.startScanDevice()
 
         navigationItem.title = "Search for Devices..."

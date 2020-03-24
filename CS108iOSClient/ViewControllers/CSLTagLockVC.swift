@@ -2,7 +2,7 @@
 //  CSLTagLockVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 30/12/2018.
+//  Created by Carlson Lam on 30/12/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
@@ -57,15 +57,6 @@
 
     }
 
-    /*
-    #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func btnApplySecurityPressed(_ sender: Any) {
         autoreleasepool {
 
