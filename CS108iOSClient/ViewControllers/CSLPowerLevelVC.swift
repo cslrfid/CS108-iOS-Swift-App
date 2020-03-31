@@ -99,6 +99,7 @@
         } else {
             //set # power number level to what's in the users defaults
             txtNumberOfPowerLevel.text = "\(CSLRfidAppEngine.shared().settings.numberOfPowerLevel)"
+            print(txtNumberOfPowerLevel.text!)
             //Unhide the power level input
             for view in svNumberOfPowerLevel.subviews {
                 view.isHidden = false
@@ -108,9 +109,17 @@
                 label.text = label.text?.replacingOccurrences(of: "Port", with: "Power")
             }
             //Unhide and hide the correct level
-            for i in CSLRfidAppEngine.shared().settings.numberOfPowerLevel...15 {
+            for i in 0...15 {
                 for view in (svPowerLevel![Int(i)]).subviews {
-                    view.isHidden = true
+                    view.isHidden = false
+                }
+            }
+            
+            if CSLRfidAppEngine.shared().settings.numberOfPowerLevel < 16 {
+                for i in (CSLRfidAppEngine.shared().settings.numberOfPowerLevel)...15 {
+                    for view in (svPowerLevel![Int(i)]).subviews {
+                        view.isHidden = true
+                    }
                 }
             }
         }
@@ -131,8 +140,8 @@
 
     @IBAction func txtDwellPressed(_ sender: Any) {
         
-        let dwell = (sender as? UITextField)?.text ?? "-1"
-        if Int(dwell)! < 0 || Int(dwell)! > 65535 {
+        let dwell = Int((sender as? UITextField)!.text!) ?? -1
+        if dwell < 0 || dwell > 65535 {
             //invalid input
             (sender as? UITextField)?.text =
                 (CSLRfidAppEngine.shared().settings.dwellTime as NSMutableArray)[Int(((sender as! UITextField).tag / 10) - 1)] as? String
@@ -168,9 +177,9 @@
         CSLRfidAppEngine.shared().settings.numberOfPowerLevel = Int32(txtNumberOfPowerLevel.text ?? "-1")!
 
         CSLRfidAppEngine.shared().settings.powerLevel = NSMutableArray()
-        CSLRfidAppEngine.shared().settings.powerLevel = []
+        //CSLRfidAppEngine.shared().settings.powerLevel = []
         CSLRfidAppEngine.shared().settings.dwellTime = NSMutableArray()
-        CSLRfidAppEngine.shared().settings.dwellTime = []
+        //CSLRfidAppEngine.shared().settings.dwellTime = []
 
         for sv in svPowerLevel {
             (CSLRfidAppEngine.shared().settings.powerLevel as NSMutableArray).add(((sv.viewWithTag(10 * count + 1) as? UITextField)?.text ?? ""))

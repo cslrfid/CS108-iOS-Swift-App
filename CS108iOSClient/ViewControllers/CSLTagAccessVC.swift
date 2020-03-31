@@ -719,7 +719,7 @@
                     let crcError = tag?.crcError
                     let backScatterError = tag?.backScatterError
                     let ackTimeout = tag?.ackTimeout
-                    let cnt = tag?.data.count
+                    let cnt = tag?.data?.count ?? 0
                     if cnt == 8 && (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
                         if self.swAccPwd.isOn {
                             self.txtAccPwd.text! = tag?.data.copy() as! String
@@ -730,7 +730,7 @@
                     let crcError = tag?.crcError
                     let backScatterError = tag?.backScatterError
                     let ackTimeout = tag?.ackTimeout
-                    let cnt = tag?.data.count
+                    let cnt = tag?.data?.count ?? 0
                     if cnt == 8 && (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
                         if self.swKillPwd.isOn {
                             self.txtKillPwd.text! = tag?.data.copy() as! String
