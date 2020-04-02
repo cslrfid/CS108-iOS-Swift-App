@@ -114,6 +114,15 @@ import AudioToolbox
                     lbStatus.text = String(format: "Battery: %d%%", CSLRfidAppEngine.shared().readerInfo.batteryPercentage)
                 }
             }
+            
+            if CSLRfidAppEngine.shared().reader.lastMacErrorCode != 0x0000 {
+                let alert = UIAlertController(title: "RFID Error", message: String(format: "Error Code: 0x%04X", CSLRfidAppEngine.shared().reader.lastMacErrorCode), preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(ok)
+                present(alert, animated: true)
+                CSLRfidAppEngine.shared().reader.lastMacErrorCode = 0x0000
+            }
+
         }
     }
 
