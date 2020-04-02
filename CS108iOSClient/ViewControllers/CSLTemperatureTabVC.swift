@@ -148,10 +148,12 @@
             //CS463
             //iterate through all the power level
             for i in 0..<4 {
-                let dwell = (CSLRfidAppEngine.shared().settings.dwellTime[i] as? NSNumber)?.intValue
+                let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
+                let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
+                let portEnabled = (CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as? NSNumber)?.boolValue ?? false ? "ON" : "OFF")")
-                CSLRfidAppEngine.shared().reader.setAntennaConfig((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as? NSNumber)?.boolValue ?? false, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
+                print("Antenna \(i): \(portEnabled ? "ON" : "OFF")")
+                CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 if CSLRfidAppEngine.shared().temperatureSettings.powerLevel == POWERLEVEL.HIGHPOWER {
                     CSLRfidAppEngine.shared().reader.setPower(30.0)
                 } else if CSLRfidAppEngine.shared().temperatureSettings.powerLevel == POWERLEVEL.LOWPOWER {
@@ -159,7 +161,7 @@
                 } else if CSLRfidAppEngine.shared().temperatureSettings.powerLevel == POWERLEVEL.MEDIUMPOWER {
                     CSLRfidAppEngine.shared().reader.setPower(23.0)
                 } else {
-                    CSLRfidAppEngine.shared().reader.setPower(Double(((CSLRfidAppEngine.shared().settings.powerLevel[i] as? NSNumber)?.intValue ?? 300) / 10))
+                    CSLRfidAppEngine.shared().reader.setPower(Double(power! / 10))
                 }
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(UInt(dwell!))
                 CSLRfidAppEngine.shared().reader.setAntennaInventoryCount(dwell == 0 ? 65535 : 0)
@@ -262,7 +264,8 @@
         // if multibank read is enabled
         if tagRead != 0 {
             CSLRfidAppEngine.shared().reader.tagacc_BANK(CSLRfidAppEngine.shared().settings.multibank1, acc_bank2: CSLRfidAppEngine.shared().settings.multibank2)
-            CSLRfidAppEngine.shared().reader.tagacc_PTR(UInt32((CSLRfidAppEngine.shared().settings.multibank2Offset << 16) + CSLRfidAppEngine.shared().settings.multibank1Offset))
+            print(UInt32(CSLRfidAppEngine.shared().settings.multibank2Offset) << 16 + UInt32(CSLRfidAppEngine.shared().settings.multibank1Offset))
+            CSLRfidAppEngine.shared().reader.tagacc_PTR(UInt32(CSLRfidAppEngine.shared().settings.multibank2Offset) << 16 + UInt32(CSLRfidAppEngine.shared().settings.multibank1Offset))
             CSLRfidAppEngine.shared().reader.tagacc_CNT((tagRead != 0 ? CSLRfidAppEngine.shared().settings.multibank1Length : 0), secondBank: (Int(tagRead) == 2 ? CSLRfidAppEngine.shared().settings.multibank2Length : 0))
             CSLRfidAppEngine.shared().reader.tagacc_ACCPWD(0x00000000)
             CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 1, disableInventory: 0, tagRead: tagRead, crcErrorRead: 1, qtMode: 0, tagDelay: (tagRead != 0 ? 30 : 0), inventoryMode: (tagRead != 0 ? 0 : 1))

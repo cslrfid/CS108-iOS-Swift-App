@@ -49,10 +49,9 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
         (tabBarController as? CSLTemperatureTabVC)?.setAntennaPortsAndPowerForTemperatureTags()
         (tabBarController as? CSLTemperatureTabVC)?.setConfigurationsForTemperatureTags()
 
-
         //initialize averaging buffer
-        CSLRfidAppEngine.shared().temperatureSettings.temperatureAveragingBuffer.removeAllObjects()
-        CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer.removeAllObjects()
+        CSLRfidAppEngine.shared().temperatureSettings.temperatureAveragingBuffer = NSMutableDictionary()
+        CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer = NSMutableDictionary()
 
     }
 
@@ -212,13 +211,14 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
                         if (tblTagList.cellForRow(at: IndexPath(row: i, section: 0)) as? CSLTemperatureTagListCell)?.viTemperatureCell?.layer.opacity != 1.0 {
                             indexSet.add(IndexPath(row: i, section: 0).row)
                             CSLRfidAppEngine.shared().temperatureSettings.removeTemperatureAverage(forEpc: (CSLRfidAppEngine.shared().reader.filteredBuffer[i] as? CSLBleTag)!.epc)
-                            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer.removeObject(forKey: (CSLRfidAppEngine.shared().reader.filteredBuffer[i] as? CSLBleTag)!.epc as Any)
+                            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer.removeObject(forKey: (CSLRfidAppEngine.shared().reader.filteredBuffer[i] as? CSLBleTag)!.epc as NSString)
                         }
                     }
 
                     if indexSet.count > 0 {
                         //remove rows that are selected
-                        for deletionIndex in indexSet.reversed() { CSLRfidAppEngine.shared().reader.filteredBuffer.remove(deletionIndex) }
+                        //for deletionIndex in indexSet.reversed() { CSLRfidAppEngine.shared().reader.filteredBuffer.remove(deletionIndex) }
+                        CSLRfidAppEngine.shared().reader.filteredBuffer.removeObjects(at: indexSet as IndexSet)
                         //update inventory count
                         tblTagList.reloadData()
                         lbTagCount.text = String(format: "%ld", tblTagList.numberOfRows(inSection: 0))
@@ -261,12 +261,13 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
 
         for i in 0..<(indexPathForSelectedRows?.count ?? 0) {
             indexSet.add(indexPathForSelectedRows?[i].row ?? 0)
-            CSLRfidAppEngine.shared().temperatureSettings.removeTemperatureAverage(forEpc: (CSLRfidAppEngine.shared().reader.filteredBuffer[(indexPathForSelectedRows?[i].row)!] as? CSLBleTag)?.epc ?? "")
-            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer.removeObject(forKey: (CSLRfidAppEngine.shared().reader.filteredBuffer[(indexPathForSelectedRows?[i].row)!] as? CSLBleTag)?.epc ?? "")
+            CSLRfidAppEngine.shared().temperatureSettings.removeTemperatureAverage(forEpc: ((CSLRfidAppEngine.shared().reader.filteredBuffer[(indexPathForSelectedRows?[i].row)!] as? CSLBleTag)?.epc!)!)
+            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer.removeObject(forKey: ((CSLRfidAppEngine.shared().reader.filteredBuffer[(indexPathForSelectedRows?[i].row)!] as? CSLBleTag)?.epc!)!)
         }
         if indexSet.count > 0 {
             //remove rows that are selected
-            for deletionIndex in indexSet.reversed() { CSLRfidAppEngine.shared().reader.filteredBuffer.remove(deletionIndex) }
+            CSLRfidAppEngine.shared().reader.filteredBuffer.removeObjects(at: indexSet as IndexSet)
+
             //update inventory count
             tblTagList.reloadData()
             lbTagCount.text = String(format: "%ld", tblTagList.numberOfRows(inSection: 0))
@@ -372,226 +373,238 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
                     tableView.register(UINib(nibName: "CSLTemperatureTagListCell", bundle: nil), forCellReuseIdentifier: "TemperatureTagCell")
                     cell = tableView.dequeueReusableCell(withIdentifier: "TemperatureTagCell") as? CSLTemperatureTagListCell
                 }
-
-                if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
-                        var result: UInt = 0
-                        var _: Scanner?
-                        var tempCode: Int
-                        var tempCode2: Int
-                        var temp2: Int
-                        var tempCode1: Int
-                        var temp1: Int
-                        
-                        var str = (data2 as NSString?)?.substring(with: NSRange(location: 16, length: 4)) ?? ""
-                        result = UInt(str, radix: 16)!
-                        result &= 0xfff
-                        tempCode = Int(result)
-
-                        str = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? ""
-                        result = UInt(str, radix: 16)!
-                        result &= 0xffff
-                        tempCode2 = Int(result)
-                        
-                        str = (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? ""
-                        result = UInt(str, radix: 16)!
-                        result &= 0x7ff
-                        temp2 = Int(result)
-                        
-                        str = (data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4)) ?? ""
-                        result = UInt(str, radix: 16)!
-                        result &= 0xffff
-                        tempCode1 = Int(result)
-                                                
-                        str = (data1 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? ""
-                        result = UInt(str, radix: 16)!
-                        result &= 0x7ff
-                        temp1 = Int(result)
-
-                        temperatureValue = CSLTemperatureTagListCell.calculateCalibratedTemperatureValue(forXerxes: UInt16(tempCode), temperatureCode2: UInt16(tempCode2), temperature2: UInt16(temp2), temperatureCode1: UInt16(tempCode1), temperature1: UInt16(temp1))
-                    } else {
-                        temperatureValue = CSLTemperatureTagListCell.calculateCalibratedTemperatureValue(((data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4)))!, calibration: data2!)
-                    }
-                } else {
-                    var result: UInt = 0
-                    let str = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? ""
-                    result = UInt(str, radix: 16)!
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                        result &= 0x1ff //only account for the 9 bits
-                    } else {
-                        result &= 0x1f //only account for the 5 bits
-                    }
-                    temperatureValue = Double(result)
-                }
-
-                //grey out tag from list if it is outside the on-chip rssi limits
-                if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
-                    scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "")
-                    scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
-                    ocrssi &= 0x0000001f
-                } else {
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                        scanner = Scanner(string: (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "")
-                    } else {
-                        scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? "")
-                    }
-                    scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
-                    ocrssi &= 0x0000001f
-                }
-
-                //for temperature measurements
-                if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
-                    if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit && ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit && currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] as? CSLBleTag) && (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE) {
-                        //filter out invalid packets that are out of temperature range on spec
-                        CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
-                        CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] = currentBleTag
-                    }
-                } else {
-                    //moisture measurements
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                        if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit && ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit && currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] as? CSLBleTag) && (Int32(temperatureValue) > MIN_MOISTURE_VALUE && Int32(temperatureValue) < MAX_MOISTURE_VALUE) {
-                            //filter out invalid packets that are out of moisture range on spec
-                            CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
-                            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] = currentBleTag
-                        }
-                    } else {
-                        if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit && ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit && currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] as? CSLBleTag) && (Int32(temperatureValue) > MIN_MOISTURE_VALUE_S2 && Int32(temperatureValue) < MAX_MOISTURE_VALUE_S2) {
-                            //filter out invalid packets that are out of moisture range on spec
-                            CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
-                            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc ?? ""] = currentBleTag
-                        }
-                    }
-                }
-
-
-                let average = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging(epc!)
-                if (average == 0.00000000)
-                {
-                    cell?.viTemperatureCell!.layer.opacity = 1.0
+                
+                if data1 != nil && data2 != nil {
                     if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
-                        if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
-                            cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", average.doubleValue )
+                        if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
+                            var result: UInt = 0
+                            var _: Scanner?
+                            var tempCode: Int
+                            var tempCode2: Int
+                            var temp2: Int
+                            var tempCode1: Int
+                            var temp1: Int
+                            
+                            var str = (data2 as NSString?)?.substring(with: NSRange(location: 16, length: 4)) ?? ""
+                            result = UInt(str, radix: 16)!
+                            result &= 0xfff
+                            tempCode = Int(result)
+
+                            str = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? ""
+                            result = UInt(str, radix: 16)!
+                            result &= 0xffff
+                            tempCode2 = Int(result)
+                            
+                            str = (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? ""
+                            result = UInt(str, radix: 16)!
+                            result &= 0x7ff
+                            temp2 = Int(result)
+                            
+                            str = (data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4)) ?? ""
+                            result = UInt(str, radix: 16)!
+                            result &= 0xffff
+                            tempCode1 = Int(result)
+                                                    
+                            str = (data1 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? ""
+                            result = UInt(str, radix: 16)!
+                            result &= 0x7ff
+                            temp1 = Int(result)
+
+                            temperatureValue = CSLTemperatureTagListCell.calculateCalibratedTemperatureValue(forXerxes: UInt16(tempCode), temperatureCode2: UInt16(tempCode2), temperature2: UInt16(temp2), temperatureCode1: UInt16(tempCode1), temperature1: UInt16(temp1))
                         } else {
-                            cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: average.doubleValue ))
+                            temperatureValue = CSLTemperatureTagListCell.calculateCalibratedTemperatureValue(((data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4)))!, calibration: data2!)
                         }
+                    } else {
+                        var result: UInt = 0
+                        let str = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? ""
+                        result = UInt(str, radix: 16)!
+                        if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
+                            result &= 0x1ff //only account for the 9 bits
+                        } else {
+                            result &= 0x1f //only account for the 5 bits
+                        }
+                        temperatureValue = Double(result)
+                    }
+
+                    //grey out tag from list if it is outside the on-chip rssi limits
+                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
+                        scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "")
+                        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
+                        ocrssi &= 0x0000001f
                     } else {
                         if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                            cell?.lbTemperature!.text = String(format: "%3.1f%%", ((490.00 - average.doubleValue ) / (490.00 - 5.00)) * 100.00)
+                            scanner = Scanner(string: (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "")
                         } else {
-                            cell?.lbTemperature!.text = String(format: "%3.1f%%", ((31 - average.doubleValue ) / (31)) * 100.00)
+                            scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? "")
                         }
+                        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
+                        ocrssi &= 0x0000001f
                     }
-                }
-                else
-                {
-                    cell?.viTemperatureCell.layer.opacity = 0.5
-                    cell?.spinTemperatureValueIndicator()
 
-                }
-                
-
-                //tag read timestamp
-                let dateFormatter = DateFormatter()
-                var date: Date?
-                var stringFromDate: String?
-                dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
-                if let EPC = currentBleTag?.epc {
-                    if CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[EPC] != nil {
-                        date = (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[currentBleTag?.epc! as Any] as? CSLBleTag)?.timestamp
-                        if let date = date {
-                            stringFromDate = dateFormatter.string(from: date)
-                        }
-                    } else {
-                        stringFromDate = ""
-                    }
-                }
-
-                if CSLRfidAppEngine.shared().temperatureSettings.tagIdFormat == TAGIDFORMAT.ASCII {
-                    cell?.lbEPC!.text = "\(asciiString(fromHexString: epc) ?? "")"
-                } else {
-                    cell?.lbEPC!.text = "\(epc ?? "")"
-                }
-                cell?.lbRssi!.text = String(format: "%3d", rssi > 100 ? 100 : rssi)
-                cell?.lbDate!.text = stringFromDate
-                if CSLRfidAppEngine.shared().reader.readerModelNumber == READERTYPE.CS463 {
-                    cell?.lbPortNumber!.text = String(format: "Port %2d", portNumber + 1)
-                } else {
-                    cell?.lbPortNumber!.text = ""
-                }
-
-                //temperature alert
-                cell?.lbTagStatus!.layer.borderWidth = 1.0
-                cell?.lbTagStatus!.layer.cornerRadius = 5.0
-                cell?.lbTagStatus!.layer.borderColor = UIColor.clear.cgColor
-                //if temperature is not valid, hide temperature alert.
-                if (cell?.lbTemperature!.text == "  -  ") || (cell?.lbTemperature!.text == "  \\  ") || (cell?.lbTemperature!.text == "  |  ") || (cell?.lbTemperature!.text == "  /  ") {
-                    cell?.lbTagStatus!.layer.opacity = 0.0
-                } else {
-                    cell?.lbTagStatus!.layer.opacity = 1.0
-                }
-
-
-                if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
                     //for temperature measurements
-                    if average.doubleValue < CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit {
-                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
-                        cell?.lbTagStatus!.setTitle("Low", for: .normal)
-                    } else if average.doubleValue > CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit {
-                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
-                        cell?.lbTagStatus!.setTitle("High", for: .normal)
-                    } else {
-                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
-                        cell?.lbTagStatus!.setTitle("Normal", for: .normal)
-                    }
-                } else {
-                    //for moisture mesurements
-                    if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                        if CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition == ALERTCONDITION.GREATER {
-                            let avg = (((490.00 - average.doubleValue) / (490.00 - 5.00)) * 100.00)
-                            if Int32(avg) > CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
-                                cell?.lbTagStatus!.setTitle("High", for: .normal)
-                            } else {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
-                                cell?.lbTagStatus!.setTitle("Normal", for: .normal)
-                            }
-                        } else {
-                            let avg=(((490.00 - average.doubleValue) / (490.00 - 5.00)) * 100.00)
-                            if  Int32(avg) < CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
-                                cell?.lbTagStatus!.setTitle("Low", for: .normal)
-                            } else {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
-                                cell?.lbTagStatus!.setTitle("Normal", for: .normal)
-                            }
-                        }
-                    } else {
-                        //S2 chip with lower moisture resolution
-                        if CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition == ALERTCONDITION.GREATER {
-                            if Int32((((31 - average.doubleValue) / (31)) * 100.00)) > CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
-                                cell?.lbTagStatus!.setTitle("High", for: .normal)
-                            } else {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
-                                cell?.lbTagStatus!.setTitle("Normal", for: .normal)
-                            }
-                        } else {
-                            if Int32(((31 - average.doubleValue) / (31)) * 100.00) < CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
-                                cell?.lbTagStatus!.setTitle("Low", for: .normal)
-                            } else {
-                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
-                                cell?.lbTagStatus!.setTitle("Normal", for: .normal)
-                            }
-                        }
-                    }
-                }
-                
+                    if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
+                        if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit &&
+                            ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit &&
+                            currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] as? CSLBleTag) &&
+                            (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE) {
+                            //filter out invalid packets that are out of temperature range on spec
+                            CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
+                            CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] = currentBleTag
 
-                cell?.accessory!.tag = indexPath.row
-                cell?.accessory!.addTarget(self, action: #selector(button(forDetailsClicked:)), for: .touchUpInside)
-                cell?.viewAccessory!.tag = indexPath.row
-                (cell?.viewAccessory as? UIButton)?.addTarget(self, action: #selector(button(forDetailsClicked:)), for: .touchUpInside)
+                        }
+                    } else {
+                        //moisture measurements
+                        if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
+                            if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit &&
+                                ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit &&
+                                currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] as? CSLBleTag) &&
+                                (Int32(temperatureValue) > MIN_MOISTURE_VALUE && Int32(temperatureValue) < MAX_MOISTURE_VALUE) {
+                                //filter out invalid packets that are out of moisture range on spec
+                                CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
+                                CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] = currentBleTag
+                            }
+                        } else {
+                            if ocrssi >= CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit && ocrssi <= CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit && currentBleTag != (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] as? CSLBleTag) && (Int32(temperatureValue) > MIN_MOISTURE_VALUE_S2 && Int32(temperatureValue) < MAX_MOISTURE_VALUE_S2) {
+                                //filter out invalid packets that are out of moisture range on spec
+                                CSLRfidAppEngine.shared().temperatureSettings.setTemperatureValueForAveraging(NSNumber(value: temperatureValue), epcid: epc!)
+                                CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[epc! as NSString] = currentBleTag
+                            }
+                        }
+                    }
+
+
+                    let average = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging(epc!)
+                    if (average.doubleValue != 0.00)
+                    {
+                        cell?.viTemperatureCell!.layer.opacity = 1.0
+                        if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
+                            if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
+                                cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", average.doubleValue )
+                            } else {
+                                cell?.lbTemperature!.text = String(format: "%3.1f\u{00BA}", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: average.doubleValue ))
+                            }
+                        } else {
+                            if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
+                                cell?.lbTemperature!.text = String(format: "%3.1f%%", ((490.00 - average.doubleValue ) / (490.00 - 5.00)) * 100.00)
+                            } else {
+                                cell?.lbTemperature!.text = String(format: "%3.1f%%", ((31 - average.doubleValue ) / (31)) * 100.00)
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cell?.viTemperatureCell.layer.opacity = 0.5
+                        cell?.spinTemperatureValueIndicator()
+
+                    }
+                    
+                    //tag read timestamp
+                    let dateFormatter = DateFormatter()
+                    var date: Date?
+                    var stringFromDate: String?
+                    dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
+                    if let EPC = currentBleTag?.epc {
+                        if CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[EPC] != nil {
+                            date = (CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[EPC] as? CSLBleTag)?.timestamp
+                            if let date = date {
+                                stringFromDate = dateFormatter.string(from: date)
+                            }
+                        } else {
+                            stringFromDate = ""
+                        }
+                    }
+
+                    if CSLRfidAppEngine.shared().temperatureSettings.tagIdFormat == TAGIDFORMAT.ASCII {
+                        cell?.lbEPC!.text = "\(asciiString(fromHexString: epc) ?? "")"
+                    } else {
+                        cell?.lbEPC!.text = "\(epc ?? "")"
+                    }
+                    cell?.lbRssi!.text = String(format: "%3d", rssi > 100 ? 100 : rssi)
+                    cell?.lbDate!.text = stringFromDate
+                    if CSLRfidAppEngine.shared().reader.readerModelNumber == READERTYPE.CS463 {
+                        cell?.lbPortNumber!.text = String(format: "Port %2d", portNumber + 1)
+                    } else {
+                        cell?.lbPortNumber!.text = ""
+                    }
+
+                    //temperature alert
+                    cell?.lbTagStatus!.layer.borderWidth = 1.0
+                    cell?.lbTagStatus!.layer.cornerRadius = 5.0
+                    cell?.lbTagStatus!.layer.borderColor = UIColor.clear.cgColor
+                    //if temperature is not valid, hide temperature alert.
+                    if (cell?.lbTemperature!.text == "  -  ") || (cell?.lbTemperature!.text == "  \\  ") || (cell?.lbTemperature!.text == "  |  ") || (cell?.lbTemperature!.text == "  /  ") {
+                        cell?.lbTagStatus!.layer.opacity = 0.0
+                    } else {
+                        cell?.lbTagStatus!.layer.opacity = 1.0
+                    }
+
+                    if CSLRfidAppEngine.shared().temperatureSettings.isTemperatureAlertEnabled && average != 0.00 {
+                        if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
+                            //for temperature measurements
+                            if average.doubleValue < CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit {
+                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
+                                cell?.lbTagStatus!.setTitle("Low", for: .normal)
+                            } else if average.doubleValue > CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit {
+                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
+                                cell?.lbTagStatus!.setTitle("High", for: .normal)
+                            } else {
+                                cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
+                                cell?.lbTagStatus!.setTitle("Normal", for: .normal)
+                            }
+                        } else {
+                            //for moisture mesurements
+                            if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
+                                if CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition == ALERTCONDITION.GREATER {
+                                    let avg = (((490.00 - average.doubleValue) / (490.00 - 5.00)) * 100.00)
+                                    if Int32(avg) > CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
+                                        cell?.lbTagStatus!.setTitle("High", for: .normal)
+                                    } else {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
+                                        cell?.lbTagStatus!.setTitle("Normal", for: .normal)
+                                    }
+                                } else {
+                                    let avg=(((490.00 - average.doubleValue) / (490.00 - 5.00)) * 100.00)
+                                    if  Int32(avg) < CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
+                                        cell?.lbTagStatus!.setTitle("Low", for: .normal)
+                                    } else {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
+                                        cell?.lbTagStatus!.setTitle("Normal", for: .normal)
+                                    }
+                                }
+                            } else {
+                                //S2 chip with lower moisture resolution
+                                if CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition == ALERTCONDITION.GREATER {
+                                    if Int32((((31 - average.doubleValue) / (31)) * 100.00)) > CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0xd63031)
+                                        cell?.lbTagStatus!.setTitle("High", for: .normal)
+                                    } else {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
+                                        cell?.lbTagStatus!.setTitle("Normal", for: .normal)
+                                    }
+                                } else {
+                                    if Int32(((31 - average.doubleValue) / (31)) * 100.00) < CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x74b9ff)
+                                        cell?.lbTagStatus!.setTitle("Low", for: .normal)
+                                    } else {
+                                        cell?.lbTagStatus!.backgroundColor = UIColorFromRGB(0x26a65b)
+                                        cell?.lbTagStatus!.setTitle("Normal", for: .normal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        cell?.lbTagStatus.backgroundColor = UIColorFromRGB(0x26a65b)
+                        cell?.lbTagStatus.setTitle("Normal", for: .normal)
+                    }
+                    
+                    cell?.accessory!.tag = indexPath.row
+                    cell?.accessory!.addTarget(self, action: #selector(button(forDetailsClicked:)), for: .touchUpInside)
+                    cell?.viewAccessory!.tag = indexPath.row
+                    (cell?.viewAccessory as? UIButton)?.addTarget(self, action: #selector(button(forDetailsClicked:)), for: .touchUpInside)
+                }
             }
         }
         return cell!

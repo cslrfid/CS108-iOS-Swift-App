@@ -23,8 +23,8 @@
 
         var count = 0
         for sw in swAntennaPort {
-            print("Switch \(count): \((CSLRfidAppEngine.shared().settings.isPortEnabled[count] as? NSNumber)?.boolValue ?? false ? "ON" : "OFF")")
-            sw.isOn = (CSLRfidAppEngine.shared().settings.isPortEnabled[count] as? NSNumber)?.boolValue ?? false
+            print("Switch \(count): \((CSLRfidAppEngine.shared().settings.isPortEnabled[count] as! NSNumber).boolValue ? "ON" : "OFF")")
+            sw.isOn = (CSLRfidAppEngine.shared().settings.isPortEnabled[count] as! NSNumber).boolValue
             count += 1
         }
     }
@@ -34,7 +34,6 @@
         var count = 0
 
         CSLRfidAppEngine.shared().settings.isPortEnabled = NSMutableArray()
-        CSLRfidAppEngine.shared().settings.isPortEnabled = []
 
 
         for sw in swAntennaPort {

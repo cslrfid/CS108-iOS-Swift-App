@@ -174,10 +174,10 @@
                 let endSensorCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
                 let rangeSensorCode = startSensorCode..<endSensorCode
                 let startOcrssi = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
-                let endOcrssi = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
+                let endOcrssi = lastGoodRead.data1.index(startOcrssi, offsetBy: 4)
                 let rangeOcrssi = startOcrssi..<endOcrssi
                 let startTempCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 8)
-                let endTempCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
+                let endTempCode = lastGoodRead.data1.index(startTempCode, offsetBy: 4)
                 let rangeTempCode = startTempCode..<endTempCode
                 
                 //build an info object and convert to json
@@ -210,7 +210,9 @@
                 if CSLRfidAppEngine.shared().mqttSettings.publishTopicCounter == CSLRfidAppEngine.shared().reader.filteredBuffer.count {
                     break
                 }
-                Thread.sleep(forTimeInterval: 0.1)
+                //Thread.sleep(forTimeInterval: 0.1)
+                (RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1)))
+
             }
 
             let alert = UIAlertController(title: "Data Upload", message: "Uploaded \(CSLRfidAppEngine.shared().mqttSettings.publishTopicCounter)/\(Int(CSLRfidAppEngine.shared().reader.filteredBuffer.count)) Record(s).", preferredStyle: .alert)
@@ -241,10 +243,10 @@
             let endSensorCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
             let rangeSensorCode = startSensorCode..<endSensorCode
             let startOcrssi = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
-            let endOcrssi = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
+            let endOcrssi = lastGoodRead.data1.index(startOcrssi, offsetBy: 4)
             let rangeOcrssi = startOcrssi..<endOcrssi
             let startTempCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 8)
-            let endTempCode = lastGoodRead.data1.index(lastGoodRead.data1.startIndex, offsetBy: 4)
+            let endTempCode = lastGoodRead.data1.index(startTempCode, offsetBy: 4)
             let rangeTempCode = startTempCode..<endTempCode
             
             let average = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging((tag as AnyObject).epc)

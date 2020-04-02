@@ -135,8 +135,9 @@ import QuartzCore
                     }
                     CSLRfidAppEngine.shared().readerInfo.appVersion = appVersion
 
-                if (btFwVersionPtr?.pointee?.length ?? 0) >= 5 {
-                        if (((btFwVersion as NSString?)?.substring(to: 1)) == "3") {
+                let fw = CSLRfidAppEngine.shared().readerInfo.btFirmwareVersion as String
+                if fw.count >= 5 {
+                    if (fw.prefix(1) == "3") {
                             //if BT firmware version is greater than v3, it is connecting to CS463
                             CSLRfidAppEngine.shared().reader.readerModelNumber = READERTYPE.CS463
                         } else {
@@ -144,8 +145,6 @@ import QuartzCore
                             CSLRfidAppEngine.shared().reader.startBatteryAutoReporting()
                         }
                     }
-
-
                     self.actSpinner.stopAnimating()
                 }
 

@@ -114,10 +114,10 @@ import UIKit
             for i in 0..<4 {
                 let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
                 let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
-                let portEnabled = Bool(CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! String)
+                let portEnabled = (CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \(portEnabled! ? "ON" : "OFF")")
-                CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled!, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
+                print("Antenna \(i): \(portEnabled ? "ON" : "OFF")")
+                CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 CSLRfidAppEngine.shared().reader.setPower(Double(power! / 10))
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(UInt(dwell!))
                 CSLRfidAppEngine.shared().reader.setAntennaInventoryCount(dwell == 0 ? 65535 : 0)
@@ -145,7 +145,7 @@ import UIKit
             //enable power output on selected port
             for i in 0..<4 {
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \(Bool(CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! String)! ? "ON" : "OFF")")
+                print("Antenna \(i): \((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue ? "ON" : "OFF")")
                 CSLRfidAppEngine.shared().reader.setAntennaConfig(CSLRfidAppEngine.shared().settings.tagAccessPort == i ? true : false, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 CSLRfidAppEngine.shared().reader.setPower(Double(CSLRfidAppEngine.shared().settings.power / 10))
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(2000)
@@ -174,8 +174,8 @@ import UIKit
             //enable power output on selected port
             for i in 0..<4 {
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \(Bool(CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! String)! ? "ON" : "OFF")")
-                CSLRfidAppEngine.shared().reader.setAntennaConfig(Bool(CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! String)!, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
+                print("Antenna \(i): \((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue ? "ON" : "OFF")")
+                CSLRfidAppEngine.shared().reader.setAntennaConfig((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 CSLRfidAppEngine.shared().reader.setPower(Double(CSLRfidAppEngine.shared().settings.power / 10))
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(2000)
                 CSLRfidAppEngine.shared().reader.setAntennaInventoryCount(0)
@@ -208,7 +208,7 @@ import UIKit
         // if multibank read is enabled
         if tagRead != 0 {
         CSLRfidAppEngine.shared().reader.tagacc_BANK(CSLRfidAppEngine.shared().settings.multibank1, acc_bank2: CSLRfidAppEngine.shared().settings.multibank2)
-        CSLRfidAppEngine.shared().reader.tagacc_PTR(UInt32((CSLRfidAppEngine.shared().settings.multibank2Offset << 16) + CSLRfidAppEngine.shared().settings.multibank1Offset))
+        CSLRfidAppEngine.shared().reader.tagacc_PTR(UInt32(CSLRfidAppEngine.shared().settings.multibank2Offset) << 16 + UInt32(CSLRfidAppEngine.shared().settings.multibank1Offset))
         CSLRfidAppEngine.shared().reader.tagacc_CNT(CSLRfidAppEngine.shared().settings.multibank1Length, secondBank: (tagRead == 2 ? CSLRfidAppEngine.shared().settings.multibank2Length : 0))
         }
     }
