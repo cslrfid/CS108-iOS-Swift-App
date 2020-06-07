@@ -150,7 +150,7 @@
             for i in 0..<4 {
                 let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
                 let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
-                let portEnabled = (CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue
+                let portEnabled = Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber)
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
                 print("Antenna \(i): \(portEnabled ? "ON" : "OFF")")
                 CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)

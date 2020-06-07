@@ -114,7 +114,7 @@ import UIKit
             for i in 0..<4 {
                 let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
                 let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
-                let portEnabled = (CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue
+                let portEnabled = Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber)
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
                 print("Antenna \(i): \(portEnabled ? "ON" : "OFF")")
                 CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
@@ -145,7 +145,7 @@ import UIKit
             //enable power output on selected port
             for i in 0..<4 {
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue ? "ON" : "OFF")")
+                print("Antenna \(i): \(Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber) ? "ON" : "OFF")")
                 CSLRfidAppEngine.shared().reader.setAntennaConfig(CSLRfidAppEngine.shared().settings.tagAccessPort == i ? true : false, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 CSLRfidAppEngine.shared().reader.setPower(Double(CSLRfidAppEngine.shared().settings.power / 10))
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(2000)
@@ -174,8 +174,8 @@ import UIKit
             //enable power output on selected port
             for i in 0..<4 {
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
-                print("Antenna \(i): \((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue ? "ON" : "OFF")")
-                CSLRfidAppEngine.shared().reader.setAntennaConfig((CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
+                print("Antenna \(i): \(Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber) ? "ON" : "OFF")")
+                CSLRfidAppEngine.shared().reader.setAntennaConfig(Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber), inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
                 CSLRfidAppEngine.shared().reader.setPower(Double(CSLRfidAppEngine.shared().settings.power / 10))
                 CSLRfidAppEngine.shared().reader.setAntennaDwell(2000)
                 CSLRfidAppEngine.shared().reader.setAntennaInventoryCount(0)

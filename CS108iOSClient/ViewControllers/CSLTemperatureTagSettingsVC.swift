@@ -113,7 +113,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     @IBAction func btnSavePressed(_ sender: Any) {
         //store the UI input to the settings object on appEng
         CSLRfidAppEngine.shared().temperatureSettings.isTemperatureAlertEnabled = swEnableTemperatureAlert.isOn
-        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
+        if scTemperatureUnit.selectedSegmentIndex == TEMPERATUREUNIT.CELCIUS.rawValue {
             CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit = Double(txtHighTemperatureThreshold.text!)!
             CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit = Double(txtLowTemperatureThreshold.text!)!
         } else {
@@ -123,7 +123,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit = Int32(Int(txtOcrssiMax.text!)!)
         CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit = Int32(txtOcrssiMin.text!)!
         CSLRfidAppEngine.shared().temperatureSettings.numberOfRollingAvergage = Int32(txtNumberOfTemperatureAveraging.text!)!
-        CSLRfidAppEngine.shared().temperatureSettings.unit = TEMPERATUREUNIT(rawValue: scTemperatureUnit.selectedSegmentIndex == 0 ? false : true)!
+        CSLRfidAppEngine.shared().temperatureSettings.unit = TEMPERATUREUNIT(rawValue: UInt8(scTemperatureUnit.selectedSegmentIndex))!
         if btnSensorType.currentTitle?.contains("Xerxes") ?? false {
             CSLRfidAppEngine.shared().temperatureSettings.sensorType = SENSORTYPE.XERXES
         } else {
@@ -141,9 +141,9 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
             CSLRfidAppEngine.shared().temperatureSettings.powerLevel = POWERLEVEL.SYSTEMSETTING
         }
 
-        CSLRfidAppEngine.shared().temperatureSettings.tagIdFormat = (swDisplayTagInAscii.isOn ? TAGIDFORMAT(rawValue: true) : TAGIDFORMAT(rawValue: false))!
+        CSLRfidAppEngine.shared().temperatureSettings.tagIdFormat = (swDisplayTagInAscii.isOn ? TAGIDFORMAT.ASCII : TAGIDFORMAT.HEX)
         CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition = btnMoistureCompare.currentTitle?.contains(">") ?? false ? ALERTCONDITION.GREATER : ALERTCONDITION.LESSTHAN
-        CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue = Int32(Int(txtMoistureValue.text!)!)
+        CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue = Int32(txtMoistureValue.text!)!
         CSLRfidAppEngine.shared().saveTemperatureTagSettingsToUserDefaults()
 
         //refresh configurations and clear previous readings on sensor read table view
@@ -169,83 +169,97 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func txtLowTemperatureThresholdChanged(_ sender: Any) {
-        let scan = Scanner(string: txtLowTemperatureThreshold.text!)
-        var val: Double = 0.0
+        let val = Double(txtLowTemperatureThreshold.text!)
         var lowLimit: Double
         var highLimit: Double
-        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
+        if scTemperatureUnit.selectedSegmentIndex == Int(TEMPERATUREUNIT.CELCIUS.rawValue) {
             lowLimit = MIN_TEMP_VALUE
             highLimit = MAX_TEMP_VALUE
         } else {
             lowLimit = CSLTemperatureTagSettings.convertCelcius(toFahrenheit: MIN_TEMP_VALUE)
             highLimit = CSLTemperatureTagSettings.convertCelcius(toFahrenheit: MAX_TEMP_VALUE)
         }
-        if scan.scanDouble(UnsafeMutablePointer<Double>(mutating: &val)) && scan.isAtEnd && Double(txtLowTemperatureThreshold.text!)! >= lowLimit && Double(txtLowTemperatureThreshold.text!)! <= highLimit {
-            print("Low temperature threshold entered: OK")
-            txtLowTemperatureThreshold.text = String(format: "%3.1f", val)
-        } else {
-            //invalid input.  reset to stored configurations
-            if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
-                txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit)
-            } else {
-                txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit))
+        if val != nil {
+            if Double(txtLowTemperatureThreshold.text!)! >= lowLimit && Double(txtLowTemperatureThreshold.text!)! <= highLimit {
+                print("Low temperature threshold entered: OK")
+                txtLowTemperatureThreshold.text = String(format: "%3.1f", val!)
+                return
             }
         }
+        
+        //invalid input.  reset to stored configurations
+        if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
+            txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit)
+        } else {
+            txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit))
+        }
+        
     }
 
     @IBAction func txtHighTemperatureThresholdChanged(_ sender: Any) {
-        let scan = Scanner(string: txtHighTemperatureThreshold.text!)
-        var val: Double = 0.0
+        let val = Double(txtHighTemperatureThreshold.text!)
         var lowLimit: Double
         var highLimit: Double
-        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
+        if scTemperatureUnit.selectedSegmentIndex == Int(TEMPERATUREUNIT.CELCIUS.rawValue) {
             lowLimit = MIN_TEMP_VALUE
             highLimit = MAX_TEMP_VALUE
         } else {
             lowLimit = CSLTemperatureTagSettings.convertCelcius(toFahrenheit: MIN_TEMP_VALUE)
             highLimit = CSLTemperatureTagSettings.convertCelcius(toFahrenheit: MAX_TEMP_VALUE)
         }
-        if scan.scanDouble(UnsafeMutablePointer<Double>(mutating: &val)) && scan.isAtEnd && Double(txtHighTemperatureThreshold.text!)! >= lowLimit && Double(txtHighTemperatureThreshold.text!)! <= highLimit {
-            print("High temperature threshold entered: OK")
-            txtHighTemperatureThreshold.text = String(format: "%3.1f", val)
-        } else {
-            //invalid input.  reset to stored configurations
-            if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
-                txtHighTemperatureThreshold.text = String(format: "%3.1f", CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit)
-            } else {
-                txtHighTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit))
+        if val != nil {
+            if Double(txtHighTemperatureThreshold.text!)! >= lowLimit && Double(txtHighTemperatureThreshold.text!)! <= highLimit {
+                print("High temperature threshold entered: OK")
+                txtHighTemperatureThreshold.text = String(format: "%3.1f", val!)
+                return
             }
+            
         }
+        //invalid input.  reset to stored configurations
+        if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
+            txtHighTemperatureThreshold.text = String(format: "%3.1f", CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit)
+        } else {
+            txtHighTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertCelcius(toFahrenheit: CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit))
+        }
+
     }
 
     @IBAction func txtOcrssiMinChanged(_ sender: Any) {
-        let scan = Scanner(string: txtOcrssiMin.text!)
-        var val: Int32 = 0
-        if scan.scanInt32(UnsafeMutablePointer<Int32>(mutating: &val)) && scan.isAtEnd && Int32(txtOcrssiMin.text!)! >= 0 && Int32(txtOcrssiMin.text!)! <= 31 {
-            print("On-chip RSSI low value entered: OK")
-        } else {
-            txtOcrssiMin.text = "\(CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit)"
+        let val = Int32(txtOcrssiMin.text!)
+        if val != nil
+        {
+            if Int32(txtOcrssiMin.text!)! >= 0 && Int32(txtOcrssiMin.text!)! <= 31 {
+                print("On-chip RSSI low value entered: OK")
+                return
+            }
         }
+        txtOcrssiMin.text = "\(CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit)"
+        
     }
 
     @IBAction func txtOcrssiMaxChanged(_ sender: Any) {
-        let scan = Scanner(string: txtOcrssiMax.text!)
-        var val: Int32 = 0
-        if scan.scanInt32(UnsafeMutablePointer<Int32>(mutating: &val)) && scan.isAtEnd && Int32(txtOcrssiMax.text!)! >= 0 && Int32(txtOcrssiMax.text!)! <= 31 {
-            print("On-chip RSSI high value entered: OK")
-        } else {
-            txtOcrssiMax.text = "\(CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit)"
+        let val = Int32(txtOcrssiMax.text!)
+        if val != nil
+        {
+            if Int32(txtOcrssiMax.text!)! >= 0 && Int32(txtOcrssiMax.text!)! <= 31 {
+                print("On-chip RSSI high value entered: OK")
+                return
+            }
         }
+        txtOcrssiMax.text = "\(CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit)"
+        
     }
 
     @IBAction func txtNumberOfTemperatureAveragingChanged(_ sender: Any) {
-        let scan = Scanner(string: txtNumberOfTemperatureAveraging.text!)
-        var val: Int32 = 0
-        if scan.scanInt32(UnsafeMutablePointer<Int32>(mutating: &val)) && scan.isAtEnd && Int32(txtNumberOfTemperatureAveraging.text!)! >= 0 && Int32(txtNumberOfTemperatureAveraging.text!)! <= 10 {
-            print("Temperature averaging value entered: OK")
-        } else {
-            txtNumberOfTemperatureAveraging.text = "\(CSLRfidAppEngine.shared().temperatureSettings.numberOfRollingAvergage)"
+        let val = Int32(txtNumberOfTemperatureAveraging.text!)
+        if val != nil {
+            if Int32(txtNumberOfTemperatureAveraging.text!)! >= 0 && Int32(txtNumberOfTemperatureAveraging.text!)! <= 10 {
+                print("Temperature averaging value entered: OK")
+                return
+            }
         }
+        txtNumberOfTemperatureAveraging.text = "\(CSLRfidAppEngine.shared().temperatureSettings.numberOfRollingAvergage)"
+        
     }
 
     @IBAction func btnSensorTypePressed(_ sender: Any) {
@@ -296,11 +310,12 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func btnMoistureValueChanged(_ sender: Any) {
-        let scan = Scanner(string: txtMoistureValue.text!)
-        var val: Int32 = 0
-        if scan.scanInt32(UnsafeMutablePointer<Int32>(mutating: &val)) && scan.isAtEnd && Int32(txtMoistureValue.text!)! >= 0 && Int32(txtMoistureValue.text!)! <= 100 {
-            print("Moisture alert value entered: OK")
-        } else {
+        let val = Int32(txtMoistureValue.text!)
+        if val != nil {
+            if Int32(txtMoistureValue.text!)! >= 0 && Int32(txtMoistureValue.text!)! <= 100 {
+                print("Moisture alert value entered: OK")
+                return
+            }
             txtMoistureValue.text = "\(CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue)"
         }
     }
@@ -352,7 +367,9 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func segmentChangeViewValueChanged(_ SControl: UISegmentedControl?) {
-        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
+        let unit = Int(TEMPERATUREUNIT.CELCIUS.rawValue)
+
+        if scTemperatureUnit.selectedSegmentIndex == unit {
             txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertFahrenheit(toCelcius: Double(txtLowTemperatureThreshold.text!)!))
             txtHighTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertFahrenheit(toCelcius: Double(txtHighTemperatureThreshold.text!)!))
         } else {

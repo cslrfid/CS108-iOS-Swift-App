@@ -31,7 +31,6 @@
     }
 
     class func calculateCalibratedTemperatureValue(_ tempCodeInHexString: String?, calibration calibrationInHexString: String?) -> Double {
-        var scanner: Scanner?
         var tmp: UInt32 = 0
         var temperatureCode: UInt32 = 0
         var code1: UInt32 = 0
@@ -45,26 +44,22 @@
         var temperatureValue = 0.0
 
         //temperature code
-        scanner = Scanner(string: tempCodeInHexString ?? "")
-        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &temperatureCode))
+        temperatureCode = UInt32(tempCodeInHexString ?? "0", radix: 16)!
         temperatureCode &= 0x00000fff //least significant bits
 
         //Calibration - CODE1
-        scanner = Scanner(string: (calibrationInHexString as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "")
-        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &tmp))
+        tmp = UInt32((calibrationInHexString as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "0", radix: 16)!
         temp1_1 = (tmp << 7) & 0x00000780 //capture the partial TEMP1 from the 0x9 address
         code1 = (tmp >> 4) & 0x00000fff //least significant bits
 
         //Calibration - TEMP1
-        scanner = Scanner(string: (calibrationInHexString as NSString?)?.substring(with: NSRange(location: 8, length: 4)) ?? "")
-        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &tmp))
+        tmp = UInt32((calibrationInHexString as NSString?)?.substring(with: NSRange(location: 8, length: 4)) ?? "0", radix: 16)!
         code2_1 = (tmp << 3) & 0x00000ff8 //capture the partial CODE2 from the 0xA address
         temp1_2 = (tmp >> 9) & 0x0000007f //least significant bits
         temp1 = temp1_1 + temp1_2
 
         //Calibration - CODE2
-        scanner = Scanner(string: (calibrationInHexString as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "")
-        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &tmp))
+        tmp = UInt32((calibrationInHexString as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "0", radix: 16)!
         code2_2 = (tmp >> 13) & 0x00000007 //least significant bits
         code2 = code2_1 + code2_2
 

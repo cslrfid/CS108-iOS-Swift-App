@@ -356,7 +356,6 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
             if (CSLRfidAppEngine.shared().reader.filteredBuffer[indexPath.row] is CSLBleTag) {
 
                 var ocrssi: UInt32 = 0
-                var scanner: Scanner?
                 var temperatureValue = 0.0
                 var rssi: Int
                 var portNumber: Int
@@ -378,7 +377,6 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
                     if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
                         if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
                             var result: UInt = 0
-                            var _: Scanner?
                             var tempCode: Int
                             var tempCode2: Int
                             var temp2: Int
@@ -428,16 +426,14 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
 
                     //grey out tag from list if it is outside the on-chip rssi limits
                     if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
-                        scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "")
-                        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
+                        ocrssi = UInt32((data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4)) ?? "0", radix: 16)!
                         ocrssi &= 0x0000001f
                     } else {
                         if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                            scanner = Scanner(string: (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "")
+                            ocrssi = UInt32((data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4)) ?? "0", radix: 16)!
                         } else {
-                            scanner = Scanner(string: (data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? "")
+                            ocrssi = UInt32((data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4)) ?? "0", radix: 16)!
                         }
-                        scanner?.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &ocrssi))
                         ocrssi &= 0x0000001f
                     }
 
