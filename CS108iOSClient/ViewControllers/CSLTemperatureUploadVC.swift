@@ -54,7 +54,7 @@
                     if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected || CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .error {
                         break
                     }
-                    Thread.sleep(forTimeInterval: 0.1)
+                    Thread.sleep(forTimeInterval: 0.001)
                 }
                 actMQTTConnectIndicator.stopAnimating()
                 if CSLRfidAppEngine.shared().mqttSettings.mqttStatus == .connected {
@@ -211,7 +211,7 @@
                     break
                 }
                 //Thread.sleep(forTimeInterval: 0.1)
-                (RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1)))
+                (RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001)))
 
             }
 

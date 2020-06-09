@@ -99,7 +99,12 @@ import UIKit
             } else {
                 //iterate through all the power level
                 for i in 0..<16 {
-                    let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
+                    var dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
+                    //enforcing dwell time != 0 when tag focus is enabled
+                    if CSLRfidAppEngine.shared().settings.tagFocus != 0 {
+                        dwell = 2000
+                    }
+
                     let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
                     CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
                     print("Power level \(i): \((i >= CSLRfidAppEngine.shared().settings.numberOfPowerLevel) ? "OFF" : "ON")")
@@ -112,7 +117,11 @@ import UIKit
         } else {
             //iterate through all the power level
             for i in 0..<4 {
-                let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
+                var dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
+                //enforcing dwell time != 0 when tag focus is enabled
+                if CSLRfidAppEngine.shared().settings.tagFocus != 0 {
+                    dwell = 2000
+                }
                 let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
                 let portEnabled = Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber)
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
@@ -196,20 +205,59 @@ import UIKit
         } else {
             tagRead = 0
         }
+        
+        var tagDelay: UInt8
+        if CSLRfidAppEngine.shared().settings.tagFocus == 0 && tagRead != 0 {
+            tagDelay = 30
+        }
+        else {
+            tagDelay = 0
+        }
+
 
         CSLRfidAppEngine.shared().reader.setQueryConfigurations((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? TARGET.A : CSLRfidAppEngine.shared().settings.target), querySession: CSLRfidAppEngine.shared().settings.session, querySelect: QUERYSELECT.ALL)
         CSLRfidAppEngine.shared().reader.selectAlgorithmParameter(CSLRfidAppEngine.shared().settings.algorithm)
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters0(UInt8(CSLRfidAppEngine.shared().settings.qValue), maximumQ: 15, minimumQ: 0, thresholdMultiplier: 4)
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters1(0)
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters2((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? true : false), runTillZero: false)
-        CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: tagRead, crcErrorRead: (tagRead != 0 ? 0 : 1), qtMode: 0, tagDelay: (tagRead != 0 ? 30 : 0), inventoryMode: (tagRead != 0 ? 0 : 1))
+        CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: tagRead, crcErrorRead: (tagRead != 0 ? 0 : 1), qtMode: 0, tagDelay: tagDelay, inventoryMode: (tagRead != 0 ? 0 : 1))
         CSLRfidAppEngine.shared().reader.setLinkProfile(CSLRfidAppEngine.shared().settings.linkProfile)
 
+        //frequency configurations
+        if CSLRfidAppEngine.shared().readerRegionFrequency.isFixed != 0 {
+            CSLRfidAppEngine.shared().reader.setFixedChannel(
+                CSLRfidAppEngine.shared().readerRegionFrequency,
+                regionCode: CSLRfidAppEngine.shared().settings.region,
+                channelIndex: UInt32(CSLRfidAppEngine.shared().settings.channel)!)
+        } else {
+            CSLRfidAppEngine.shared().reader.setHoppingChannel(
+                CSLRfidAppEngine.shared().readerRegionFrequency,
+                regionCode: CSLRfidAppEngine.shared().settings.region)
+        }
+
+
+        
         // if multibank read is enabled
         if tagRead != 0 {
         CSLRfidAppEngine.shared().reader.tagacc_BANK(CSLRfidAppEngine.shared().settings.multibank1, acc_bank2: CSLRfidAppEngine.shared().settings.multibank2)
         CSLRfidAppEngine.shared().reader.tagacc_PTR(UInt32(CSLRfidAppEngine.shared().settings.multibank2Offset) << 16 + UInt32(CSLRfidAppEngine.shared().settings.multibank1Offset))
         CSLRfidAppEngine.shared().reader.tagacc_CNT(CSLRfidAppEngine.shared().settings.multibank1Length, secondBank: (tagRead == 2 ? CSLRfidAppEngine.shared().settings.multibank2Length : 0))
         }
+        
+        print("Tag focus value: \(CSLRfidAppEngine.shared().settings.tagFocus)")
+        //Impinj Extension
+        CSLRfidAppEngine.shared().reader.setImpinjExtension(
+            CSLRfidAppEngine.shared().settings.tagFocus,
+            fastId: 0,
+            blockWriteMode: 0)
+        //LNA settings
+        CSLRfidAppEngine.shared().reader.setLNAParameters(
+            CSLRfidAppEngine.shared().reader,
+            rflnaHighComp: CSLRfidAppEngine.shared().settings.rfLnaHighComp,
+            rflnaGain: CSLRfidAppEngine.shared().settings.rfLna,
+            iflnaGain: CSLRfidAppEngine.shared().settings.ifLna,
+            ifagcGain: CSLRfidAppEngine.shared().settings.ifAgc)
+
+
     }
 }
