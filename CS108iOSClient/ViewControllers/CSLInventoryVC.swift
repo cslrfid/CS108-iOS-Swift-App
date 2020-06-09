@@ -20,6 +20,8 @@ import AudioToolbox
     @IBOutlet weak var lbMode: UILabel!
     @IBOutlet weak var uivSendTagData: UIView!
     @IBOutlet weak var actInventorySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var lbElapsedTime: UILabel!
+
 
     var tagRangingStartTime: Date? = nil
     private var scrRefreshTimer: Timer?
@@ -102,6 +104,11 @@ import AudioToolbox
                 lbUniqueTagRate.text = String(format: "%ld", Int(CSLRfidAppEngine.shared().reader.uniqueTagCount))
                 CSLRfidAppEngine.shared().reader.rangingTagCount = 0
                 CSLRfidAppEngine.shared().reader.uniqueTagCount = 0
+                
+                //incrememt elapse time
+                lbElapsedTime.text = "\(Int(lbElapsedTime.text!)! + 1)"
+
+                
             } else if CSLRfidAppEngine.shared().isBarcodeMode {
                 //update table
                 tblTagList.reloadData()
@@ -134,6 +141,8 @@ import AudioToolbox
         //clear UI
         lbTagRate.text = "0"
         lbTagCount.text = "0"
+        lbElapsedTime.text = "0"
+        lbUniqueTagRate.text = "0"
         CSLRfidAppEngine.shared().reader.filteredBuffer.removeAllObjects()
 
         tblTagList.dataSource = self
@@ -283,10 +292,50 @@ import AudioToolbox
         //clear UI
         lbTagRate.text = "0"
         lbTagCount.text = "0"
+        lbElapsedTime.text = "0"
         CSLRfidAppEngine.shared().reader.filteredBuffer.removeAllObjects()
         tblTagList.reloadData()
     }
 
+    @IBAction func btnSaveData(_ sender: Any) {
+
+        var fileContent = "TIMESTAMP,EPC,DATA1,DATA2,RSSI\n"
+
+        for tag in CSLRfidAppEngine.shared().reader.filteredBuffer {
+
+            //tag read timestamp
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
+            let date = (tag as! CSLBleTag).timestamp
+            var stringFromDate: String? = nil
+            if let date = date {
+                stringFromDate = dateFormatter.string(from: date)
+            }
+
+
+            fileContent = fileContent + ("\(stringFromDate ?? ""),\((tag as! CSLBleTag).epc ?? ""),\((tag as! CSLBleTag).data1 ?? ""),\((tag as! CSLBleTag).data2 ?? ""),\("\((tag as! CSLBleTag).rssi)")\n")
+        }
+
+        let objectsToShare = [fileContent]
+
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+
+        let excludeActivities: [AnyHashable]? = [
+            UIActivity.ActivityType.assignToContact,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToVimeo
+        ]
+
+        activityVC.excludedActivityTypes = excludeActivities as? [UIActivity.ActivityType]
+
+        present(activityVC, animated: true)
+
+    }
+
+
+    
     @IBAction func btnSendTagData(_ sender: Any) {
         //check MQTT settings.  Connect to broker and send tag data
         //var allTagPublishedSuccess = true

@@ -20,6 +20,15 @@
     @IBOutlet weak var swSound: UISwitch!
     @IBOutlet weak var btnPowerLevel: UIButton!
     @IBOutlet weak var btnAntennaSettings: UIButton!
+    @IBOutlet weak var btnRfLna: UIButton!
+    @IBOutlet weak var btnIfLna: UIButton!
+    @IBOutlet weak var btnAgcGain: UIButton!
+    @IBOutlet weak var swLnaHighComp: UISwitch!
+    @IBOutlet weak var swTagFocus: UISwitch!
+    @IBOutlet weak var btnRegion: UIButton!
+    @IBOutlet weak var btnFrequencyChannel: UIButton!
+    @IBOutlet weak var btnFrequencyOrder: UIButton!
+
 
     
     override func viewDidLoad() {
@@ -58,6 +67,30 @@
         btnAntennaSettings.layer.borderColor = UIColor.lightGray.cgColor
         btnAntennaSettings.layer.cornerRadius = 5.0
 
+        btnRfLna.layer.borderWidth = 1.0
+        btnRfLna.layer.borderColor = UIColor.lightGray.cgColor
+        btnRfLna.layer.cornerRadius = 5.0
+
+        btnIfLna.layer.borderWidth = 1.0
+        btnIfLna.layer.borderColor = UIColor.lightGray.cgColor
+        btnIfLna.layer.cornerRadius = 5.0
+
+        btnAgcGain.layer.borderWidth = 1.0
+        btnAgcGain.layer.borderColor = UIColor.lightGray.cgColor
+        btnAgcGain.layer.cornerRadius = 5.0
+
+        btnRegion.layer.borderWidth = 1.0
+        btnRegion.layer.borderColor = UIColor.lightGray.cgColor
+        btnRegion.layer.cornerRadius = 5.0
+
+        btnFrequencyChannel.layer.borderWidth = 1.0
+        btnFrequencyChannel.layer.borderColor = UIColor.lightGray.cgColor
+        btnFrequencyChannel.layer.cornerRadius = 5.0
+
+        btnFrequencyOrder.layer.borderWidth = 1.0
+        btnFrequencyOrder.layer.borderColor = UIColor.lightGray.cgColor
+        btnFrequencyOrder.layer.cornerRadius = 5.0
+   
         txtQValue.delegate = self
         txtTagPopulation.delegate = self
         txtPower.delegate = self
@@ -67,6 +100,28 @@
         } else {
             btnAntennaSettings.isHidden = true
         }
+        
+        //pre-populate the region and frequency info
+        let channel = Int(CSLRfidAppEngine.shared().settings.channel)!
+        let region = CSLRfidAppEngine.shared().settings.region!
+        btnRegion.setTitle(CSLRfidAppEngine.shared().settings.region, for: .normal)
+        btnFrequencyChannel.setTitle(
+            (CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[region] as! NSArray)[channel] as? String,
+            for: .normal)
+        if CSLRfidAppEngine.shared().readerRegionFrequency.isFixed != 0 {
+            btnFrequencyOrder.setTitle("Fixed", for: .normal)
+            btnFrequencyChannel.isEnabled = true
+        } else {
+            btnFrequencyOrder.setTitle("Hopping", for: .normal)
+            btnFrequencyChannel.isEnabled = false
+        }
+
+        if CSLRfidAppEngine.shared().readerRegionFrequency.freqModFlag != 0 {
+            btnRegion.isEnabled = false
+        } else {
+            btnRegion.isEnabled = true
+        }
+
 
     }
 
@@ -125,6 +180,54 @@
                 break
         }
 
+        if CSLRfidAppEngine.shared().settings.tagFocus != 0 {
+            swTagFocus.isOn = true
+        } else {
+            swTagFocus.isOn = false
+        }
+        if CSLRfidAppEngine.shared().settings.rfLnaHighComp != 0 {
+            swLnaHighComp.isOn = true
+        } else {
+            swLnaHighComp.isOn = false
+        }
+
+        switch CSLRfidAppEngine.shared().settings.rfLna {
+            case 0:
+                btnRfLna.setTitle("1 dB", for: .normal)
+            case 2:
+                btnRfLna.setTitle("7 dB", for: .normal)
+            case 3:
+                btnRfLna.setTitle("13 dB", for: .normal)
+            default:
+                break
+        }
+        switch CSLRfidAppEngine.shared().settings.ifLna {
+            case 0:
+                btnIfLna.setTitle("24 dB", for: .normal)
+            case 1:
+                btnIfLna.setTitle("18 dB", for: .normal)
+            case 3:
+                btnIfLna.setTitle("12 dB", for: .normal)
+            case 7:
+                btnIfLna.setTitle("6 dB", for: .normal)
+            default:
+                break
+        }
+        switch CSLRfidAppEngine.shared().settings.ifAgc {
+            case 0:
+                btnAgcGain.setTitle("-12 dB", for: .normal)
+            case 4:
+                btnAgcGain.setTitle("-6 dB", for: .normal)
+            case 6:
+                btnAgcGain.setTitle("0 dB", for: .normal)
+            case 7:
+                btnAgcGain.setTitle("6 dB", for: .normal)
+            default:
+                break
+        }
+
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -324,6 +427,65 @@
         }
         CSLRfidAppEngine.shared().settings.enableSound = swSound.isOn
 
+        if swTagFocus.isOn {
+            CSLRfidAppEngine.shared().settings.tagFocus = 1
+        } else {
+            CSLRfidAppEngine.shared().settings.tagFocus = 0
+        }
+
+        if swLnaHighComp.isOn {
+            CSLRfidAppEngine.shared().settings.rfLnaHighComp = 1
+        } else {
+            CSLRfidAppEngine.shared().settings.rfLnaHighComp = 0
+        }
+
+        if btnRfLna.titleLabel?.text?.compare("1 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.rfLna = 0
+        }
+        if btnRfLna.titleLabel?.text?.compare("7 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.rfLna = 2
+        }
+        if btnRfLna.titleLabel?.text?.compare("13 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.rfLna = 3
+        }
+
+        if btnIfLna.titleLabel?.text?.compare("24 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifLna = 0
+        }
+        if btnIfLna.titleLabel?.text?.compare("18 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifLna = 1
+        }
+        if btnIfLna.titleLabel?.text?.compare("12 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifLna = 3
+        }
+        if btnIfLna.titleLabel?.text?.compare("6 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifLna = 7
+        }
+
+        if btnAgcGain.titleLabel?.text?.compare("-12 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifAgc = 0
+        }
+        if btnAgcGain.titleLabel?.text?.compare("-6 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifAgc = 4
+        }
+        if btnAgcGain.titleLabel?.text?.compare("0 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifAgc = 6
+        }
+        if btnAgcGain.titleLabel?.text?.compare("6 dB") == .orderedSame {
+            CSLRfidAppEngine.shared().settings.ifAgc = 7
+        }
+
+        let channel = btnFrequencyChannel.titleLabel?.text
+        let region = btnRegion.titleLabel?.text
+
+        CSLRfidAppEngine.shared().settings.region = region
+        for i in 0..<((CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[region!] as? NSArray)?.count ?? 0) {
+            if (((CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[region!] as! NSArray)[i] as? String) == channel) {
+                CSLRfidAppEngine.shared().settings.channel = "\(i)"
+            }
+        }
+
+        
         CSLRfidAppEngine.shared().saveSettingsToUserDefaults()
 
         let alert = UIAlertController(title: "Settings", message: "Settings saved.", preferredStyle: .alert)
@@ -334,6 +496,155 @@
 
     }
 
+    @IBAction func swTagFocusChanged(_ sender: Any) {
+        if swTagFocus.isOn {
+            btnSession.setTitle("S1", for: .normal)
+            btnSession.isEnabled = false
+
+            btnTarget.setTitle("A", for: .normal)
+            btnTarget.isEnabled = false
+        } else {
+            btnSession.isEnabled = true
+            btnTarget.isEnabled = true
+        }
+    }
+
+    @IBAction func btnFrequencyOrderPressed(_ sender: Any) {
+        //do nothing
+    }
+
+    @IBAction func btnFrequencyChannelPressed(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Channel",
+            message: "Please select",
+            preferredStyle: .actionSheet)
+
+        for channel in (CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[btnRegion.titleLabel?.text ?? ""] as! NSArray) {
+            guard let channel = channel as? String else {
+                continue
+            }
+            let listItem = UIAlertAction(title: channel, style: .default, handler: { action in
+                self.btnFrequencyChannel.setTitle(channel, for: .normal)
+            })
+            alert.addAction(listItem)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // cancel
+        alert.addAction(cancel)
+
+        present(alert, animated: true)
+    }
+
+    @IBAction func btnRegionPressed(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Region",
+            message: "Please select",
+            preferredStyle: .actionSheet)
+
+        for region in CSLRfidAppEngine.shared().readerRegionFrequency.regionList {
+            let listItem = UIAlertAction(title: (region as! String), style: .default, handler: { action in
+                self.btnRegion.setTitle((region as! String), for: .normal)
+                self.btnFrequencyChannel.setTitle(
+                    (CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[region] as? NSArray)![0] as? String,
+                    for: .normal)
+            })
+            alert.addAction(listItem)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // cancel
+        alert.addAction(cancel)
+
+        present(alert, animated: true)
+    }
+
+    @IBAction func btnAgcGainPressed(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "IF-AGC",
+            message: "Please select",
+            preferredStyle: .actionSheet)
+        let dBm12 = UIAlertAction(title: "-12 dB", style: .default, handler: { action in
+            self.btnAgcGain.setTitle("-12 dB", for: .normal)
+        }) // -12 dB
+        let dBm6 = UIAlertAction(title: "-6 dB", style: .default, handler: { action in
+            self.btnAgcGain.setTitle("-6 dB", for: .normal)
+        }) // -6 dB
+        let dB0 = UIAlertAction(title: "0 dB", style: .default, handler: { action in
+            self.btnAgcGain.setTitle("0 dB", for: .normal)
+        }) // 0 dB
+        let dB6 = UIAlertAction(title: "6 dB", style: .default, handler: { action in
+            self.btnAgcGain.setTitle("6 dB", for: .normal)
+        }) // 6 dB
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // cancel
+
+        alert.addAction(dBm12)
+        alert.addAction(dBm6)
+        alert.addAction(dB0)
+        alert.addAction(dB6)
+
+        alert.addAction(cancel)
+
+        present(alert, animated: true)
+
+    }
+
+    @IBAction func btnIfLnaPressed(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "IF-LNA",
+            message: "Please select",
+            preferredStyle: .actionSheet)
+        let dB24 = UIAlertAction(title: "24 dB", style: .default, handler: { action in
+            self.btnIfLna.setTitle("24 dB", for: .normal)
+        }) // 24 dB
+        let dB18 = UIAlertAction(title: "18 dB", style: .default, handler: { action in
+            self.btnIfLna.setTitle("18 dB", for: .normal)
+        }) // 18 dB
+        let dB12 = UIAlertAction(title: "12 dB", style: .default, handler: { action in
+            self.btnIfLna.setTitle("12 dB", for: .normal)
+        }) // 12 dB
+        let dB6 = UIAlertAction(title: "6 dB", style: .default, handler: { action in
+            self.btnIfLna.setTitle("6 dB", for: .normal)
+        }) // 6 dB
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // cancel
+
+        alert.addAction(dB24)
+        alert.addAction(dB18)
+        alert.addAction(dB12)
+        alert.addAction(dB6)
+
+        alert.addAction(cancel)
+
+        present(alert, animated: true)
+
+    }
+
+    @IBAction func btnRfLnaPressed(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "RF-LNA",
+            message: "Please select",
+            preferredStyle: .actionSheet)
+        let dB1 = UIAlertAction(title: "1 dB", style: .default, handler: { action in
+            self.btnRfLna.setTitle("1 dB", for: .normal)
+        }) // 1 dB
+        let dB7 = UIAlertAction(title: "7 dB", style: .default, handler: { action in
+            self.btnRfLna.setTitle("7 dB", for: .normal)
+        }) // 7 dB
+        let dB13 = UIAlertAction(title: "13 dB", style: .default, handler: { action in
+            self.btnRfLna.setTitle("13 dB", for: .normal)
+        }) // 13 dB
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // cancel
+
+        alert.addAction(dB1)
+        alert.addAction(dB7)
+        alert.addAction(dB13)
+
+        alert.addAction(cancel)
+
+        present(alert, animated: true)
+
+    }
+
+    
     @IBAction func btnPowerLevelPressed(_ sender: Any) {
 
         var powerLevelVC: CSLPowerLevelVC?

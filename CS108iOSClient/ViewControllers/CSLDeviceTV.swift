@@ -135,6 +135,47 @@ import QuartzCore
                     }
                     CSLRfidAppEngine.shared().readerInfo.appVersion = appVersion
 
+                
+                var OEMData: UInt32 = 0
+
+                //device country code
+                CSLRfidAppEngine.shared().reader.readOEMData(CSLRfidAppEngine.shared().reader, atAddr: 0x00000002, forData: &OEMData)
+                CSLRfidAppEngine.shared().readerInfo.countryCode = OEMData
+                print(String(format: "OEM data address 0x%08X: 0x%08X", 0x02, OEMData))
+                //special country version
+                CSLRfidAppEngine.shared().reader.readOEMData(CSLRfidAppEngine.shared().reader, atAddr: 0x0000008e, forData: &OEMData)
+                CSLRfidAppEngine.shared().readerInfo.specialCountryVerison = OEMData
+                print(String(format: "OEM data address 0x%08X: 0x%08X", 0x8e, OEMData))
+                //freqency modification flag
+                CSLRfidAppEngine.shared().reader.readOEMData(CSLRfidAppEngine.shared().reader, atAddr: 0x0000008f, forData: &OEMData)
+                CSLRfidAppEngine.shared().readerInfo.freqModFlag = OEMData
+                print(String(format: "OEM data address 0x%08X: 0x%08X", 0x8f, OEMData))
+                //model code
+                CSLRfidAppEngine.shared().reader.readOEMData(CSLRfidAppEngine.shared().reader, atAddr: 0x000000a4, forData: &OEMData)
+                CSLRfidAppEngine.shared().readerInfo.modelCode = OEMData
+                print(String(format: "OEM data address 0x%08X: 0x%08X", 0xa4, OEMData))
+                //hopping/fixed frequency
+                CSLRfidAppEngine.shared().reader.readOEMData(CSLRfidAppEngine.shared().reader, atAddr: 0x0000009d, forData: &OEMData)
+                CSLRfidAppEngine.shared().readerInfo.isFxied = OEMData
+                print(String(format: "OEM data address 0x%08X: 0x%08X", 0x9d, OEMData))
+
+                CSLRfidAppEngine.shared().readerRegionFrequency = CSLReaderFrequency(
+                    oemData: CSLRfidAppEngine.shared().readerInfo.countryCode,
+                    specialCountryVerison: CSLRfidAppEngine.shared().readerInfo.specialCountryVerison,
+                    freqModFlag: CSLRfidAppEngine.shared().readerInfo.freqModFlag,
+                    modelCode: CSLRfidAppEngine.shared().readerInfo.modelCode,
+                    isFixed: CSLRfidAppEngine.shared().readerInfo.isFxied)
+
+                if CSLRfidAppEngine.shared().readerRegionFrequency.tableOfFrequencies[CSLRfidAppEngine.shared().settings.region!] == nil {
+                    //the region being stored is not valid, reset to default region and frequency channel
+                    CSLRfidAppEngine.shared().settings.region = CSLRfidAppEngine.shared().readerRegionFrequency.regionList[0] as? String
+                    CSLRfidAppEngine.shared().settings.channel = "0"
+                    CSLRfidAppEngine.shared().saveSettingsToUserDefaults()
+                }
+
+                
+                
+                
                 let fw = CSLRfidAppEngine.shared().readerInfo.btFirmwareVersion as String
                 if fw.count >= 5 {
                     if (fw.prefix(1) == "3") {

@@ -50,9 +50,9 @@
             if let shared = (CSLRfidAppEngine.shared().cslBleTagSelected)?.epc {
                 lastGoodRead = CSLRfidAppEngine.shared().temperatureSettings.lastGoodReadBuffer[shared] as? CSLBleTag
             }
-            let epc = lastGoodRead?.epc
-            let data1 = lastGoodRead?.data1
-            let data2 = lastGoodRead?.data2
+            let epc = String(lastGoodRead?.epc ?? "")
+            let data1 = String(lastGoodRead?.data1 ?? "")
+            let data2 = String(lastGoodRead?.data2 ?? "")
 
             //tag read timestamp
             let dateFormatter = DateFormatter()
@@ -63,7 +63,7 @@
                 stringFromDate = dateFormatter.string(from: date)
             }
 
-            let temperatureValue = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging(epc!).doubleValue
+            let temperatureValue = CSLRfidAppEngine.shared().temperatureSettings.getTemperatureValueAveraging(epc).doubleValue
             if CSLRfidAppEngine.shared().temperatureSettings.reading == SENSORREADING.TEMPERATURE {
                 if temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE {
                     if CSLRfidAppEngine.shared().temperatureSettings.unit == TEMPERATUREUNIT.CELCIUS {
@@ -124,7 +124,7 @@
                     } else {
                         //S2 chip with lower moisture resolution
                         if CSLRfidAppEngine.shared().temperatureSettings.moistureAlertCondition == ALERTCONDITION.GREATER {
-                            let temp = (31 - temperatureValue) / (31);
+                            let temp = (31.0 - temperatureValue) / (31.0);
                             if (temp * 100.00) > Double(CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue) {
                                 btnTagStatus.backgroundColor = UIColorFromRGB(0xd63031)
                                 btnTagStatus.setTitle("High", for: .normal)
@@ -133,7 +133,7 @@
                                 btnTagStatus.setTitle("Normal", for: .normal)
                             }
                         } else {
-                            let temp = (31 - temperatureValue) / (31);
+                            let temp = (31.0 - temperatureValue) / (31.0);
                             if (temp * 100.00) < Double(CSLRfidAppEngine.shared().temperatureSettings.moistureAlertValue) {
                                 btnTagStatus.backgroundColor = UIColorFromRGB(0x74b9ff)
                                 btnTagStatus.setTitle("Low", for: .normal)
@@ -150,29 +150,50 @@
             }
 
             if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.XERXES {
-                if (data1?.count ?? 0) >= 16 {
-                    lbCalibration.text = (data1 as NSString?)?.substring(to: 15)
+                if data1.count >= 16 {
+                    //lbCalibration.text = (data1 as NSString?)?.substring(to: 15)
+                    lbCalibration.text=String(data1[data1.startIndex..<data1.index(data1.startIndex, offsetBy: 16)])
                 }
-                if (data2?.count ?? 0) >= 20 {
-                    lbSensorCode.text = (data2 as NSString?)?.substring(with: NSRange(location: 8, length: 4))
-                    lbOCRSSI.text = (data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4))
-                    lbTemperatureCode.text = (data2 as NSString?)?.substring(with: NSRange(location: 16, length: 4))
+                if data2.count >= 20 {
+                    //lbSensorCode.text = (data2 as NSString?)?.substring(with: NSRange(location: 8, length: 4))
+                    //lbOCRSSI.text = (data2 as NSString?)?.substring(with: NSRange(location: 12, length: 4))
+                    //lbTemperatureCode.text = (data2 as NSString?)?.substring(with: NSRange(location: 16, length: 4))
+                    let range1 = data2.index(data2.startIndex, offsetBy: 8)..<data2.index(data2.startIndex, offsetBy: 12)
+                    lbSensorCode.text = String(data2[range1])
+                    let range2 = data2.index(data2.startIndex, offsetBy: 12)..<data2.index(data1.startIndex, offsetBy: 16)
+                    lbOCRSSI.text = String(data2[range2])
+                    let range3 = data2.index(data2.startIndex, offsetBy: 16)..<data2.index(data2.startIndex, offsetBy: 20)
+                    lbTemperatureCode.text = String(data2[range3])
                 }
             } else if CSLRfidAppEngine.shared().temperatureSettings.sensorType == SENSORTYPE.MAGNUSS3 {
-                if (data2?.count ?? 0) >= 16 {
-                    lbCalibration.text = (data2 as NSString?)?.substring(to: 15)
+                if data2.count >= 16 {
+                    //lbCalibration.text = (data2 as NSString?)?.substring(to: 15)
+                    let range = data2.startIndex..<data2.index(data2.startIndex, offsetBy: 16)
+                    lbCalibration.text = String(data2[range])
                 }
-                if (data1?.count ?? 0) >= 12 {
-                    lbSensorCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
-                    lbOCRSSI.text = (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4))
-                    lbTemperatureCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4))
+                if data1.count >= 12 {
+                    //lbSensorCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
+                    //lbOCRSSI.text = (data1 as NSString?)?.substring(with: NSRange(location: 4, length: 4))
+                    //lbTemperatureCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 8, length: 4))
+                    let range1 = data1.startIndex..<data2.index(data1.startIndex, offsetBy: 4)
+                    lbSensorCode.text = String(data1[range1])
+                    let range2 = data1.index(data2.startIndex, offsetBy: 4)..<data1.index(data1.startIndex, offsetBy: 8)
+                    lbOCRSSI.text = String(data2[range2])
+                    let range3 = data1.index(data1.startIndex, offsetBy: 8)..<data1.index(data1.startIndex, offsetBy: 12)
+                    lbTemperatureCode.text = String(data2[range3])
+                    
+                    
                 }
             } else {
-                if (data1?.count ?? 0) >= 4 && (data2?.count ?? 0) >= 4 {
+                if data1.count >= 4 && data2.count >= 4 {
                     lbCalibration.text = "-"
-                    lbSensorCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
-                    lbOCRSSI.text = (data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
+                    //lbSensorCode.text = (data1 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
+                    //lbOCRSSI.text = (data2 as NSString?)?.substring(with: NSRange(location: 0, length: 4))
                     lbTemperatureCode.text = "-"
+                    let range1 = data1.startIndex..<data1.index(data1.startIndex, offsetBy: 4)
+                    lbSensorCode.text = String(data1[range1])
+                    let range2 = data2.startIndex..<data2.index(data2.startIndex, offsetBy: 4)
+                    lbOCRSSI.text = String(data2[range2])
                 }
             }
         } else {

@@ -99,8 +99,7 @@
 
             //get access password
             var accPwd: UInt32 = 0
-            let scanner = Scanner(string: txtAccessPwd.text ?? "0")
-            scanner.scanHexInt32(UnsafeMutablePointer<UInt32>(mutating: &accPwd))
+            accPwd = UInt32(txtAccessPwd.text ?? "0", radix: 16)!
 
             //compose the 20bit security
             lockCommandConfigBits = 0

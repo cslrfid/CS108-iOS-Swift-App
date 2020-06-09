@@ -150,7 +150,7 @@
             for i in 0..<4 {
                 let dwell = Int(CSLRfidAppEngine.shared().settings.dwellTime[i] as! String)
                 let power = Int(CSLRfidAppEngine.shared().settings.powerLevel[i] as! String)
-                let portEnabled = (CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber).boolValue
+                let portEnabled = Bool(truncating: CSLRfidAppEngine.shared().settings.isPortEnabled[i] as! NSNumber)
                 CSLRfidAppEngine.shared().reader.selectAntennaPort(UInt(i))
                 print("Antenna \(i): \(portEnabled ? "ON" : "OFF")")
                 CSLRfidAppEngine.shared().reader.setAntennaConfig(portEnabled, inventoryMode: 0, inventoryAlgo: 0, startQ: 0, profileMode: 0, profile: 0, frequencyMode: 0, frequencyChannel: 0, isEASEnabled: false)
@@ -218,13 +218,13 @@
         CSLRfidAppEngine.shared().reader.selectAlgorithmParameter(QUERYALGORITHM.DYNAMICQ)
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters0(UInt8(CSLRfidAppEngine.shared().settings.qValue), maximumQ: 15, minimumQ: 0, thresholdMultiplier: 4) //0x0903
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters1(5)
-        CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters2((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? true : false), runTillZero: false) //x0905
+        CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters2(true /*hardcoding toggle A/B*/, runTillZero: false) //x0905
         CSLRfidAppEngine.shared().reader.setInventoryConfigurations(QUERYALGORITHM.DYNAMICQ, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: 0, crcErrorRead: 0, qtMode: 0, tagDelay: 0, inventoryMode: 0) //0x0901
 
         CSLRfidAppEngine.shared().reader.selectAlgorithmParameter(QUERYALGORITHM.FIXEDQ)
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters0(UInt8(CSLRfidAppEngine.shared().settings.qValue), maximumQ: 0, minimumQ: 0, thresholdMultiplier: 0) //0x0903
         CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters1(5)
-        CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters2((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? true : false), runTillZero: false) //x0905
+        CSLRfidAppEngine.shared().reader.setInventoryAlgorithmParameters2(true /*hardcoding toggle A/B*/, runTillZero: false) //x0905
         CSLRfidAppEngine.shared().reader.setInventoryConfigurations(QUERYALGORITHM.FIXEDQ, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: 0, crcErrorRead: 0, qtMode: 0, tagDelay: 0, inventoryMode: 0) //0x0901
 
         CSLRfidAppEngine.shared().reader.setQueryConfigurations(TARGET.A, querySession: SESSION.S1, querySelect: QUERYSELECT.SL)
@@ -260,6 +260,18 @@
         }
         CSLRfidAppEngine.shared().reader.setInventoryCycleDelay(0)
         CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: tagRead, crcErrorRead: 1, qtMode: 0, tagDelay: (tagRead != 0 ? 30 : 0), inventoryMode: (tagRead != 0 ? 0 : 1))
+
+        //frequency configurations
+        if CSLRfidAppEngine.shared().readerRegionFrequency.isFixed != 0 {
+            CSLRfidAppEngine.shared().reader.setFixedChannel(
+                CSLRfidAppEngine.shared().readerRegionFrequency,
+                regionCode: CSLRfidAppEngine.shared().settings.region,
+                channelIndex: UInt32(CSLRfidAppEngine.shared().settings.channel)!)
+        } else {
+            CSLRfidAppEngine.shared().reader.setHoppingChannel(
+                CSLRfidAppEngine.shared().readerRegionFrequency,
+                regionCode: CSLRfidAppEngine.shared().settings.region)
+        }
 
         // if multibank read is enabled
         if tagRead != 0 {

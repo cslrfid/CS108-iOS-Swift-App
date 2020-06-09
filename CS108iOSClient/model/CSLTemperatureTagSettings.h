@@ -27,24 +27,24 @@ typedef NS_ENUM(UInt32, SENSORTYPE)
 };
 
 ///Temperature Unit
-typedef NS_ENUM(BOOL, TEMPERATUREUNIT)
+typedef NS_ENUM(Byte, TEMPERATUREUNIT)
 {
     CELCIUS = 0,
     FAHRENHEIT = 1
 };
 
 ///Sensor Reading
-typedef NS_ENUM(BOOL, SENSORREADING)
+typedef NS_ENUM(Byte, SENSORREADING)
 {
     TEMPERATURE = 0,
-    MOISTURE=  1
+    MOISTURE = 1
 };
 
 ///Sensor Reading
-typedef NS_ENUM(BOOL, TAGIDFORMAT)
+typedef NS_ENUM(Byte, TAGIDFORMAT)
 {
     HEX = 0,
-    ASCII=1
+    ASCII = 1
 };
 
 ///Sensor Reading Power Level
@@ -57,10 +57,10 @@ typedef NS_ENUM(Byte, POWERLEVEL)
 };
 
 ///Sensor Reading
-typedef NS_ENUM(BOOL, ALERTCONDITION)
+typedef NS_ENUM(Byte, ALERTCONDITION)
 {
     GREATER = 0,
-    LESSTHAN=1
+    LESSTHAN = 1
 };
 
 @interface CSLTemperatureTagSettings : NSObject

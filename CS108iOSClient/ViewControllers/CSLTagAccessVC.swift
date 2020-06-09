@@ -274,8 +274,8 @@
 
             //get access password
             var accPwd: UInt32 = 0
-            let scanner = Scanner(string: txtAccessPwd.text!)
-            scanner.scanHexInt32(&accPwd)
+            accPwd = UInt32(txtAccessPwd.text ?? "00000000")!
+
 
             //read PC+EPC if TID is not needed.  Otherwise, read PC+EPC+TID all in one shot
             if swEPC.isOn || swPC.isOn || swTidUid.isOn {
@@ -444,8 +444,7 @@
 
             //get access password
             var accPwd: UInt32 = 0
-            let scanner = Scanner(string: txtAccessPwd.text!)
-            scanner.scanHexInt32(&accPwd)
+            accPwd = UInt32(txtAccessPwd.text ?? "00000000")!
 
             //write PC if it is enabled
             if swPC.isOn {
