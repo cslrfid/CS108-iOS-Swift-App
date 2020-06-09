@@ -291,7 +291,7 @@
                     if txtEPC.text!.count != 0 || txtPC.text!.count != 0 || txtTidUid.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtEPC.text!.count == 0 && swEPC.isOn {
                     txtEPC.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -323,7 +323,7 @@
                     if txtAccPwd.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtAccPwd.text!.count == 0 && swAccPwd.isOn {
                     txtAccPwd.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -343,7 +343,7 @@
                     if txtKillPwd.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtKillPwd.text!.count == 0 && swKillPwd.isOn {
                     txtKillPwd.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -364,7 +364,7 @@
                     if txtUser.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtUser.text!.count == 0 && swUser.isOn {
                     txtUser.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -457,7 +457,7 @@
                     if (txtPC.backgroundColor) != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtPC.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -478,7 +478,7 @@
                     if txtEPC.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtEPC.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -499,7 +499,7 @@
                     if txtAccPwd.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtAccPwd.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -520,7 +520,7 @@
                     if txtKillPwd.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtKillPwd.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -541,7 +541,7 @@
                     if txtUser.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtUser.backgroundColor == UIColorFromRGB(0xffffff) {

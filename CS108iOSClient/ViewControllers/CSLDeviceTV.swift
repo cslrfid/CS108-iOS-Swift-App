@@ -82,7 +82,7 @@ import QuartzCore
                     if CSLRfidAppEngine.shared().reader.connectStatus == STATUS.CONNECTED {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
 
             if CSLRfidAppEngine.shared().reader.connectStatus != STATUS.CONNECTED {
