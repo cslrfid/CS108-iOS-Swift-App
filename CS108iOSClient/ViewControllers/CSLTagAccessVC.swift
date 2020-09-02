@@ -393,6 +393,8 @@
 
             let userWordCount = Int(((btnUserWord.titleLabel?.text as NSString?)?.substring(from: 5) ?? "")) ?? 0
             let userOffset = Int(((btnUserOffset.titleLabel?.text as NSString?)?.substring(from: 7) ?? "")) ?? 0
+            let tidWordCount = Int(((btnTidUidWord.titleLabel?.text as NSString?)?.substring(from: 5) ?? "")) ?? 0
+            let tidOffset = Int(((btnTidUidWord.titleLabel?.text as NSString?)?.substring(from: 7) ?? "")) ?? 0
             var validationMsg = ""
             var alert: UIAlertController?
             var ok: UIAlertAction?
@@ -406,6 +408,9 @@
             }
             if swUser.isOn && (txtUser.text!.count != (Int(userWordCount) * 4) || (txtUser.text!.count == 0)) {
                 validationMsg = validationMsg + ("USER ")
+            }
+            if swTidUid.isOn && (txtTidUid.text!.count != (Int(tidWordCount) * 4) || (txtTidUid.text!.count == 0) || (tidOffset < 2)) {
+                validationMsg = validationMsg + ("TID-UID ")
             }
             if swAccPwd.isOn && txtAccPwd.text!.count != 8 {
                 validationMsg = validationMsg + ("AccPWD ")
@@ -530,6 +535,27 @@
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
             }
 
+            //write TID (bank2)
+            if swTidUid.isOn {
+                bankSelected = MEMORYBANK.TID
+                memItem = MEMORYITEM.mTID
+                CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.TID, dataOffset: UInt16(tidOffset), dataCount: UInt16(tidWordCount), write: CSLBleReader.convertHexString(toData: txtTidUid.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
+
+                for _ in 0..<COMMAND_TIMEOUT_5S {
+                    //receive data or time out in 5 seconds
+                    if !(txtTidUid.backgroundColor == UIColorFromRGB(0xffffff)) {
+                        break
+                    }
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
+                }
+                //set UI color to red if no tag access reponse returned
+                if txtTidUid.backgroundColor == UIColorFromRGB(0xffffff) {
+                    txtTidUid.backgroundColor = UIColorFromRGB(0xffb3b3)
+                }
+                //refresh UI
+                RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+            }
+            
             //write USER
             if swUser.isOn {
                 bankSelected = MEMORYBANK.USER
@@ -777,6 +803,14 @@
                     let ackTimeout = tag?.ackTimeout
                     if (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
                         self.txtUser.backgroundColor = self.UIColorFromRGB(0xd1f2eb)
+                    }
+                } else if self.bankSelected == MEMORYBANK.TID && self.memItem == MEMORYITEM.mTID {
+                    let accessError = tag?.accessError
+                    let crcError = tag?.crcError
+                    let backScatterError = tag?.backScatterError
+                    let ackTimeout = tag?.ackTimeout
+                    if (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
+                        self.txtTidUid.backgroundColor = self.UIColorFromRGB(0xd1f2eb)
                     }
                 }
             }
