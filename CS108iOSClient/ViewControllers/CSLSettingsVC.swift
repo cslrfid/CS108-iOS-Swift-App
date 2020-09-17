@@ -28,7 +28,7 @@
     @IBOutlet weak var btnRegion: UIButton!
     @IBOutlet weak var btnFrequencyChannel: UIButton!
     @IBOutlet weak var btnFrequencyOrder: UIButton!
-
+    @IBOutlet weak var swFastId: UISwitch!
 
     
     override func viewDidLoad() {
@@ -184,6 +184,11 @@
             swTagFocus.isOn = true
         } else {
             swTagFocus.isOn = false
+        }
+        if CSLRfidAppEngine.shared().settings.fastId != 0 {
+            swFastId.isOn = true
+        } else {
+            swFastId.isOn = false
         }
         if CSLRfidAppEngine.shared().settings.rfLnaHighComp != 0 {
             swLnaHighComp.isOn = true
@@ -432,6 +437,11 @@
         } else {
             CSLRfidAppEngine.shared().settings.tagFocus = 0
         }
+        if swFastId.isOn {
+            CSLRfidAppEngine.shared().settings.fastId = 1
+        } else {
+            CSLRfidAppEngine.shared().settings.fastId = 0
+        }
 
         if swLnaHighComp.isOn {
             CSLRfidAppEngine.shared().settings.rfLnaHighComp = 1
@@ -496,6 +506,11 @@
 
     }
 
+    @IBAction func swFastIdChanged(_ sender: Any) {
+        
+    }
+
+    
     @IBAction func swTagFocusChanged(_ sender: Any) {
         if swTagFocus.isOn {
             btnSession.setTitle("S1", for: .normal)
