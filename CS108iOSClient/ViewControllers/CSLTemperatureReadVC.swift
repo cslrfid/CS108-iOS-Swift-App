@@ -184,6 +184,7 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
             btnInventory.isEnabled = false
 
             //start inventory
+            CSLRfidAppEngine.shared().reader.setPowerMode(false)
             CSLRfidAppEngine.shared().reader.startInventory()
             btnInventory.setImage(UIImage(named: "Stop-icon.png"), for: .normal)
             lbInventory.text = "Stop"
@@ -196,6 +197,7 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
                 btnInventory.setImage(UIImage(named: "Start-icon.png"), for: .normal)
                 lbInventory.text = "Start"
                 btnInventory.isEnabled = true
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
 
                 let lockQueue = DispatchQueue(label: "CSLRfidAppEngine.shared().reader.filteredBuffer")
                 lockQueue.sync {

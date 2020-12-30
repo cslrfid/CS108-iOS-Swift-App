@@ -279,6 +279,7 @@
 
             //read PC+EPC if TID is not needed.  Otherwise, read PC+EPC+TID all in one shot
             if swEPC.isOn || swPC.isOn || swTidUid.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.TID
                 if swTidUid.isOn {
                     CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.TID, dataOffset: UInt16(tidOffset), dataCount: UInt16(tidWordCount), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -310,10 +311,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //read access password and kill password
             if swAccPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mACCPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.RESERVED, dataOffset: 2, dataCount: 2, accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -332,6 +335,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
             if swKillPwd.isOn {
                 bankSelected = MEMORYBANK.RESERVED
@@ -356,6 +360,7 @@
 
             //read USER
             if swUser.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.USER
                 CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.USER, dataOffset: UInt16(userOffset), dataCount: UInt16(userWordCount), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
 
@@ -373,6 +378,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true);
             }
 
             let alert = UIAlertController(title: "Tag Read", message: "Completed", preferredStyle: .alert)
@@ -453,6 +459,7 @@
 
             //write PC if it is enabled
             if swPC.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.EPC
                 memItem = MEMORYITEM.mPC
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.EPC, dataOffset: 1, dataCount: (UInt16(UInt32(txtPC.text!.count) / 4)), write: CSLBleReader.convertHexString(toData: txtPC.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -470,10 +477,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write EPC if it is enabled
             if swEPC.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.EPC
                 memItem = MEMORYITEM.mEPC
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.EPC, dataOffset: 2, dataCount: (UInt16(UInt32(txtEPC.text!.count) / 4)), write: CSLBleReader.convertHexString(toData: txtEPC.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -491,10 +500,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write access password
             if swAccPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mACCPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.RESERVED, dataOffset: 2, dataCount: 2, write: CSLBleReader.convertHexString(toData: txtAccPwd.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -512,10 +523,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write kill password
             if swKillPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mKILLPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.RESERVED, dataOffset: 0, dataCount: 2, write: CSLBleReader.convertHexString(toData: txtKillPwd.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -533,10 +546,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write TID (bank2)
             if swTidUid.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.TID
                 memItem = MEMORYITEM.mTID
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.TID, dataOffset: UInt16(tidOffset), dataCount: UInt16(tidWordCount), write: CSLBleReader.convertHexString(toData: txtTidUid.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -554,10 +569,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
             
             //write USER
             if swUser.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.USER
                 memItem = MEMORYITEM.mUSER
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.USER, dataOffset: UInt16(userOffset), dataCount: UInt16(userWordCount), write: CSLBleReader.convertHexString(toData: txtUser.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -575,6 +592,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             alert = UIAlertController(title: "Tag Write", message: "Completed", preferredStyle: .alert)

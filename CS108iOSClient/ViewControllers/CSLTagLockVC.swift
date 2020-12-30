@@ -153,6 +153,7 @@
                 lockCommandConfigBits |= 0x00c03 //b'00000000110000000011
             }
 
+            CSLRfidAppEngine.shared().reader.setPowerMode(false)
             result = CSLRfidAppEngine.shared().reader.startTagMemoryLock(lockCommandConfigBits, accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text?.count ?? 0) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text ?? "0"))
 
             for _ in 0..<COMMAND_TIMEOUT_5S {
@@ -169,6 +170,8 @@
                 alert = UIAlertController(title: "Tag Security", message: "FAILED", preferredStyle: .alert)
             }
 
+            CSLRfidAppEngine.shared().reader.setPowerMode(true)
+            
             ok = UIAlertAction(title: "OK", style: .default, handler: nil)
             if let ok = ok {
                 alert?.addAction(ok)

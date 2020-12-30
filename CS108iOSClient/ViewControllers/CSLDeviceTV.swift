@@ -186,6 +186,10 @@ import QuartzCore
                             CSLRfidAppEngine.shared().reader.startBatteryAutoReporting()
                         }
                     }
+                    
+                    //set low power mode
+                    CSLRfidAppEngine.shared().reader.setPowerMode(true)
+                    
                     self.actSpinner.stopAnimating()
                 }
 

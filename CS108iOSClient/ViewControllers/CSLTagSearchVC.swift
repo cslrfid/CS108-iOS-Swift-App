@@ -190,6 +190,7 @@
             //reader configurations before search
 
             //start tag search
+            CSLRfidAppEngine.shared().reader.setPowerMode(false)
             result = CSLRfidAppEngine.shared().reader.startTagSearch(MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtEPC.text!))
 
 
@@ -205,6 +206,7 @@
             if CSLRfidAppEngine.shared().reader.stopTagSearch() {
                 btnSearch.setTitle("Start", for: .normal)
                 btnSearch.isEnabled = true
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             } else {
                 btnSearch.setTitle("Stop", for: .normal)
                 btnSearch.isEnabled = true
