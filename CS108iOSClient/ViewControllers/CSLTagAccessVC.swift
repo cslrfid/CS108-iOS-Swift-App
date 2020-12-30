@@ -279,6 +279,7 @@
 
             //read PC+EPC if TID is not needed.  Otherwise, read PC+EPC+TID all in one shot
             if swEPC.isOn || swPC.isOn || swTidUid.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.TID
                 if swTidUid.isOn {
                     CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.TID, dataOffset: UInt16(tidOffset), dataCount: UInt16(tidWordCount), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -291,7 +292,7 @@
                     if txtEPC.text!.count != 0 || txtPC.text!.count != 0 || txtTidUid.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtEPC.text!.count == 0 && swEPC.isOn {
                     txtEPC.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -310,10 +311,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //read access password and kill password
             if swAccPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mACCPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.RESERVED, dataOffset: 2, dataCount: 2, accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -323,7 +326,7 @@
                     if txtAccPwd.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtAccPwd.text!.count == 0 && swAccPwd.isOn {
                     txtAccPwd.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -332,6 +335,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
             if swKillPwd.isOn {
                 bankSelected = MEMORYBANK.RESERVED
@@ -343,7 +347,7 @@
                     if txtKillPwd.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtKillPwd.text!.count == 0 && swKillPwd.isOn {
                     txtKillPwd.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -356,6 +360,7 @@
 
             //read USER
             if swUser.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.USER
                 CSLRfidAppEngine.shared().reader.startTagMemoryRead(MEMORYBANK.USER, dataOffset: UInt16(userOffset), dataCount: UInt16(userWordCount), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
 
@@ -364,7 +369,7 @@
                     if txtUser.text!.count != 0 {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 if txtUser.text!.count == 0 && swUser.isOn {
                     txtUser.backgroundColor = UIColorFromRGB(0xffb3b3)
@@ -373,6 +378,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true);
             }
 
             let alert = UIAlertController(title: "Tag Read", message: "Completed", preferredStyle: .alert)
@@ -393,6 +399,8 @@
 
             let userWordCount = Int(((btnUserWord.titleLabel?.text as NSString?)?.substring(from: 5) ?? "")) ?? 0
             let userOffset = Int(((btnUserOffset.titleLabel?.text as NSString?)?.substring(from: 7) ?? "")) ?? 0
+            let tidWordCount = Int(((btnTidUidWord.titleLabel?.text as NSString?)?.substring(from: 5) ?? "")) ?? 0
+            let tidOffset = Int(((btnTidUidWord.titleLabel?.text as NSString?)?.substring(from: 7) ?? "")) ?? 0
             var validationMsg = ""
             var alert: UIAlertController?
             var ok: UIAlertAction?
@@ -406,6 +414,9 @@
             }
             if swUser.isOn && (txtUser.text!.count != (Int(userWordCount) * 4) || (txtUser.text!.count == 0)) {
                 validationMsg = validationMsg + ("USER ")
+            }
+            if swTidUid.isOn && (txtTidUid.text!.count != (Int(tidWordCount) * 4) || (txtTidUid.text!.count == 0) || (tidOffset < 2)) {
+                validationMsg = validationMsg + ("TID-UID ")
             }
             if swAccPwd.isOn && txtAccPwd.text!.count != 8 {
                 validationMsg = validationMsg + ("AccPWD ")
@@ -448,6 +459,7 @@
 
             //write PC if it is enabled
             if swPC.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.EPC
                 memItem = MEMORYITEM.mPC
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.EPC, dataOffset: 1, dataCount: (UInt16(UInt32(txtPC.text!.count) / 4)), write: CSLBleReader.convertHexString(toData: txtPC.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -457,7 +469,7 @@
                     if (txtPC.backgroundColor) != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtPC.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -465,10 +477,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write EPC if it is enabled
             if swEPC.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.EPC
                 memItem = MEMORYITEM.mEPC
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.EPC, dataOffset: 2, dataCount: (UInt16(UInt32(txtEPC.text!.count) / 4)), write: CSLBleReader.convertHexString(toData: txtEPC.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -478,7 +492,7 @@
                     if txtEPC.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtEPC.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -486,10 +500,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write access password
             if swAccPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mACCPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.RESERVED, dataOffset: 2, dataCount: 2, write: CSLBleReader.convertHexString(toData: txtAccPwd.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -499,7 +515,7 @@
                     if txtAccPwd.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtAccPwd.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -507,10 +523,12 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             //write kill password
             if swKillPwd.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.RESERVED
                 memItem = MEMORYITEM.mKILLPWD
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.RESERVED, dataOffset: 0, dataCount: 2, write: CSLBleReader.convertHexString(toData: txtKillPwd.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -520,7 +538,7 @@
                     if txtKillPwd.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtKillPwd.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -528,10 +546,35 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
+            //write TID (bank2)
+            if swTidUid.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
+                bankSelected = MEMORYBANK.TID
+                memItem = MEMORYITEM.mTID
+                CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.TID, dataOffset: UInt16(tidOffset), dataCount: UInt16(tidWordCount), write: CSLBleReader.convertHexString(toData: txtTidUid.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
+
+                for _ in 0..<COMMAND_TIMEOUT_5S {
+                    //receive data or time out in 5 seconds
+                    if !(txtTidUid.backgroundColor == UIColorFromRGB(0xffffff)) {
+                        break
+                    }
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
+                }
+                //set UI color to red if no tag access reponse returned
+                if txtTidUid.backgroundColor == UIColorFromRGB(0xffffff) {
+                    txtTidUid.backgroundColor = UIColorFromRGB(0xffb3b3)
+                }
+                //refresh UI
+                RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
+            }
+            
             //write USER
             if swUser.isOn {
+                CSLRfidAppEngine.shared().reader.setPowerMode(false)
                 bankSelected = MEMORYBANK.USER
                 memItem = MEMORYITEM.mUSER
                 CSLRfidAppEngine.shared().reader.startTagMemoryWrite(MEMORYBANK.USER, dataOffset: UInt16(userOffset), dataCount: UInt16(userWordCount), write: CSLBleReader.convertHexString(toData: txtUser.text!), accpwd: accPwd, maskBank: MEMORYBANK.EPC, maskPointer: 32, maskLength: (UInt32(txtSelectedEPC.text!.count) * 4), maskData: CSLBleReader.convertHexString(toData: txtSelectedEPC.text!))
@@ -541,7 +584,7 @@
                     if txtUser.backgroundColor != UIColorFromRGB(0xffffff) {
                         break
                     }
-                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1))
+                    RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.001))
                 }
                 //set UI color to red if no tag access reponse returned
                 if txtUser.backgroundColor == UIColorFromRGB(0xffffff) {
@@ -549,6 +592,7 @@
                 }
                 //refresh UI
                 RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             }
 
             alert = UIAlertController(title: "Tag Write", message: "Completed", preferredStyle: .alert)
@@ -777,6 +821,14 @@
                     let ackTimeout = tag?.ackTimeout
                     if (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
                         self.txtUser.backgroundColor = self.UIColorFromRGB(0xd1f2eb)
+                    }
+                } else if self.bankSelected == MEMORYBANK.TID && self.memItem == MEMORYITEM.mTID {
+                    let accessError = tag?.accessError
+                    let crcError = tag?.crcError
+                    let backScatterError = tag?.backScatterError
+                    let ackTimeout = tag?.ackTimeout
+                    if (accessError == 0xff) && (!crcError!) && (backScatterError == 0xff) && (!ackTimeout!) {
+                        self.txtTidUid.backgroundColor = self.UIColorFromRGB(0xd1f2eb)
                     }
                 }
             }

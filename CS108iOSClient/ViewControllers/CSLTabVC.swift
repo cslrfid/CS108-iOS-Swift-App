@@ -223,6 +223,15 @@ import UIKit
         CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: tagRead, crcErrorRead: (tagRead != 0 ? 0 : 1), qtMode: 0, tagDelay: tagDelay, inventoryMode: (tagRead != 0 ? 0 : 1))
         CSLRfidAppEngine.shared().reader.setLinkProfile(CSLRfidAppEngine.shared().settings.linkProfile)
 
+        if CSLRfidAppEngine.shared().settings.fastId != 0 {
+            CSLRfidAppEngine.shared().reader.setQueryConfigurations((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? TARGET.A : CSLRfidAppEngine.shared().settings.target), querySession: CSLRfidAppEngine.shared().settings.session, querySelect: QUERYSELECT.SL)
+            CSLRfidAppEngine.shared().reader.clearAllTagSelect()
+            CSLRfidAppEngine.shared().reader.tagmsk_DESC_SEL(0)
+            CSLRfidAppEngine.shared().reader.selectTag(forInventory: MEMORYBANK.TID, maskPointer: 0, maskLength: 24, maskData: CSLBleReader.convertHexString(toData: "E2801100"), sel_action: 0)
+            CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 1 /* force tag_select */, disableInventory: 0, tagRead: tagRead, crcErrorRead: 1, qtMode: 0, tagDelay: (tagRead != 0 ? 30 : 0), inventoryMode: (tagRead != 0 ? 0 : 1))
+        }
+
+        
         //frequency configurations
         if CSLRfidAppEngine.shared().readerRegionFrequency.isFixed != 0 {
             CSLRfidAppEngine.shared().reader.setFixedChannel(
@@ -248,7 +257,7 @@ import UIKit
         //Impinj Extension
         CSLRfidAppEngine.shared().reader.setImpinjExtension(
             CSLRfidAppEngine.shared().settings.tagFocus,
-            fastId: 0,
+            fastId: CSLRfidAppEngine.shared().settings.fastId,
             blockWriteMode: 0)
         //LNA settings
         CSLRfidAppEngine.shared().reader.setLNAParameters(

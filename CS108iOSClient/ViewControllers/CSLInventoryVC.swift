@@ -271,6 +271,7 @@ import AudioToolbox
 
             //start inventory
             tagRangingStartTime = Date()
+            CSLRfidAppEngine.shared().reader.setPowerMode(false)
             CSLRfidAppEngine.shared().reader.startInventory()
             btnInventory.setTitle("Stop", for: .normal)
             btnInventory.isEnabled = true
@@ -279,6 +280,7 @@ import AudioToolbox
             if CSLRfidAppEngine.shared().reader.stopInventory() {
                 btnInventory.setTitle("Start", for: .normal)
                 btnInventory.isEnabled = true
+                CSLRfidAppEngine.shared().reader.setPowerMode(true)
             } else {
                 btnInventory.setTitle("Stop", for: .normal)
                 btnInventory.isEnabled = true
