@@ -53,6 +53,7 @@
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
 		CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A67278826880037B28C /* CSLReaderConfigurations.m */; };
+		CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */; };
 		CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
@@ -144,6 +145,7 @@
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
 		CAD26A67278826880037B28C /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderConfigurations.m; sourceTree = "<group>"; };
 		CAD26A68278826880037B28C /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderConfigurations.h; sourceTree = "<group>"; };
+		CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagKillVC.swift; sourceTree = "<group>"; };
 		CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderFrequency.h; sourceTree = "<group>"; };
 		CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderFrequency.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -230,6 +232,7 @@
 				CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */,
 				CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */,
 				CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */,
+				CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */,
 				4296980623EA5B610023BC8B /* main.swift in Sources */,
 				4234D14E24200F2800FA6396 /* GaugeView.swift in Sources */,
+				CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
