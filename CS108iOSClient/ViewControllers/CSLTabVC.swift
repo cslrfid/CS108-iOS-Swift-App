@@ -223,6 +223,54 @@ import UIKit
         CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 0, disableInventory: 0, tagRead: tagRead, crcErrorRead: (tagRead != 0 ? 0 : 1), qtMode: 0, tagDelay: tagDelay, inventoryMode: (tagRead != 0 ? 0 : 1))
         CSLRfidAppEngine.shared().reader.setLinkProfile(CSLRfidAppEngine.shared().settings.linkProfile)
 
+        //prefilter
+        if CSLRfidAppEngine.shared().settings.prefilterIsEnabled {
+
+            var maskOffset = 0
+            if CSLRfidAppEngine.shared().settings.prefilterBank == MEMORYBANK.EPC {
+                maskOffset = 32
+            }
+            CSLRfidAppEngine.shared().reader.setQueryConfigurations((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? TARGET.A : CSLRfidAppEngine.shared().settings.target), querySession: CSLRfidAppEngine.shared().settings.session, querySelect: QUERYSELECT.SL)
+            CSLRfidAppEngine.shared().reader.clearAllTagSelect()
+            CSLRfidAppEngine.shared().reader.tagmsk_DESC_SEL(0)
+            CSLRfidAppEngine.shared().reader.selectTag(
+                forInventory: CSLRfidAppEngine.shared().settings.prefilterBank,
+                maskPointer: UInt16(CSLRfidAppEngine.shared().settings.prefilterOffset) + UInt16(maskOffset),
+                maskLength: (UInt32(CSLRfidAppEngine.shared().settings.prefilterMask.count * 4)),
+                maskData: CSLBleReader.convertHexString(toData: CSLRfidAppEngine.shared().settings.prefilterMask),
+                sel_action: 0)
+            CSLRfidAppEngine.shared().reader.setInventoryConfigurations(CSLRfidAppEngine.shared().settings.algorithm, matchRepeats: 0, tagSelect: 1 /* force tag_select */, disableInventory: 0, tagRead: tagRead, crcErrorRead: 1, qtMode: 0, tagDelay: ((tagRead != 0) ? 30 : 0), inventoryMode: ((tagRead != 0) ? 0 : 1))
+        } else {
+            CSLRfidAppEngine.shared().reader.clearAllTagSelect()
+        }
+
+        //postfilter
+        if CSLRfidAppEngine.shared().settings.postfilterIsEnabled {
+
+            //Pad one hex digit if mask length is odd
+            var maskString = CSLRfidAppEngine.shared().settings.postfilterMask
+            if CSLRfidAppEngine.shared().settings.postfilterMask.count % 2 != 0 {
+                maskString = "\(String(describing: CSLRfidAppEngine.shared().settings.postfilterMask))\("0")"
+            }
+
+            CSLRfidAppEngine.shared().reader.setEpcMatchSelect(0)
+            CSLRfidAppEngine.shared().reader.setEpcMatchConfiguration(
+                true,
+                matchOn: CSLRfidAppEngine.shared().settings.postfilterIsNotMatchMaskEnabled,
+                matchLength: UInt16(CSLRfidAppEngine.shared().settings.postfilterMask.count * 4),
+                matchOffset: UInt16(CSLRfidAppEngine.shared().settings.postfilterOffset))
+            CSLRfidAppEngine.shared().reader.setEpcMatchMask(
+                (UInt32(CSLRfidAppEngine.shared().settings.postfilterMask.count * 4)),
+                maskData: CSLBleReader.convertHexString(toData: maskString))
+        } else {
+            CSLRfidAppEngine.shared().reader.setEpcMatchSelect(0)
+            CSLRfidAppEngine.shared().reader.setEpcMatchConfiguration(
+                false,
+                matchOn: false,
+                matchLength: 0x0000,
+                matchOffset: 0x0000)
+        }
+        
         if CSLRfidAppEngine.shared().settings.fastId != 0 {
             CSLRfidAppEngine.shared().reader.setQueryConfigurations((CSLRfidAppEngine.shared().settings.target == TARGET.ToggleAB ? TARGET.A : CSLRfidAppEngine.shared().settings.target), querySession: CSLRfidAppEngine.shared().settings.session, querySelect: QUERYSELECT.SL)
             CSLRfidAppEngine.shared().reader.clearAllTagSelect()
