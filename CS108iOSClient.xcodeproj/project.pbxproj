@@ -52,6 +52,7 @@
 		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
+		CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A67278826880037B28C /* CSLReaderConfigurations.m */; };
 		CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
@@ -141,6 +142,8 @@
 		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
+		CAD26A67278826880037B28C /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderConfigurations.m; sourceTree = "<group>"; };
+		CAD26A68278826880037B28C /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderConfigurations.h; sourceTree = "<group>"; };
 		CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderFrequency.h; sourceTree = "<group>"; };
 		CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderFrequency.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -253,6 +256,8 @@
 		CA78737921514DC9009B7FE6 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				CAD26A68278826880037B28C /* CSLReaderConfigurations.h */,
+				CAD26A67278826880037B28C /* CSLReaderConfigurations.m */,
 				CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */,
 				CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */,
 				CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */,
@@ -458,6 +463,7 @@
 				4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */,
 				42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */,
 				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
+				CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */,
 				4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				4234D148241FC2DB00FA6396 /* CSLPowerLevelVC.swift in Sources */,

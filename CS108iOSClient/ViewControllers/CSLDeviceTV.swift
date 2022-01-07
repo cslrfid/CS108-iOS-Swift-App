@@ -190,6 +190,11 @@ import QuartzCore
                     //set low power mode
                     CSLRfidAppEngine.shared().reader.setPowerMode(true)
                     
+                    CSLReaderConfigurations.setReaderRegionAndFrequencies()
+                    CSLReaderConfigurations.setAntennaPortsAndPowerForTags(true)
+                    CSLReaderConfigurations.setConfigurationsForTags()
+             
+                    
                     self.actSpinner.stopAnimating()
                 }
 

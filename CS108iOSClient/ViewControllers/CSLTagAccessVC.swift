@@ -106,8 +106,10 @@
         txtPower.text = "\(CSLRfidAppEngine.shared().settings.power)"
 
         // Do any additional setup after loading the view.
-        (tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTagAccess()
-        (tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        //(tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTagAccess()
+        //(tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        CSLReaderConfigurations.setAntennaPortsAndPowerForTagAccess(false)
+        CSLReaderConfigurations.setConfigurationsForTags()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

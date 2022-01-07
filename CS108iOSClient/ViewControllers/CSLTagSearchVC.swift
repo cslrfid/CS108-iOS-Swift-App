@@ -61,8 +61,10 @@
         rollingAvgRssi = CSLCircularQueue(capacity: UInt(ROLLING_AVG_COUNT))
 
         // Do any additional setup after loading the view.
-        (tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTags()
-        (tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        //(tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTags()
+        //(tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        CSLReaderConfigurations.setAntennaPortsAndPowerForTagSearch(false)
+        CSLReaderConfigurations.setConfigurationsForTags()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
