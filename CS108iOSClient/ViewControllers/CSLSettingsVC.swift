@@ -29,7 +29,7 @@
     @IBOutlet weak var btnFrequencyChannel: UIButton!
     @IBOutlet weak var btnFrequencyOrder: UIButton!
     @IBOutlet weak var swFastId: UISwitch!
-
+    @IBOutlet weak var actSettingSpinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -498,6 +498,18 @@
         
         CSLRfidAppEngine.shared().saveSettingsToUserDefaults()
 
+        actSettingSpinner.startAnimating()
+        view.isUserInteractionEnabled = false
+        //refresh UI
+        RunLoop.current.run(mode: .default, before: Date(timeIntervalSinceNow: 0.0))
+
+        CSLReaderConfigurations.setReaderRegionAndFrequencies()
+        CSLReaderConfigurations.setAntennaPortsAndPowerForTags(true)
+        CSLReaderConfigurations.setConfigurationsForTags()
+
+        actSettingSpinner.stopAnimating()
+        view.isUserInteractionEnabled = true
+      
         let alert = UIAlertController(title: "Settings", message: "Settings saved.", preferredStyle: .alert)
 
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)

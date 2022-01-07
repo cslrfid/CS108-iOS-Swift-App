@@ -46,8 +46,10 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        (tabBarController as? CSLTemperatureTabVC)?.setAntennaPortsAndPowerForTemperatureTags()
-        (tabBarController as? CSLTemperatureTabVC)?.setConfigurationsForTemperatureTags()
+        //(tabBarController as? CSLTemperatureTabVC)?.setAntennaPortsAndPowerForTemperatureTags()
+        //(tabBarController as? CSLTemperatureTabVC)?.setConfigurationsForTemperatureTags()
+        CSLReaderConfigurations.setAntennaPortsAndPowerForTemperatureTags(false)
+        CSLReaderConfigurations.setConfigurationsForTemperatureTags()
 
         //initialize averaging buffer
         CSLRfidAppEngine.shared().temperatureSettings.temperatureAveragingBuffer = NSMutableDictionary()

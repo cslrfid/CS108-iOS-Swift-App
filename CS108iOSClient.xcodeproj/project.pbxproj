@@ -31,6 +31,9 @@
 		42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */; };
 		42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B903CE23D7C8180041713C /* CSLSettingsVC.swift */; };
 		42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */; };
+		CA478098277AEFEB002E3AFA /* CSLPostfilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */; };
+		CA47809A277AF01C002E3AFA /* CSLPrefilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */; };
+		CA47809C277AF431002E3AFA /* CSLFilterTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */; };
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
@@ -49,6 +52,8 @@
 		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
+		CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A67278826880037B28C /* CSLReaderConfigurations.m */; };
+		CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */; };
 		CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
@@ -105,6 +110,9 @@
 		84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 		88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
+		CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLPostfilterVC.swift; sourceTree = "<group>"; };
+		CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLPrefilterVC.swift; sourceTree = "<group>"; };
+		CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLFilterTabVC.swift; sourceTree = "<group>"; };
 		CA4E78E4213528FC0035F075 /* CSLBleReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleReader.h; sourceTree = "<group>"; };
 		CA4E78E5213528FC0035F075 /* CSLBleReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleReader.m; sourceTree = "<group>"; };
 		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
@@ -135,6 +143,9 @@
 		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
+		CAD26A67278826880037B28C /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderConfigurations.m; sourceTree = "<group>"; };
+		CAD26A68278826880037B28C /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderConfigurations.h; sourceTree = "<group>"; };
+		CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagKillVC.swift; sourceTree = "<group>"; };
 		CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderFrequency.h; sourceTree = "<group>"; };
 		CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderFrequency.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -218,6 +229,10 @@
 				4296980323E995B20023BC8B /* AppDelegate.swift */,
 				428F452C2404F3E400A25F9D /* CS108iOSClient-Swift.h */,
 				42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */,
+				CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */,
+				CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */,
+				CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */,
+				CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +259,8 @@
 		CA78737921514DC9009B7FE6 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				CAD26A68278826880037B28C /* CSLReaderConfigurations.h */,
+				CAD26A67278826880037B28C /* CSLReaderConfigurations.m */,
 				CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */,
 				CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */,
 				CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */,
@@ -339,7 +356,7 @@
 		CABA713D21325BF500D15BB1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Convergence Systems Limited";
 				TargetAttributes = {
 					CABA714421325BF500D15BB1 = {
@@ -449,6 +466,7 @@
 				4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */,
 				42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */,
 				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
+				CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */,
 				4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				4234D148241FC2DB00FA6396 /* CSLPowerLevelVC.swift in Sources */,
@@ -470,14 +488,18 @@
 				4234D14A242006ED00FA6396 /* CSLAntennaPortVC.swift in Sources */,
 				CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */,
 				CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */,
+				CA478098277AEFEB002E3AFA /* CSLPostfilterVC.swift in Sources */,
 				4234D144240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift in Sources */,
 				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
 				4272751123E91EDD008485F6 /* CSLAboutVC.swift in Sources */,
+				CA47809C277AF431002E3AFA /* CSLFilterTabVC.swift in Sources */,
+				CA47809A277AF01C002E3AFA /* CSLPrefilterVC.swift in Sources */,
 				42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
 				CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */,
 				4296980623EA5B610023BC8B /* main.swift in Sources */,
 				4234D14E24200F2800FA6396 /* GaugeView.swift in Sources */,
+				CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
@@ -524,6 +546,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -549,7 +572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -582,6 +605,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -601,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -616,7 +640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 310;
 				DEVELOPMENT_TEAM = ZDHT9HGJF7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -627,7 +651,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = S3.3;
+				MARKETING_VERSION = S3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = CS108Swift;
 				SWIFT_OBJC_BRIDGING_HEADER = "CS108iOSClient/ViewControllers/CS108iOSClient-Bridging-Header.h";
@@ -644,7 +668,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 310;
 				DEVELOPMENT_TEAM = ZDHT9HGJF7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,7 +679,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = S3.3;
+				MARKETING_VERSION = S3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = CS108Swift;
 				SWIFT_OBJC_BRIDGING_HEADER = "CS108iOSClient/ViewControllers/CS108iOSClient-Bridging-Header.h";

@@ -50,7 +50,7 @@
     @IBOutlet weak var lbPort: UILabel!
     @IBOutlet weak var txtPort: UITextField!
     @IBOutlet weak var actTagAccessSpinner: UIActivityIndicatorView!
-
+    @IBOutlet weak var btnKill: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,8 @@
         btnSecurity.layer.borderWidth = 1.0
         btnSecurity.layer.borderColor = UIColor.clear.cgColor
         btnSecurity.layer.cornerRadius = 5.0
-
+        btnKill.layer.borderColor = UIColor.clear.cgColor
+        btnKill.layer.cornerRadius = 5.0
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,8 +107,10 @@
         txtPower.text = "\(CSLRfidAppEngine.shared().settings.power)"
 
         // Do any additional setup after loading the view.
-        (tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTagAccess()
-        (tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        //(tabBarController as? CSLTabVC)?.setAntennaPortsAndPowerForTagAccess()
+        //(tabBarController as? CSLTabVC)?.setConfigurationsForTags()
+        CSLReaderConfigurations.setAntennaPortsAndPowerForTagAccess(false)
+        CSLReaderConfigurations.setConfigurationsForTags()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -631,6 +634,16 @@
         }
     }
 
+    @IBAction func btnKillPressed(_ sender: Any) {
+
+        var tagKillVC: CSLTagKillVC?
+        tagKillVC = UIStoryboard(name: "CSLRfidDemoApp", bundle: Bundle.main).instantiateViewController(withIdentifier: "ID_TagKillVC") as? CSLTagKillVC
+
+        if let tagKillVC = tagKillVC {
+            navigationController?.pushViewController(tagKillVC, animated: true)
+        }
+    }
+    
     @IBAction func txtAccessPwdChanged(_ sender: Any) {
         //Validate if input is hex value
         let chars = CharacterSet(charactersIn: "0123456789ABCDEF").inverted

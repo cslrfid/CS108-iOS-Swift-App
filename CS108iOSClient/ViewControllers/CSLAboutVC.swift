@@ -14,12 +14,15 @@
     @IBOutlet weak var lbSiLabIcFirmwareVersion: UILabel!
     @IBOutlet weak var lbSerialNumber: UILabel!
     @IBOutlet weak var lbBoardVersion: UILabel!
-
+    @IBOutlet weak var btnPrivacyStatement: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        
+        btnPrivacyStatement.layer.borderWidth = 1.0
+        btnPrivacyStatement.layer.borderColor = UIColor.clear.cgColor
+        btnPrivacyStatement.layer.cornerRadius = 5.0
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +39,15 @@
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func btnPrivacyStatementPressed(_ sender: Any) {
+
+        let url = URL(string: "https://www.convergence.com.hk/apps-privacy-policy/")
+
+        if let url = url {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 
 }

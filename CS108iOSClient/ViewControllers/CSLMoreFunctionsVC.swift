@@ -6,13 +6,22 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
+
 @objcMembers class CSLMoreFunctionsVC: UIViewController {
+    
+    let CSL_VC_RFIDTAB_PREFILTER_VC_IDX = 0
+    let CSL_VC_RFIDTAB_PREFILTER_IDX = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        view.isUserInteractionEnabled = true
+
+    }
+    
     @IBAction func btnMultibankPressed(_ sender: Any) {
         var multibank: CSLMultibankAccessVC?
         multibank = UIStoryboard(name: "CSLRfidDemoApp", bundle: Bundle.main).instantiateViewController(withIdentifier: "ID_MultibankVC") as? CSLMultibankAccessVC
@@ -27,11 +36,13 @@
 
     @IBAction func btnFiltersPressed(_ sender: Any) {
 
-        let alert = UIAlertController(title: "Not Available", message: "Feature to be implemented", preferredStyle: .alert)
+        let tabVC = UIStoryboard(name: "CSLRfidDemoApp", bundle: Bundle.main).instantiateViewController(withIdentifier: "ID_FilterTabVC") as? CSLFilterTabVC
 
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true)
+        tabVC?.setActiveView(CSL_VC_RFIDTAB_PREFILTER_VC_IDX)
+        view.isUserInteractionEnabled = false
+        if let tabVC = tabVC {
+            navigationController?.pushViewController(tabVC, animated: true)
+        }
 
     }
 

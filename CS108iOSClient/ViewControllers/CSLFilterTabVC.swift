@@ -1,32 +1,24 @@
 //
-//  CSLTemperatureTabVC.swift
+//  CSLFilterTabVC.swift
 //  CS108iOSClient
 //
-//  Created by Carlson Lam on 28/2/2019.
-//  Copyright © 2019 Convergence Systems Limited. All rights reserved.
+//  Created by Lam Ka Shun on 2021-12-28.
+//  Copyright © 2021 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTemperatureTabVC: UITabBarController, UITabBarControllerDelegate {
+import UIKit
+
+@objcMembers class CSLFilterTabVC : UITabBarController, UITabBarControllerDelegate {
     
-    public static let CSL_VC_TEMPTAB_READTEMP_VC_IDX = 0
-    public static let CSL_VC_TEMPTAB_DETAILS_VC_IDX = 1
-    public static let CSL_VC_TEMPTAB_REGISTRATION_VC_IDX = 2
-    public static let CSL_VC_TEMPTAB_SETTINGS_VC_IDX = 3
-    public static let CSL_VC_TEMPTAB_UPLOAD_VC_IDX = 3
-
+    public static let CSL_VC_RFIDTAB_PREFILTER_VC_IDX = 0
+    public static let CSL_VC_RFIDTAB_PREFILTER_IDX = 1
+    
     var m_SelectedTabView: Int = 0
-
-    override func viewDidLoad() {
+    
+    override open func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         delegate = self
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-
-        //clear all tag select
-        CSLRfidAppEngine.shared().reader.clearAllTagSelect()
-
     }
 
     func setActiveView(_ identifier: Int) {
@@ -46,9 +38,12 @@
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
 
         let controllerIndex = viewControllers?.firstIndex(of: viewController) ?? NSNotFound
-
         if controllerIndex == tabBarController.selectedIndex {
             return false
+        } else {
+            (selectedViewController?.view.viewWithTag(99) as? UIActivityIndicatorView)?.startAnimating()
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.0))
+            selectedViewController?.view.isUserInteractionEnabled = false
         }
 
         // Get the views.
@@ -68,21 +63,25 @@
         let screenWidth = UIScreen.main.bounds.size.width
         toView?.frame = CGRect(x: scrollRight ? screenWidth : -screenWidth, y: viewSize?.origin.y ?? 0.0, width: screenWidth, height: viewSize?.size.height ?? 0.0)
 
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
 
-            // Animate the views on and off the screen. This will appear to slide.
-            fromView?.frame = CGRect(x: scrollRight ? -screenWidth : screenWidth, y: viewSize?.origin.y ?? 0.0, width: screenWidth, height: viewSize?.size.height ?? 0.0)
-            toView?.frame = CGRect(x: 0, y: viewSize?.origin.y ?? 0.0, width: screenWidth, height: viewSize?.size.height ?? 0.0)
-        }) { finished in
-            if finished {
+                // Animate the views on and off the screen. This will appear to slide.
+                fromView?.frame = CGRect(x: scrollRight ? -screenWidth : screenWidth, y: viewSize?.origin.y ?? 0.0, width: screenWidth, height: viewSize?.size.height ?? 0.0)
+                toView?.frame = CGRect(x: 0, y: viewSize?.origin.y ?? 0.0, width: screenWidth, height: viewSize?.size.height ?? 0.0)
+            }) { finished in
+                if finished {
 
-                // Remove the old view from the tabbar view.
-                fromView?.removeFromSuperview()
-                tabBarController.selectedIndex = controllerIndex
+                    // Remove the old view from the tabbar view.
+                    fromView?.removeFromSuperview()
+                    tabBarController.selectedIndex = controllerIndex
+                }
             }
-        }
 
         return true
     }
-
 }
+
