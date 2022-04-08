@@ -2985,7 +2985,10 @@
                     }
                 }
                 else
+                {
+                    [NSThread sleepForTimeInterval:0.001f];	
                     continue;
+                }
             }
             
             NSLog(@"[decodePacketsInBufferAsync] RFID Packet buffer before arrival for packet: %@", [rfidPacketBuffer length] == 0 ? @"(EMPTY)" : [CSLBleReader convertDataToHexString:rfidPacketBuffer]);
