@@ -6,8 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
+import UIKit
+import CSL_CS108
 
-@objcMembers class CSLMoreFunctionsVC: UIViewController {
+class CSLMoreFunctionsVC: UIViewController {
     
     let CSL_VC_RFIDTAB_PREFILTER_VC_IDX = 0
     let CSL_VC_RFIDTAB_PREFILTER_IDX = 1

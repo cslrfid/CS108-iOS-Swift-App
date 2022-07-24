@@ -6,9 +6,13 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
+import UIKit
+import CSL_CS108
+
 import AudioToolbox
 
-@objcMembers class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate {
+class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate {
 
     @IBOutlet weak var lbTagCount: UILabel!
     @IBOutlet weak var lbTagRate: UILabel!

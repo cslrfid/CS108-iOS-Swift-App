@@ -6,7 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTagLockVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLTagLockVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
     private var securityCommandAccepted = false
 
     @IBOutlet weak var txtSelectedEPC: UITextField!

@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTemperatureTabVC: UITabBarController, UITabBarControllerDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLTemperatureTabVC: UITabBarController, UITabBarControllerDelegate {
     
     public static let CSL_VC_TEMPTAB_READTEMP_VC_IDX = 0
     public static let CSL_VC_TEMPTAB_DETAILS_VC_IDX = 1

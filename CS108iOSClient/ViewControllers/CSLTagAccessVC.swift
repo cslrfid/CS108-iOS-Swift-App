@@ -6,7 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTagAccessVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLTagAccessVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
     
     func UIColorFromRGB(_ rgbValue: UInt32) -> UIColor {
         UIColor(red: CGFloat((Float((rgbValue & 0xff0000) >> 16)) / 255.0), green: CGFloat((Float((rgbValue & 0xff00) >> 8)) / 255.0), blue: CGFloat((Float(rgbValue & 0xff)) / 255.0), alpha: 1.0)

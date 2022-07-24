@@ -6,8 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
+import UIKit
+import CSL_CS108
 
-@objcMembers class CSLTagSearchVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
+class CSLTagSearchVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
     private var rollingAvgRssi: CSLCircularQueue?
     private var tagLastFoundTime: Date?
     private var gaugeRefreshTimer: Timer?

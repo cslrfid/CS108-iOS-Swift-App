@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTemperatureTagListCell: UITableViewCell {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLTemperatureTagListCell: UITableViewCell {
     
     @IBOutlet weak var lbEPC: UILabel!
     @IBOutlet weak var lbTemperature: UILabel!

@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+@objcMembers class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var swEnableTemperatureAlert: UISwitch!
     @IBOutlet weak var txtLowTemperatureThreshold: UITextField!
@@ -113,7 +117,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     @IBAction func btnSavePressed(_ sender: Any) {
         //store the UI input to the settings object on appEng
         CSLRfidAppEngine.shared().temperatureSettings.isTemperatureAlertEnabled = swEnableTemperatureAlert.isOn
-        if scTemperatureUnit.selectedSegmentIndex == TEMPERATUREUNIT.CELCIUS.rawValue {
+        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
             CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertUpperLimit = Double(txtHighTemperatureThreshold.text!)!
             CSLRfidAppEngine.shared().temperatureSettings.temperatureAlertLowerLimit = Double(txtLowTemperatureThreshold.text!)!
         } else {
@@ -123,7 +127,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         CSLRfidAppEngine.shared().temperatureSettings.rssiUpperLimit = Int32(Int(txtOcrssiMax.text!)!)
         CSLRfidAppEngine.shared().temperatureSettings.rssiLowerLimit = Int32(txtOcrssiMin.text!)!
         CSLRfidAppEngine.shared().temperatureSettings.numberOfRollingAvergage = Int32(txtNumberOfTemperatureAveraging.text!)!
-        CSLRfidAppEngine.shared().temperatureSettings.unit = TEMPERATUREUNIT(rawValue: UInt8(scTemperatureUnit.selectedSegmentIndex))!
+        CSLRfidAppEngine.shared().temperatureSettings.unit = TEMPERATUREUNIT(rawValue: 	ObjCBool(scTemperatureUnit.selectedSegmentIndex > 0))!
         if btnSensorType.currentTitle?.contains("Xerxes") ?? false {
             CSLRfidAppEngine.shared().temperatureSettings.sensorType = SENSORTYPE.XERXES
         } else {
@@ -172,7 +176,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         let val = Double(txtLowTemperatureThreshold.text!)
         var lowLimit: Double
         var highLimit: Double
-        if scTemperatureUnit.selectedSegmentIndex == Int(TEMPERATUREUNIT.CELCIUS.rawValue) {
+        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
             lowLimit = MIN_TEMP_VALUE
             highLimit = MAX_TEMP_VALUE
         } else {
@@ -200,7 +204,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
         let val = Double(txtHighTemperatureThreshold.text!)
         var lowLimit: Double
         var highLimit: Double
-        if scTemperatureUnit.selectedSegmentIndex == Int(TEMPERATUREUNIT.CELCIUS.rawValue) {
+        if scTemperatureUnit.selectedSegmentIndex == (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0) {
             lowLimit = MIN_TEMP_VALUE
             highLimit = MAX_TEMP_VALUE
         } else {
@@ -367,7 +371,7 @@ class CSLTemperatureTagSettingsVC: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func segmentChangeViewValueChanged(_ SControl: UISegmentedControl?) {
-        let unit = Int(TEMPERATUREUNIT.CELCIUS.rawValue)
+        let unit = (TEMPERATUREUNIT.CELCIUS.rawValue.boolValue ? 1 : 0)
 
         if scTemperatureUnit.selectedSegmentIndex == unit {
             txtLowTemperatureThreshold.text = String(format: "%3.1f", CSLTemperatureTagSettings.convertFahrenheit(toCelcius: Double(txtLowTemperatureThreshold.text!)!))

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,40 +31,25 @@
 		42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */; };
 		42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B903CE23D7C8180041713C /* CSLSettingsVC.swift */; };
 		42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */; };
+		9C9E756BC37BC2B168D568D4 /* Pods_CS108iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957B7E10ED97324188DEDA45 /* Pods_CS108iOSClient.framework */; };
 		CA478098277AEFEB002E3AFA /* CSLPostfilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */; };
 		CA47809A277AF01C002E3AFA /* CSLPrefilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */; };
 		CA47809C277AF431002E3AFA /* CSLFilterTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */; };
-		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
-		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
-		CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */; };
-		CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */; };
 		CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */; };
 		CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78736F214CD7C4009B7FE6 /* UIKit.framework */; };
 		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */; };
-		CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */; };
-		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA715121325BF600D15BB1 /* Assets.xcassets */; };
 		CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */; };
-		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
-		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
-		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
-		CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A67278826880037B28C /* CSLReaderConfigurations.m */; };
 		CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */; };
-		CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
-		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
-		CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */; };
-		CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */; };
 		CAF8351D2226901B002F90AC /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351922268F96002F90AC /* Lato-Bold.ttf */; };
 		CAF8351E2226901D002F90AC /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351C22268F97002F90AC /* Lato-Italic.ttf */; };
 		CAF8351F22269021002F90AC /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351A22268F97002F90AC /* Lato-Regular.ttf */; };
 		CAF8352022269024002F90AC /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351B22268F97002F90AC /* Lato-Light.ttf */; };
-		F5ECCDD9EA81EA7C6A3EFD87 /* Pods_CS108iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,65 +82,33 @@
 		4272751423E93287008485F6 /* CSLTagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagListCell.swift; sourceTree = "<group>"; };
 		428F452823F8D14C00A25F9D /* CSLTemperatureReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureReadVC.swift; sourceTree = "<group>"; };
 		428F452A2404F20200A25F9D /* CSLTemperatureTagSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureTagSettingsVC.swift; sourceTree = "<group>"; };
-		428F452C2404F3E400A25F9D /* CS108iOSClient-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CS108iOSClient-Swift.h"; sourceTree = "<group>"; };
 		4296980123E992540023BC8B /* CSLMQTTClientSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLMQTTClientSettings.swift; sourceTree = "<group>"; };
 		4296980323E995B20023BC8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296980523EA5B610023BC8B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4296980723EA63620023BC8B /* CSLTemperatureTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTemperatureTabVC.swift; sourceTree = "<group>"; };
-		42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CS108iOSClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		42AFE63D23C8333600D71099 /* CSLHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLHomeVC.swift; sourceTree = "<group>"; };
 		42AFE64123C83F6100D71099 /* CSLInventoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLInventoryVC.swift; sourceTree = "<group>"; };
 		42B903CE23D7C8180041713C /* CSLSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLSettingsVC.swift; sourceTree = "<group>"; };
 		42D5C9D323D1755500BD0D64 /* CSLTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTabVC.swift; sourceTree = "<group>"; };
 		84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
-		88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
+		957B7E10ED97324188DEDA45 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLPostfilterVC.swift; sourceTree = "<group>"; };
 		CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLPrefilterVC.swift; sourceTree = "<group>"; };
 		CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLFilterTabVC.swift; sourceTree = "<group>"; };
-		CA4E78E4213528FC0035F075 /* CSLBleReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleReader.h; sourceTree = "<group>"; };
-		CA4E78E5213528FC0035F075 /* CSLBleReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleReader.m; sourceTree = "<group>"; };
-		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
-		CA4E78E8213698DD0035F075 /* CSLBleTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleTag.m; sourceTree = "<group>"; };
 		CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
-		CA5C059E21E4736700E68E44 /* CSLMQTTSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTSettings.h; sourceTree = "<group>"; };
-		CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTSettings.m; sourceTree = "<group>"; };
-		CA5C9B9F217FF7400079827C /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
-		CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CSLBleReader+AccessControl.m"; sourceTree = "<group>"; };
 		CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTemperatureTagListCell.xib; sourceTree = "<group>"; };
 		CA78736F214CD7C4009B7FE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA787371214CD7CF009B7FE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLRfidAppEngine.h; sourceTree = "<group>"; };
-		CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLRfidAppEngine.m; sourceTree = "<group>"; };
-		CA78737D21543B6F009B7FE6 /* CSLReaderSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderSettings.h; sourceTree = "<group>"; };
-		CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderSettings.m; sourceTree = "<group>"; };
-		CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderInfo.h; sourceTree = "<group>"; };
-		CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderInfo.m; sourceTree = "<group>"; };
 		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
 		CAB810832133E16F009D2F8F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CABA714521325BF500D15BB1 /* CS108Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABA715121325BF600D15BB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CABA715421325BF600D15BB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CABA715621325BF600D15BB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CABA71602132631F00D15BB1 /* CSLCircularQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLCircularQueue.m; sourceTree = "<group>"; };
-		CABA71612132631F00D15BB1 /* CSLCircularQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLCircularQueue.h; sourceTree = "<group>"; };
-		CABA71622132631F00D15BB1 /* CSLBlePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBlePacket.h; sourceTree = "<group>"; };
-		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
-		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
-		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
-		CAD26A67278826880037B28C /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderConfigurations.m; sourceTree = "<group>"; };
-		CAD26A68278826880037B28C /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderConfigurations.h; sourceTree = "<group>"; };
 		CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLTagKillVC.swift; sourceTree = "<group>"; };
-		CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLReaderFrequency.h; sourceTree = "<group>"; };
-		CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLReaderFrequency.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
-		CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBattery.h; sourceTree = "<group>"; };
-		CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBattery.m; sourceTree = "<group>"; };
-		CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBarcode.h; sourceTree = "<group>"; };
-		CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBarcode.m; sourceTree = "<group>"; };
-		CAF7FFF622376AB00016F6E7 /* CSLTemperatureTagSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagSettings.h; sourceTree = "<group>"; };
-		CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagSettings.m; sourceTree = "<group>"; };
 		CAF8351922268F96002F90AC /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		CAF8351A22268F97002F90AC /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		CAF8351B22268F97002F90AC /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -171,7 +124,7 @@
 				CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */,
 				CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */,
 				CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */,
-				F5ECCDD9EA81EA7C6A3EFD87 /* Pods_CS108iOSClient.framework in Frameworks */,
+				9C9E756BC37BC2B168D568D4 /* Pods_CS108iOSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,58 +180,12 @@
 				4234D147241FC2DB00FA6396 /* CSLPowerLevelVC.swift */,
 				4234D149242006ED00FA6396 /* CSLAntennaPortVC.swift */,
 				4296980323E995B20023BC8B /* AppDelegate.swift */,
-				428F452C2404F3E400A25F9D /* CS108iOSClient-Swift.h */,
-				42AFE63C23C8333600D71099 /* CS108iOSClient-Bridging-Header.h */,
 				CA478097277AEFEB002E3AFA /* CSLPostfilterVC.swift */,
 				CA478099277AF01C002E3AFA /* CSLPrefilterVC.swift */,
 				CA47809B277AF431002E3AFA /* CSLFilterTabVC.swift */,
 				CAD26A6A278884EE0037B28C /* CSLTagKillVC.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		CA78736E214CD5E9009B7FE6 /* CSLReader */ = {
-			isa = PBXGroup;
-			children = (
-				CABA71622132631F00D15BB1 /* CSLBlePacket.h */,
-				CABA71642132631F00D15BB1 /* CSLBlePacket.m */,
-				CA4E78E7213698DD0035F075 /* CSLBleTag.h */,
-				CA4E78E8213698DD0035F075 /* CSLBleTag.m */,
-				CABA71612132631F00D15BB1 /* CSLCircularQueue.h */,
-				CABA71602132631F00D15BB1 /* CSLCircularQueue.m */,
-				CABA71632132631F00D15BB1 /* CSLBleInterface.h */,
-				CABA71652132631F00D15BB1 /* CSLBleInterface.m */,
-				CA4E78E4213528FC0035F075 /* CSLBleReader.h */,
-				CA4E78E5213528FC0035F075 /* CSLBleReader.m */,
-				CA5C9B9F217FF7400079827C /* CSLBleReader+AccessControl.h */,
-				CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */,
-			);
-			path = CSLReader;
-			sourceTree = "<group>";
-		};
-		CA78737921514DC9009B7FE6 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				CAD26A68278826880037B28C /* CSLReaderConfigurations.h */,
-				CAD26A67278826880037B28C /* CSLReaderConfigurations.m */,
-				CAD9B73D248F570000AE01A8 /* CSLReaderFrequency.h */,
-				CAD9B73E248F570100AE01A8 /* CSLReaderFrequency.m */,
-				CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */,
-				CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */,
-				CA78737D21543B6F009B7FE6 /* CSLReaderSettings.h */,
-				CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */,
-				CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */,
-				CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */,
-				CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */,
-				CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */,
-				CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */,
-				CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */,
-				CA5C059E21E4736700E68E44 /* CSLMQTTSettings.h */,
-				CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */,
-				CAF7FFF622376AB00016F6E7 /* CSLTemperatureTagSettings.h */,
-				CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		CAB810822133E16F009D2F8F /* Frameworks */ = {
@@ -288,7 +195,7 @@
 				CA787371214CD7CF009B7FE6 /* Foundation.framework */,
 				CA78736F214CD7C4009B7FE6 /* UIKit.framework */,
 				CAB810832133E16F009D2F8F /* CoreBluetooth.framework */,
-				88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */,
+				957B7E10ED97324188DEDA45 /* Pods_CS108iOSClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,9 +223,7 @@
 			children = (
 				CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */,
 				CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */,
-				CA78736E214CD5E9009B7FE6 /* CSLReader */,
 				CA78735E214CC072009B7FE6 /* ViewControllers */,
-				CA78737921514DC9009B7FE6 /* model */,
 				CABA715121325BF600D15BB1 /* Assets.xcassets */,
 				CABA715621325BF600D15BB1 /* Info.plist */,
 				4296980523EA5B610023BC8B /* main.swift */,
@@ -339,7 +244,7 @@
 				CABA714221325BF500D15BB1 /* Frameworks */,
 				CABA714321325BF500D15BB1 /* Resources */,
 				CA4661A4223B49430028333B /* Embed Frameworks */,
-				DE8D8319B4FB861B398A4EE8 /* [CP] Embed Pods Frameworks */,
+				9B8F63105A6991B2DF1737B9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,6 +314,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9B8F63105A6991B2DF1737B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DC3B9B209519BC5F553A8C5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,28 +353,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DE8D8319B4FB861B398A4EE8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -461,16 +361,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				428F452B2404F20200A25F9D /* CSLTemperatureTagSettingsVC.swift in Sources */,
-				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
 				4296980423E995B20023BC8B /* AppDelegate.swift in Sources */,
 				4272750B23E2C033008485F6 /* CSLDeviceTV.swift in Sources */,
 				42AFE64223C83F6100D71099 /* CSLInventoryVC.swift in Sources */,
-				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
-				CAD26A69278826890037B28C /* CSLReaderConfigurations.m in Sources */,
 				4234D142240E16C600FA6396 /* CSLTemperatureTagListCell.swift in Sources */,
-				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				4234D148241FC2DB00FA6396 /* CSLPowerLevelVC.swift in Sources */,
-				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
 				4296980823EA63620023BC8B /* CSLTemperatureTabVC.swift in Sources */,
 				4272751523E93287008485F6 /* CSLTagListCell.swift in Sources */,
 				4296980223E992540023BC8B /* CSLMQTTClientSettings.swift in Sources */,
@@ -480,29 +375,19 @@
 				428F452923F8D14C00A25F9D /* CSLTemperatureReadVC.swift in Sources */,
 				42D5C9D423D1755500BD0D64 /* CSLTabVC.swift in Sources */,
 				4272750D23E91184008485F6 /* CSLMoreFunctionsVC.swift in Sources */,
-				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
-				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
-				CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */,
 				424A493C23D433400028D200 /* CSLTagSearchVC.swift in Sources */,
 				4272751323E9201A008485F6 /* CSLTagLockVC.swift in Sources */,
 				4234D14A242006ED00FA6396 /* CSLAntennaPortVC.swift in Sources */,
-				CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */,
-				CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */,
 				CA478098277AEFEB002E3AFA /* CSLPostfilterVC.swift in Sources */,
 				4234D144240E2BFE00FA6396 /* CSLTemperatureUploadVC.swift in Sources */,
-				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
 				4272751123E91EDD008485F6 /* CSLAboutVC.swift in Sources */,
 				CA47809C277AF431002E3AFA /* CSLFilterTabVC.swift in Sources */,
 				CA47809A277AF01C002E3AFA /* CSLPrefilterVC.swift in Sources */,
 				42B903CF23D7C8180041713C /* CSLSettingsVC.swift in Sources */,
-				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
-				CAD9B73F248F570100AE01A8 /* CSLReaderFrequency.m in Sources */,
 				4296980623EA5B610023BC8B /* main.swift in Sources */,
 				4234D14E24200F2800FA6396 /* GaugeView.swift in Sources */,
 				CAD26A6B278884EE0037B28C /* CSLTagKillVC.swift in Sources */,
-				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				4234D146241FBC3000FA6396 /* CSLTemperatureDetailsVC.swift in Sources */,
-				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -625,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -654,7 +539,7 @@
 				MARKETING_VERSION = S3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = CS108Swift;
-				SWIFT_OBJC_BRIDGING_HEADER = "CS108iOSClient/ViewControllers/CS108iOSClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -682,7 +567,7 @@
 				MARKETING_VERSION = S3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = CS108Swift;
-				SWIFT_OBJC_BRIDGING_HEADER = "CS108iOSClient/ViewControllers/CS108iOSClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

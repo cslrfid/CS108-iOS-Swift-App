@@ -6,9 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import CSL_CS108
 
-@objcMembers class CSLHomeVC: UIViewController,  CSLBleReaderDelegate {
+class CSLHomeVC: UIViewController,  CSLBleReaderDelegate {
     
     @IBOutlet weak var btnConnectReader: UIButton!
     @IBOutlet weak var lbConnectReader: UILabel!

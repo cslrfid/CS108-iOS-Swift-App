@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLTemperatureDetailsVC: UIViewController {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLTemperatureDetailsVC: UIViewController {
     
     @IBOutlet weak var lbEPC: UILabel!
     @IBOutlet weak var btnTagStatus: UIButton!

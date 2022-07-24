@@ -5,10 +5,13 @@
 //  Created by Carlson Lam on 18/9/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
+import Foundation
+import UIKit
+import CSL_CS108
 
 import QuartzCore
 
-@objcMembers class CSLDeviceTV: UITableViewController {
+class CSLDeviceTV: UITableViewController {
     
     @IBOutlet var tblDeviceList: UITableView!
     @IBOutlet weak var actSpinner: UIActivityIndicatorView!

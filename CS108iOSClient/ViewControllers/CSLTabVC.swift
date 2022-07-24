@@ -6,9 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import CSL_CS108
 
-@objcMembers class CSLTabVC: UITabBarController, UITabBarControllerDelegate {
+class CSLTabVC: UITabBarController, UITabBarControllerDelegate {
     
     public static let CSL_VC_RFIDTAB_INVENTORY_VC_IDX = 0
     public static let CSL_VC_RFIDTAB_SEARCH_VC_IDX = 1

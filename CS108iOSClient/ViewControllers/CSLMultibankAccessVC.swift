@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLMultibankAccessVC: UIViewController, UITextFieldDelegate  {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLMultibankAccessVC: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var swEnableMultibank1: UISwitch!
     @IBOutlet weak var btnMultibank1Select: UIButton!

@@ -6,7 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLSettingsVC: UIViewController, UITextFieldDelegate  {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLSettingsVC: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var btnSaveConfig: UIButton!
     @IBOutlet weak var btnSession: UIButton!

@@ -2,13 +2,15 @@
 //  CSLTagKillVC.swift
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 2022-01-07.
+//  Created by Carlson Lam on 2022-01-07.
 //  Copyright © 2022 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import CSL_CS108
 
-@objcMembers class CSLTagKillVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
+class CSLTagKillVC: UIViewController, CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var txtSelectedEPC: UITextField!
     @IBOutlet weak var txtKillPwd: UITextField!

@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLAntennaPortVC: UIViewController {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLAntennaPortVC: UIViewController {
     
     @IBOutlet weak var btnAntennaPorts: UIButton!
     @IBOutlet var swAntennaPort: [UISwitch]!

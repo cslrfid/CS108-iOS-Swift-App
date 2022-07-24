@@ -6,7 +6,11 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLPowerLevelVC: UIViewController, UITextFieldDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLPowerLevelVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var btnSetPowerLevel: UIButton!
     @IBOutlet weak var txtPower1: UITextField!

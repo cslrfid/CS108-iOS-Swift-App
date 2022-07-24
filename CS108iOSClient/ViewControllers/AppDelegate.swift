@@ -6,7 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class AppDelegate: UIResponder, UIApplicationDelegate {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var reader: CSLBleReader? = nil
     var tagRangingStartTime: Date? = nil

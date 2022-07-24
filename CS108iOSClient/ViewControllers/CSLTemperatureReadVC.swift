@@ -6,6 +6,10 @@
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
 //
 
+import Foundation
+import UIKit
+import CSL_CS108
+
 import AudioToolbox
 
 func UIColorFromRGB(_ rgbValue: UInt32) -> UIColor {
@@ -29,7 +33,7 @@ func temp(_ CODE: Int, _ add_12: Int, _ add_13: Int, _ add_14: Int, _ add_15: In
     return TEMP
 }
 
-@objcMembers class CSLTemperatureReadVC: UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate {
+class CSLTemperatureReadVC: UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate {
     
     @IBOutlet weak var btnInventory: UIButton!
     @IBOutlet weak var btnSelectAllTag: UIButton!

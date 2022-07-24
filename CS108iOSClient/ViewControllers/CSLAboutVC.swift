@@ -6,7 +6,11 @@
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
-@objcMembers class CSLAboutVC: UIViewController {
+import Foundation
+import UIKit
+import CSL_CS108
+
+class CSLAboutVC: UIViewController {
     
     @IBOutlet weak var lbAppVersion: UILabel!
     @IBOutlet weak var lbBtFirmwareVersion: UILabel!
