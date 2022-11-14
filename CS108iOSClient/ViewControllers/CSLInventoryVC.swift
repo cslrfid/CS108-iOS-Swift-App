@@ -499,7 +499,7 @@ import AudioToolbox
                 cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as? CSLTagListCell
             }
 
-            cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(String(describing: IsAsciiDisplay ? CSLReaderBarcode.convertHexString(toAscii: bc) : bc))"
+            cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: bc)) : bc ?? "")"
             if let object = (CSLRfidAppEngine.shared().reader.filteredBuffer[indexPath.row] as? CSLReaderBarcode)?.codeId {
                 cell?.lbCellBank?.text = "[\(object)]"
             }
