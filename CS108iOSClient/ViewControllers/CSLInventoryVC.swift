@@ -25,6 +25,7 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
     @IBOutlet weak var uivSendTagData: UIView!
     @IBOutlet weak var actInventorySpinner: UIActivityIndicatorView!
     @IBOutlet weak var lbElapsedTime: UILabel!
+    @IBOutlet weak var btnTagDisplay: UIButton!
 
 
     var tagRangingStartTime: Date? = nil
@@ -295,16 +296,33 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
 
     }
 
-    @IBAction func btnClearTable(_ sender: Any) {
+    func clearTable() {
         //clear UI
         lbTagRate.text = "0"
         lbTagCount.text = "0"
         lbElapsedTime.text = "0"
+        lbUniqueTagRate.text = "0"
         CSLRfidAppEngine.shared().reader.filteredBuffer.removeAllObjects()
         tblTagList.reloadData()
     }
+    
+    @IBAction func btnClearTable(_ sender: Any) {
+        self.clearTable()
+    }
+    
+    @IBAction func btnTagDispalyPressed(_ sender: Any) {
+        if btnTagDisplay.currentTitle?.contains("HEX") ?? false {
+            clearTable()
+            btnTagDisplay.setTitle("Display: ASCII", for: .normal)
+        } else {
+            clearTable()
+            btnTagDisplay.setTitle("Display: HEX", for: .normal)
+        }
+
+    }
 
     @IBAction func btnSaveData(_ sender: Any) {
+        let IsAsciiDisplay = btnTagDisplay.currentTitle?.contains("ASCII") ?? false
 
         var fileContent = "TIMESTAMP,EPC,DATA1,DATA2,RSSI\n"
 
@@ -319,8 +337,12 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
                 stringFromDate = dateFormatter.string(from: date)
             }
 
+            fileContent = fileContent + "\(stringFromDate ?? ""),"
+            fileContent = fileContent + "\(String(describing: IsAsciiDisplay ? CSLReaderBarcode.convertHexString(toAscii: (tag as! CSLBleTag).epc ?? "") : (tag as! CSLBleTag).epc ?? "")),"
+            fileContent = fileContent + "\(String(describing: IsAsciiDisplay ? CSLReaderBarcode.convertHexString(toAscii: (tag as! CSLBleTag).data1 ?? "") : (tag as! CSLBleTag).data1 ?? "")),"
+            fileContent = fileContent + "\(String(describing: IsAsciiDisplay ? CSLReaderBarcode.convertHexString(toAscii: (tag as! CSLBleTag).data2 ?? "") : (tag as! CSLBleTag).data2 ?? "")),"
+            fileContent = fileContent + "\((tag as! CSLBleTag).rssi)\n"
 
-            fileContent = fileContent + ("\(stringFromDate ?? ""),\((tag as! CSLBleTag).epc ?? ""),\((tag as! CSLBleTag).data1 ?? ""),\((tag as! CSLBleTag).data2 ?? ""),\("\((tag as! CSLBleTag).rssi)")\n")
         }
 
         let objectsToShare = [fileContent]
@@ -430,6 +452,7 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        let IsAsciiDisplay = btnTagDisplay.currentTitle?.contains("ASCII") ?? false
         var cell: CSLTagListCell?
         //for rfid data
         if (CSLRfidAppEngine.shared().reader.filteredBuffer[indexPath.row] is CSLBleTag) {
@@ -449,22 +472,22 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
             }
 
             if data1 != nil && data2 != nil {
-                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(epc ?? "")"
+                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: epc)) : epc ?? "")"
                 if CSLRfidAppEngine.shared().reader.readerModelNumber == READERTYPE.CS463 {
-                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(data1 ?? "")\n\(data2bank ?? "")=\(data2 ?? "")\nRSSI: \(rssi) | Port: \(portNumber + 1)"
+                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data1)) : data1 ?? "")\n\(data2bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data2)) : data2 ?? "")\nRSSI: \(rssi) | Port: \(portNumber + 1)"
                 } else {
-                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(data1 ?? "")\n\(data2bank ?? "")=\(data2 ?? "")\nRSSI: \(rssi)"
+                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data1)) : data1 ?? "")\n\(data2bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data2)) : data2 ?? "")\nRSSI: \(rssi)"
                 }
             } else if data1 != nil {
-                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(epc ?? "")"
-                cell?.lbCellBank?.text = "\(data1bank ?? "")=\(data1 ?? "")\nRSSI: \(rssi)"
+                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: epc)) : epc ?? "")"
+                cell?.lbCellBank?.text = "\(data1bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data1)) : data1 ?? "")\nRSSI: \(rssi)"
                 if CSLRfidAppEngine.shared().reader.readerModelNumber == READERTYPE.CS463 {
-                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(data1 ?? "")\nRSSI: \(rssi) | Port: \(portNumber + 1)"
+                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data1)) : data1 ?? "")\nRSSI: \(rssi) | Port: \(portNumber + 1)"
                 } else {
-                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(data1 ?? "")\nRSSI: \(rssi)"
+                    cell?.lbCellBank?.text = "\(data1bank ?? "")=\(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: data1)) : data1 ?? "")\nRSSI: \(rssi)"
                 }
             } else {
-                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(epc ?? "")"
+                cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: epc)) : epc ?? "")"
                 if CSLRfidAppEngine.shared().reader.readerModelNumber == READERTYPE.CS463 {
                     cell?.lbCellBank?.text = "RSSI: \(rssi) | Port: \(portNumber + 1)"
                 } else {
@@ -480,7 +503,7 @@ class CSLInventoryVC : UIViewController, CSLBleReaderDelegate, CSLBleInterfaceDe
                 cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as? CSLTagListCell
             }
 
-            cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(bc ?? "")"
+            cell?.lbCellEPC?.text = "\(indexPath.row + 1) \u{25CF} \(IsAsciiDisplay ? String(CSLReaderBarcode.convertHexString(toAscii: bc)) : bc ?? "")"
             if let object = (CSLRfidAppEngine.shared().reader.filteredBuffer[indexPath.row] as? CSLReaderBarcode)?.codeId {
                 cell?.lbCellBank?.text = "[\(object)]"
             }
