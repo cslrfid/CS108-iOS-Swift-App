@@ -8,7 +8,7 @@
 
 import QuartzCore
 
-@objcMembers class CSLDeviceTV: UITableViewController {
+@objcMembers class CSLDeviceTV: UITableViewController, CSLBleScanDelegate {
     
     @IBOutlet var tblDeviceList: UITableView!
     @IBOutlet weak var actSpinner: UIActivityIndicatorView!
@@ -21,6 +21,7 @@ import QuartzCore
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // navigationItem?.rightBarButtonItem = editButtonItem
+        CSLRfidAppEngine.shared().reader.scanDelegate = self;
         CSLRfidAppEngine.shared().reader.startScanDevice()
 
         navigationItem.title = "Search for Devices..."
@@ -210,5 +211,19 @@ import QuartzCore
 
     }
 
+    func deviceListWasUpdated(_ deviceDiscovered: CBPeripheral?) {
+        print("New device discocvered: \(deviceDiscovered?.name ?? "")")
+    }
 
+    func didConnect(toDevice deviceConnected: CBPeripheral?) {
+        print("Device connected: \(deviceConnected?.name ?? "")")
+    }
+
+    func didDisconnectDevice(_ deviceDisconnected: CBPeripheral?) {
+        print("Device disconnected: \(deviceDisconnected?.name ?? "")")
+    }
+
+    func didFailed(toConnect deviceFailedToConnect: CBPeripheral?) {
+        print("Device failed to connect: \(deviceFailedToConnect?.name ?? "")")
+    }
 }
