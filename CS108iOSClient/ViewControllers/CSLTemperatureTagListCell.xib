@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -46,10 +46,10 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUh-bF-8Jw" userLabel="rssi">
                                         <rect key="frame" x="25" y="28" width="23" height="17"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZb-Bp-cet">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZb-Bp-cet">
                                         <rect key="frame" x="50" y="25.5" width="55" height="20"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.65098039215686276" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -63,17 +63,16 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="060-EK-ul9">
                                         <rect key="frame" x="110" y="32.5" width="22" height="12"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
-                                        <color key="textColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycr-Z1-WDf">
                                         <rect key="frame" x="190.5" y="18.5" width="35.5" height="16"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                                        <color key="textColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yjn-1u-Y5e" firstAttribute="leading" secondItem="FCs-Fm-y9n" secondAttribute="leading" id="0v7-p1-ub6"/>
                                     <constraint firstItem="ycr-Z1-WDf" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" id="CyP-p2-nJ0"/>
@@ -104,7 +103,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="pfh-bu-VRo" secondAttribute="bottom" constant="2" id="5NL-QV-CyX"/>
                                     <constraint firstItem="pfh-bu-VRo" firstAttribute="leading" secondItem="jl5-rf-OqC" secondAttribute="leading" id="Eke-mN-yZK"/>
@@ -125,7 +123,6 @@
                                         <state key="normal" image="arrow"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="6oJ-53-cdh" firstAttribute="leading" secondItem="Xck-NV-hez" secondAttribute="leading" constant="11" id="TMd-zN-zHe"/>
                                     <constraint firstItem="6oJ-53-cdh" firstAttribute="centerY" secondItem="Xck-NV-hez" secondAttribute="centerY" id="h0L-vw-8t6"/>
