@@ -20,6 +20,17 @@
 
         CSLRfidAppEngine.shared()
 
+        //override default transparent background after iOS 15
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColorFromRGB(0x1f4788)
+            appearance.titleTextAttributes = [.foregroundColor : UIColor.white]
+
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
+        }
+
         UIBarButtonItem.appearance().tintColor = UIColorFromRGB(0xffffff)
 
         UINavigationBar.appearance().barTintColor = UIColorFromRGB(0x1f4788)
